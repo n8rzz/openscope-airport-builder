@@ -1,4 +1,5 @@
 import React, { Component, PropTypes  } from 'react';
+import AirportBuilder from './AirportBuilder/AirportBuilder';
 
 export default class App extends Component {
     constructor(props) {
@@ -7,7 +8,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <div>Hello</div>
+            <AirportBuilder />
         );
     }
 }

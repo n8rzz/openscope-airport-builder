@@ -34,6 +34,9 @@
         "no-shadow": 0,
         "no-mixed-operators": 0,
         "no-underscore-dangle": 0,
-        "object-shorthand": 0
+        "object-shorthand": 0,
+
+        "react/jsx-indent": 0,
+        "react/jsx-filename-extension": 0
     }
 }
