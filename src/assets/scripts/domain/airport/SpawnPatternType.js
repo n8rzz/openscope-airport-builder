@@ -33,5 +33,7 @@ export const BaseSpawnPatternType = t.struct({
     airlines: t.list(SpawnPatternAirlineEntryType)
 }, 'BaseSpawnPatternType');
 
+export const SpawnPatternListType = t.list(BaseSpawnPatternType, 'SpawnPatternListType');
+
 // export const ArrivalSpawnPatternType = BaseSpawnPatternType.extend({}, 'ArrivalSpawnPatternType');
 // export const DepartureSpawnPatternType = BaseSpawnPatternType.extend({}, 'DepartureSpawnPatternType');

@@ -5,9 +5,18 @@ import t from 'tcomb';
 //     THREE_D: 3
 // };
 
-export const Position2dType = t.union([
-    t.list(t.String),
-    t.list(t.Number)
-], 'Position2dType');
+export const PositionValueType = t.union([
+    t.String,
+    t.Number
+], 'PositionValueType');
+PositionValueType.dispatch = (v) => {
+    if (t.String.is(v)) {
+        return t.String;
+    }
+
+    return t.Number;
+};
+
+export const Position2dType = t.list(PositionValueType);
 
 export const Position3dType = t.refinement(Position2dType, (v) => t.Any.is(v), 'Position3dType');
