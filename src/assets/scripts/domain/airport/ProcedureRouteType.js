@@ -5,7 +5,7 @@ export const RouteSegmentWaypointType = t.union([
     t.tuple([t.String, t.String])
 ], 'RouteSegmentWaypointType');
 
-export const RouteSegmentWaypointListType = t.list(RouteSegmentWaypointType, 'RouteSegmentWaypointListType')
+export const RouteSegmentWaypointListType = t.list(RouteSegmentWaypointType, 'RouteSegmentWaypointListType');
 
 export const BaseProcedureRouteType = t.struct({
     icao: t.String,
