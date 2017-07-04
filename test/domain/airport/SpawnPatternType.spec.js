@@ -1,5 +1,4 @@
 import ava from 'ava';
-import tcomb from 'tcomb';
 import {
     BaseSpawnPatternType,
     NumberOrTupleNumber
