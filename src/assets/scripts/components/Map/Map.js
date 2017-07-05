@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class Runway extends Component {
+export default class Map extends Component {
     constructor(props) {
         super();
     }
 
     render() {
         return (
-            <div>Runway</div>
+            <div>
+                <h2>Map</h2>
+            </div>
         );
     }
 }

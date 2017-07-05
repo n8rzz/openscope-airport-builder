@@ -8,7 +8,11 @@ export default class SpawnPattern extends Component {
     render() {
         return (
             <div>
-                SpawnPattern
+                <h2>SpawnPattern</h2>
+                <ul>
+                    <h3>Departures</h3>
+                    <h3>Arrivals</h3>
+                </ul>
             </div>
         );
     }

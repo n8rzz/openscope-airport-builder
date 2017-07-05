@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class ProcedureRoute extends Component {
+export default class Runway extends Component {
     constructor(props) {
         super();
     }
@@ -8,7 +8,7 @@ export default class ProcedureRoute extends Component {
     render() {
         return (
             <div>
-                ProcedureRoute
+                <h2>Runway</h2>
             </div>
         );
     }

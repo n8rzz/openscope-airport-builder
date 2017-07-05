@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class Fix extends Component {
+export default class Restricted extends Component {
     constructor(props) {
         super();
     }
@@ -8,7 +8,7 @@ export default class Fix extends Component {
     render() {
         return (
             <div>
-                Fix
+                <h2>Restricted</h2>
             </div>
         );
     }
