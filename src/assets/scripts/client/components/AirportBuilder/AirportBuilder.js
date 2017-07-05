@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import BaseAirport from './BaseAirport';
 import Fix from '../Fix/Fix';
 import Runway from '../Runway/Runway';

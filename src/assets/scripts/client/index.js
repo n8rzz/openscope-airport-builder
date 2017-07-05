@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App';
+import client from './client';
+import routes from './routes';
+import reducer from './reducer';
 
-ReactDOM.render(<App />, document.getElementById('react-view'));
+client(reducer, routes);
