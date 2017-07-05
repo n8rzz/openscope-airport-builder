@@ -17,17 +17,17 @@ import { WindType } from './WindType';
 
 
 export const BaseAirportCreationType = t.struct({
-    radio: RadioType,
     icao: t.String,
     iata: t.String,
+    has_terrain: t.Boolean,
+    radio: RadioType,
+    position: Position3dCreationType,
     magnetic_north: t.Number,
     ctr_radius: t.Number,
     ctr_ceiling: t.Number,
     initial_alt: t.Number,
-    position: Position3dCreationType,
     rr_radius_nm: t.Number,
     rr_center: Position2dCreationType,
-    has_terrain: t.Boolean,
     wind: WindType
 }, 'BaseAirportType');
 
