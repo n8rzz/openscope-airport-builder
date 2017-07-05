@@ -5,7 +5,7 @@ import {
     StarProcedureRouteType,
     SidProcedureRouteDict,
     StarProcedureRouteDict
-} from '../../../src/assets/scripts/domain/airport/ProcedureRouteType';
+} from '../../../src/assets/scripts/client/domain/airport/ProcedureRouteType';
 import { airportJsonMock } from '../../_mocks/airportJsonMock';
 
 ava('BaseProcedureRouteType', (t) => {

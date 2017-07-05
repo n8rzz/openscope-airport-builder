@@ -1,4 +1,11 @@
 import t from 'tcomb';
+import { Position3dType } from '../base/PositionType';
+
+export const RunwayCreationType = t.struct({
+    name: t.String,
+    position: Position3dType,
+    ils: t.Boolean
+}, 'RunwayCreationType');
 
 export const RunwayType = t.struct({
     name: t.list(t.String),

@@ -1,5 +1,9 @@
 import t from 'tcomb';
-import { PositionValueType } from '../base/PositionType';
+import {
+    Position2dCreationType,
+    Position3dCreationType,
+    PositionValueType
+} from '../base/PositionType';
 import { AirspaceListType } from './AirspaceType';
 import { FixDict } from './FixType';
 import {
@@ -10,6 +14,22 @@ import { RadioType } from './RadioType';
 import { RunwayListType } from './RunwayType';
 import { SpawnPatternListType } from './SpawnPatternType';
 import { WindType } from './WindType';
+
+
+export const BaseAirportCreationType = t.struct({
+    radio: RadioType,
+    icao: t.String,
+    iata: t.String,
+    magnetic_north: t.Number,
+    ctr_radius: t.Number,
+    ctr_ceiling: t.Number,
+    initial_alt: t.Number,
+    position: Position3dCreationType,
+    rr_radius_nm: t.Number,
+    rr_center: Position2dCreationType,
+    has_terrain: t.Boolean,
+    wind: WindType
+}, 'BaseAirportType');
 
 export const BaseAirportType = t.struct({
     radio: RadioType,

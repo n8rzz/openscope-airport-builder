@@ -1,14 +1,19 @@
 import t from 'tcomb';
 
-// const POSITION_VALUE_LENGTH = {
-//     TWO_D: 2,
-//     THREE_D: 3
-// };
+export const Position2dCreationType = t.struct({
+    latitude: t.String,
+    longitude: t.String
+}, 'Position2dCreationType');
+
+export const Position3dCreationType = Position2dCreationType.extend({
+    elevation: t.String
+}, 'Position3dCreationType');
 
 export const PositionValueType = t.union([
     t.String,
     t.Number
 ], 'PositionValueType');
+
 PositionValueType.dispatch = (v) => {
     if (t.String.is(v)) {
         return t.String;
