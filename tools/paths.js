@@ -5,9 +5,11 @@ const OPTIONS = {};
 
 const buildDir = path.join(ROOT, 'build');
 const srcDir = path.join(ROOT, 'src');
+const srcClientScriptsDir = path.join(srcDir, 'assets/scripts/client');
+const srcServerScriptsDir = path.join(srcDir, 'assets/scripts/server');
 
 const FILE = {
-    JS_ENTRY: path.join(srcDir, 'assets/scripts/index.js')
+    JS_CLIENT_ENTRY: path.join(srcClientScriptsDir, 'index.js')
 };
 
 const DIR = {

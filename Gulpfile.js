@@ -10,7 +10,7 @@ function buildScripts() {
     const buffer = require('vinyl-buffer');
 
     return browserify({
-            entries: OPTIONS.FILE.JS_ENTRY,
+            entries: OPTIONS.FILE.JS_CLIENT_ENTRY,
             extensions: ['.js'],
             debug: true
         })

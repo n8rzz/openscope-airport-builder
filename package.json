@@ -6,7 +6,8 @@
   "scripts": {
     "build": "gulp build",
     "test": "nyc --cache ava --concurrency=5",
-    "report": "nyc report --reporter=cobertura --reporter=lcov"
+    "report": "nyc report --reporter=cobertura --reporter=lcov",
+    "start": "node ./src/assets/scripts/server/index.js"
   },
   "author": "Nate Geslin <teamtomkins23@gmail.com>",
   "license": "MIT",
@@ -28,6 +29,7 @@
     ]
   },
   "dependencies": {
+    "express": "^4.15.3",
     "lodash": "^4.17.4",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
