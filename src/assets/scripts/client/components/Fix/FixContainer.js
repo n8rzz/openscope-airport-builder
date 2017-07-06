@@ -10,10 +10,10 @@ const FixContainer = function FixContainer(props) {
     return (
         <div>
             <h2>Fix</h2>
+            <FixList />
             <FixCreate fix={ props.fix }
                 onSaveFix={ props.saveFix } />
             <FixImport />
-            <FixList />
         </div>
     );
 };
