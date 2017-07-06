@@ -31,6 +31,6 @@ ava('.saveFix() dispatches a success action when passed valid data', async (t) =
 
     await saveFix({})(dispatchSpy);
 
-    t.true(dispatchSpy.callCount === 2);
-    t.true(dispatchSpy.getCall(1).args[0].type === SAVE_FIX_SUCCESS);
+    t.true(dispatchSpy.callCount === 3);
+    t.true(dispatchSpy.getCall(2).args[0].type === SAVE_FIX_SUCCESS);
 });

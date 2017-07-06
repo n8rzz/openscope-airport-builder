@@ -5,14 +5,14 @@ import {
 } from '../../base/PositionType';
 import { BaseStateType } from '../../base/StateType';
 
-export const FixCreationType = t.struct({
+export const FixUpdateType = t.struct({
     name: t.String,
     position: Position2dCreationType
-}, 'FixCreationType');
+}, 'FixUpdateType');
 
-FixCreationType.prototype.getPositionDisplay = function() {
+FixUpdateType.prototype.getPositionDisplay = function() {
     return this.position.getDisplayValue();
-}
+};
 
 export const FixImportType = t.struct({
     data: t.String
@@ -21,5 +21,9 @@ export const FixImportType = t.struct({
 export const FixDict = t.dict(t.String, Position2dType, 'FixDict');
 
 export const FixStateType = BaseStateType.extend({
-    payload: t.maybe(FixCreationType)
+    payload: t.maybe(FixUpdateType)
 }, 'FixStateType');
+
+export const FixListStateType = BaseStateType.extend({
+    payload: t.list(t.maybe(FixUpdateType))
+});

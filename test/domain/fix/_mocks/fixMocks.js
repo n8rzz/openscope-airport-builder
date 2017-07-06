@@ -1,6 +1,6 @@
-import { FixCreationType } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
+import { FixUpdateType } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
 
-export const fixCreationTypeMock = {
+export const fixUpdateTypeMock = {
     name: 'COWBY',
     position: {
         latitude: 'N35.92358556169513',
@@ -8,4 +8,4 @@ export const fixCreationTypeMock = {
     }
 };
 
-export const FixCreationTypeFixture = new FixCreationType(fixCreationTypeMock);
+export const FixUpdateTypeFixture = new FixUpdateType(fixUpdateTypeMock);

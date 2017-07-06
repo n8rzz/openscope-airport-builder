@@ -1,4 +1,4 @@
-import { FixCreationType } from '../types/FixType';
+import { FixUpdateType } from '../types/FixType';
 
 export const ADD_FIX_TO_LIST_START = 'ADD_FIX_TO_LIST_START';
 export const ADD_FIX_TO_LIST_SUCCESS = 'ADD_FIX_TO_LIST_SUCCESS';
@@ -16,14 +16,19 @@ const addFixToListError = (error) => ({
     error
 });
 
-export const addFixToList = (fixToAdd) => (dispatch) => {
+export const addFixToList = (fixToAdd) => (dispatch, getState) => {
     dispatch(addFixToListStart());
 
-    if (!FixCreationType.is(fixToAdd)) {
+    if (!FixUpdateType.is(fixToAdd)) {
         const error = new TypeError('Invalid data passed to .addFixToList()');
 
         return dispatch(addFixToListError(error));
     }
+
+    console.log(getState());
+    // mockFixList = Object.assign({}, mockFixList, {
+    //     [fixFormValues.name]: fixFormValues.getPositionDisplay()
+    // });
 
     return dispatch(addFixToListSuccess(fixToAdd));
 };
@@ -53,10 +58,6 @@ export const saveFix = (fixFormValues) => (dispatch) => {
         return dispatch(saveFixError(error));
     }
 
-    // mockFixList = Object.assign({}, mockFixList, {
-    //     [fixFormValues.name]: fixFormValues.getPositionDisplay()
-    // });
-
-    addFixToList(fixFormValues);
+    dispatch(addFixToList(fixFormValues));
     return dispatch(saveFixSuccess(fixFormValues));
 };

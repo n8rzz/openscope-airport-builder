@@ -6,7 +6,7 @@ import {
 } from '../../../../src/assets/scripts/client/domain/fix/actions/FixActions';
 import { FixStateType } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
 import saveFixReducer from '../../../../src/assets/scripts/client/domain/fix/reducers/FixReducers';
-import { FixCreationTypeFixture } from '../_mocks/fixMocks';
+import { FixUpdateTypeFixture } from '../_mocks/fixMocks';
 
 const INITIAL_STATE = new FixStateType({
     isLoading: false,
@@ -27,13 +27,13 @@ ava('saveFixReducer reducer sets payload', (t) => {
     t.notThrows(() => {
         saveFixReducer(INITIAL_STATE, {
             type: SAVE_FIX_SUCCESS,
-            payload: FixCreationTypeFixture
+            payload: FixUpdateTypeFixture
         });
     });
 
     const loadingState = saveFixReducer(INITIAL_STATE, {
         type: SAVE_FIX_SUCCESS,
-        payload: FixCreationTypeFixture
+        payload: FixUpdateTypeFixture
     });
 
     t.false(loadingState.isLoading);

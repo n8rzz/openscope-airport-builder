@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
 import FlashMessage from '../layout/FlashMessage/FlashMessage';
-import { FixCreationType } from '../../domain/fix/types/FixType';
+import { FixUpdateType } from '../../domain/fix/types/FixType';
 
 const Form = t.form.Form;
 
@@ -44,7 +44,7 @@ export default class FixCreate extends Component {
                 <h3>Add Fix</h3>
                 <FlashMessage errorList={ this.state.fixFormErrors } />
                 <Form ref={ (f) => { this._fixForm = f; } }
-                    type={ FixCreationType }
+                    type={ FixUpdateType }
                     value={ this.state.fixFormValues } />
                 <button type="submit" onClick={ this.onSubmit }>Add Fix</button>
             </div>

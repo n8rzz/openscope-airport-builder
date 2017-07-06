@@ -6,7 +6,7 @@ import {
     ADD_FIX_TO_LIST_ERROR,
     addFixToList
 } from '../../../../src/assets/scripts/client/domain/fix/actions/FixActions';
-import { FixCreationTypeFixture } from '../_mocks/fixMocks';
+import { FixUpdateTypeFixture } from '../_mocks/fixMocks';
 
 ava('.addFixToList() dispatches a start action', async (t) => {
     const dispatchSpy = sinon.spy();
@@ -27,8 +27,9 @@ ava('.addFixToList() dispatches an error action when passed invalid data', async
 
 ava('.addFixToList() dispatches a success action when passed valid data', async (t) => {
     const dispatchSpy = sinon.spy();
+    const getStateStub = sinon.stub.resolves({});
 
-    await addFixToList(FixCreationTypeFixture)(dispatchSpy);
+    await addFixToList(FixUpdateTypeFixture)(dispatchSpy, getStateStub);
 
     t.true(dispatchSpy.callCount === 2);
     t.true(dispatchSpy.getCall(1).args[0].type === ADD_FIX_TO_LIST_SUCCESS);
