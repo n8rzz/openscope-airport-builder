@@ -5,6 +5,9 @@
         "transform-object-rest-spread"
     ],
     "env": {
+        "development": {
+            "sourceMaps": "inline"
+        },
         "test": {
             "plugins": ["istanbul"]
         }

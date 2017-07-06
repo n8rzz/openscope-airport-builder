@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "test": "nyc --cache ava --concurrency=5",
+    "test": "nyc --require babel-core/register ava --concurrency=5",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
     "start": "node ./src/assets/scripts/server/index.js"
   },
@@ -15,17 +15,20 @@
     "files": [
       "test/**/*.spec.js"
     ],
+    "source": [
+      "!**/_mocks/**",
+      "!**/testHelpers/**"
+    ],
     "verbose": true,
-    "require": "babel-core/register"
+    "require": [
+      "babel-core/register"
+    ]
   },
   "nyc": {
-    "all": true,
+    "all": false,
     "include": [
-      "src/scripts/**/*.js"
-    ],
-    "exclude": [
-      "**/*.spec.js",
-      "**/_tests"
+      "src/assets/scripts/**/*.js",
+      "!**/*.spec.js"
     ]
   },
   "dependencies": {
@@ -44,8 +47,7 @@
     "tcomb-form": "^0.9.17"
   },
   "devDependencies": {
-    "ava": "^0.20.0",
-    "babel": "^6.23.0",
+    "ava": "^0.16.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.1.2",
     "babel-plugin-istanbul": "^4.1.4",
@@ -66,7 +68,7 @@
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.6.0",
-    "nyc": "^11.0.3",
+    "nyc": "^6.2.0",
     "sinon": "^2.3.6",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
