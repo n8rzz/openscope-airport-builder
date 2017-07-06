@@ -5,6 +5,10 @@ export const Position2dCreationType = t.struct({
     longitude: t.String
 }, 'Position2dCreationType');
 
+Position2dCreationType.prototype.getDisplayValue = function() {
+    return [`${this.latitude}`, `${this.longitude}`];
+};
+
 export const Position3dCreationType = Position2dCreationType.extend({
     elevation: t.String
 }, 'Position3dCreationType');

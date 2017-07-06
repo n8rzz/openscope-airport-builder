@@ -6,7 +6,7 @@ import {
 } from '../../base/PositionType';
 import { BaseStateType } from '../../base/StateType';
 import { AirspaceListType } from '../../airport/AirspaceType';
-import { FixDict } from '../../airport/FixType';
+import { FixDict } from '../../fix/types/FixType';
 import {
     SidProcedureRouteDict,
     StarProcedureRouteDict

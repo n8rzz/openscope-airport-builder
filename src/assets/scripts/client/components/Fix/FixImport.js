@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import t from 'tcomb-form';
-import { FixImportType } from '../../domain/airport/FixType';
+import { FixImportType } from '../../domain/fix/types/FixType';
 
 const Form = t.form.Form;
 const FORM_OPTIONS = {

@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
 import FlashMessage from '../layout/FlashMessage/FlashMessage';
-import {
-    BaseAirportCreationType,
-    BaseAirportType
-} from '../../domain/baseAirport/types/AirportType';
+import { BaseAirportCreationType } from '../../domain/baseAirport/types/AirportType';
 
 const Form = t.form.Form;
 
@@ -37,7 +34,6 @@ export default class AirportForm extends Component {
 
         const formValue = this._baseAirportForm.getValue();
         const formErrors = this._baseAirportForm.validate();
-        console.log('BaseAirportForm: ', formValue, formErrors);
 
         if (formErrors.errors.length > 0) {
             this.setState({ baseAirportFormErrors: formErrors.errors });
