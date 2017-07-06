@@ -1,49 +1,26 @@
 import React, { Component } from 'react';
-import BaseAirport from './BaseAirport/BaseAirport';
-import Fix from './Fix/Fix';
-import Runway from './Runway/Runway';
-import Procedure from './Procedure/Procedure';
-import SpawnPattern from './SpawnPattern/SpawnPattern';
-import Airspace from './Airspace/Airspace';
-import Restricted from './Restricted/Restricted';
-import Map from './Map/Map';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
-export default class AirportBuilder extends Component {
-    constructor(props) {
-        super();
-    }
-
+export default class App extends Component {
     render() {
         return (
             <div>
                 <h1>AirportBuilder</h1>
                 <ul>
                     <li>
-                        <BaseAirport />
+                        <Link to="/">Base</Link>
                     </li>
                     <li>
-                        <Fix />
+                        <Link to="/fixes">Fixes</Link>
                     </li>
-                    <li>
-                        <Runway />
-                    </li>
-                    {/* <li>
-                        <Procedure />
-                    </li>
-                    <li>
-                        <SpawnPattern />
-                    </li>
-                    <li>
-                        <Airspace />
-                    </li>
-                    <li>
-                        <Restricted />
-                    </li>
-                    <li>
-                        <Map />
-                    </li> */}
                 </ul>
+                { this.props.children }
             </div>
         );
     }
 }
+
+App.propTypes = {
+    children: PropTypes.element.isRequired
+};

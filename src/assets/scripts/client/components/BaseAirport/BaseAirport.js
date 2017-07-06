@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import t from 'tcomb-form';
-import { BaseAirportCreationType } from '../../domain/airport/AirportType';
+import { BaseAirportCreationType } from '../../domain/baseAirport/types/AirportType';
 
 const Form = t.form.Form;
 
@@ -22,7 +22,7 @@ export default class AirportForm extends Component {
         return (
             <div>
                 <h2>Base Airport</h2>
-                <Form ref={ (f) => { this._baseAirportForm = f } }
+                <Form ref={ (f) => { this._baseAirportForm = f; } }
                     type={ BaseAirportCreationType } />
                 <button type="submit" onClick={ this.onSubmit }>Submit</button>
             </div>

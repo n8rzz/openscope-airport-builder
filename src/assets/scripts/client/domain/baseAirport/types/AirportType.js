@@ -3,18 +3,18 @@ import {
     Position2dCreationType,
     Position3dCreationType,
     PositionValueType
-} from '../base/PositionType';
-import { AirspaceListType } from './AirspaceType';
-import { FixDict } from './FixType';
+} from '../../base/PositionType';
+import { BaseStateType } from '../../base/StateType';
+import { AirspaceListType } from '../../airport/AirspaceType';
+import { FixDict } from '../../airport/FixType';
 import {
     SidProcedureRouteDict,
     StarProcedureRouteDict
-} from './ProcedureRouteType';
-import { RadioType } from './RadioType';
-import { RunwayListType } from './RunwayType';
-import { SpawnPatternListType } from './SpawnPatternType';
-import { WindType } from './WindType';
-
+} from '../../airport/ProcedureRouteType';
+import { RadioType } from '../../airport/RadioType';
+import { RunwayListType } from '../../airport/RunwayType';
+import { SpawnPatternListType } from '../../airport/SpawnPatternType';
+import { WindType } from '../../airport/WindType';
 
 export const BaseAirportCreationType = t.struct({
     icao: t.String,
@@ -56,3 +56,7 @@ export const AirportType = BaseAirportType.extend({
     // TODO: to include later
     // maps:
 }, 'AirportType');
+
+export const BaseAirportStateType = BaseStateType.extend({
+    payload: t.maybe(BaseAirportCreationType)
+}, 'BaseAirportStateType');
