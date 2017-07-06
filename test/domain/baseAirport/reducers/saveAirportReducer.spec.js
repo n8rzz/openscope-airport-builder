@@ -54,7 +54,7 @@ ava('saveAirportReducer updates #isLoading on SAVE_BASE_AIRPORT_START action', (
     t.true(loadingState.error === null);
 });
 
-ava('saveAirportReducer reducer sets payload', t => {
+ava('saveAirportReducer reducer sets payload', (t) => {
     t.notThrows(() => {
         saveAirportReducer(INITIAL_STATE, {
             type: SAVE_BASE_AIRPORT_SUCCESS,
@@ -71,7 +71,7 @@ ava('saveAirportReducer reducer sets payload', t => {
     t.is(loadingState.error, null);
 });
 
-ava('saveAirportReducer reducer sets error on SAVE_BASE_AIRPORT_ERROR', t => {
+ava('saveAirportReducer reducer sets error on SAVE_BASE_AIRPORT_ERROR', (t) => {
     const networkError = new Error('network error');
     t.notThrows(() => {
         saveAirportReducer(INITIAL_STATE, {

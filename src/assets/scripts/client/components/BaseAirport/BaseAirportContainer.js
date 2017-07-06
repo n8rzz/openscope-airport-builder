@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BaseAirport from './BaseAirport';
 
@@ -10,9 +11,18 @@ class BaseAirportContainer extends Component {
     }
 }
 
-const mapStoreToProps = (state) => ({});
+BaseAirportContainer.propTypes = {
+    baseAirport: PropTypes.object,
+    saveBaseAirport: PropTypes.func.isRequired
+};
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapStoreToProps = (state) => ({
+    baseAirport: state.baseAirport.payload
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    saveBaseAirport: (baseAirportForm) => dispatch(baseAirportForm(baseAirportForm))
+});
 
 export default connect(
     mapStoreToProps,
