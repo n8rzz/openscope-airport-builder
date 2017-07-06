@@ -31,6 +31,7 @@ export const BaseAirportCreationType = t.struct({
     wind: WindType
 }, 'BaseAirportType');
 
+// TODO: there will need to be a translator so we can go between `BaseAirportCreationType` and `BaseAirportType`
 export const BaseAirportType = t.struct({
     radio: RadioType,
     icao: t.String,

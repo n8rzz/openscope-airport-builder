@@ -9,35 +9,7 @@ import {
     BaseAirportStateType
 } from '../../../../src/assets/scripts/client/domain/baseAirport/types/AirportType';
 import saveAirportReducer from '../../../../src/assets/scripts/client/domain/baseAirport/reducers/BaseAirportReducer';
-
-const BaseAirportTypeFixture = {
-    icao: 'klas',
-    iata: 'las',
-    has_terrain: true,
-    radio: {
-        twr: 'Las Vegas Tower',
-        app: 'Las Vegas Approach',
-        dep: 'Las Vegas Departure'
-    },
-    position: {
-        latitude: 'N36.080056',
-        longitude: 'W115.15225',
-        elevation: '2181ft'
-    },
-    magnetic_north: 11.9,
-    ctr_radius: 80,
-    ctr_ceiling: 19000,
-    initial_alt: 19000,
-    rr_radius_nm: 5.0,
-    rr_center: {
-        latitude: 'N36.080056',
-        longitude: 'W115.15225'
-    },
-    wind: {
-        angle: 220,
-        speed: 6
-    }
-};
+import { baseAirportTypeMock } from '../_mocks/baseAirportMocks';
 
 const INITIAL_STATE = new BaseAirportStateType({
     isLoading: false,
@@ -58,13 +30,13 @@ ava('saveAirportReducer reducer sets payload', (t) => {
     t.notThrows(() => {
         saveAirportReducer(INITIAL_STATE, {
             type: SAVE_BASE_AIRPORT_SUCCESS,
-            payload: BaseAirportTypeFixture
+            payload: baseAirportTypeMock
         });
     });
 
     const loadingState = saveAirportReducer(undefined, {
         type: SAVE_BASE_AIRPORT_SUCCESS,
-        payload: BaseAirportTypeFixture
+        payload: baseAirportTypeMock
     });
 
     t.false(loadingState.isLoading);

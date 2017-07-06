@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { saveBaseAirport } from '../../domain/baseAirport/actions/BaseAirportActions';
 import BaseAirport from './BaseAirport';
 
 class BaseAirportContainer extends Component {
     render() {
         return (
-            <BaseAirport />
+            <BaseAirport baseAirport={ this.props.baseAirport }
+                onSaveBaseAirport={ this.props.saveBaseAirport } />
         );
     }
 }
@@ -21,7 +23,7 @@ const mapStoreToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    saveBaseAirport: (baseAirportForm) => dispatch(baseAirportForm(baseAirportForm))
+    saveBaseAirport: (baseAirportForm) => dispatch(saveBaseAirport(baseAirportForm))
 });
 
 export default connect(

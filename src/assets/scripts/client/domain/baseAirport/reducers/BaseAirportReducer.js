@@ -6,9 +6,11 @@ import {
 } from '../actions/BaseAirportActions';
 import { BaseAirportStateType } from '../types/AirportType';
 
+import { BaseAirportCreationTypeFixture } from '../../../../../../../test/domain/baseAirport/_mocks/baseAirportMocks';
+
 const INITIAL_STATE = new BaseAirportStateType({
     isLoading: false,
-    payload: null,
+    payload: null, // BaseAirportCreationTypeFixture,
     error: null
 });
 
