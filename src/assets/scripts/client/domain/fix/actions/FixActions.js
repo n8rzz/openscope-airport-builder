@@ -1,7 +1,7 @@
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 import _map from 'lodash/map';
-import FixRepository from '../repositories/FixRepository';
+import ParseCsv from '../../../lib/ParseCsv/ParseCsv';
 import {
     FixUpdateType,
     FixListType,
@@ -99,7 +99,7 @@ export const importFixList = (importFixFormValues) => (dispatch) => {
         return dispatch(importFixListError(error));
     }
 
-    return FixRepository.parseCsv(importFixFormValues.data)
+    return ParseCsv.parse(importFixFormValues.data)
         .then(({ data }) => {
             const parsedFixList = new FixImportParsedCsvListType(data);
             const fixesToAdd = _map(parsedFixList, (fix) => fix.toFixUpdateType());
