@@ -1,5 +1,6 @@
 import Papa from 'papaparse';
 import _map from 'lodash/map';
+import FixRepository from '../repositories/FixRepository';
 import {
     FixUpdateType,
     FixListType,
@@ -88,30 +89,23 @@ export const importFixList = (importFixFormValues) => (dispatch) => {
         return dispatch(importFixListError(error));
     }
 
-    // TODO: move below to repository
-    const onSuccessHandler = ({ data }) => {
-        const parsedFixList = new FixImportParsedCsvListType(data);
-        const fixesToAdd = _map(parsedFixList, (fix) => fix.toFixUpdateType());
-        const fixList = new FixListType(fixesToAdd);
+    return FixRepository.parseCsv(importFixFormValues.data)
+        .then(({ data }) => {
+            const parsedFixList = new FixImportParsedCsvListType(data);
+            const fixesToAdd = _map(parsedFixList, (fix) => fix.toFixUpdateType());
+            const fixList = new FixListType(fixesToAdd);
 
-        for (let i = 0; i < fixList.length; i++) {
-            const fix = fixList[i];
+            for (let i = 0; i < fixList.length; i++) {
+                const fix = fixList[i];
 
-            dispatch(addFixToList(fix));
-        }
+                dispatch(addFixToList(fix));
+            }
 
-        return dispatch(importFixListSuccess({}));
-    };
+            return dispatch(importFixListSuccess({}));
+        })
+        .catch((error) => {
+            dispatch(importFixListError(error));
 
-    const onErrorHandler = (error) => {
-        dispatch(importFixListError(error));
-
-        throw new Error(error);
-    };
-
-    Papa.parse(importFixFormValues.data, {
-        header: true,
-        complete: (result) => onSuccessHandler(result),
-        error: (error) => onErrorHandler(error)
-    });
+            throw new Error(error);
+        });
 };
