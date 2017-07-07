@@ -2,7 +2,7 @@ import {
     FixUpdateType,
     FixListType,
     FixImportParsedCsvType,
-    FixImportParsedCsvListType,
+    FixImportParsedCsvListType
 } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
 
 export const fixUpdateTypeMock = {

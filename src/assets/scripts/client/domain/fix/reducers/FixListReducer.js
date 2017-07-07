@@ -2,7 +2,10 @@ import { createReducer } from 'redux-create-reducer';
 import {
     ADD_FIX_TO_LIST_START,
     ADD_FIX_TO_LIST_SUCCESS,
-    ADD_FIX_TO_LIST_ERROR
+    ADD_FIX_TO_LIST_ERROR,
+    REMOVE_FIX_START,
+    REMOVE_FIX_SUCCESS,
+    REMOVE_FIX_ERROR
 } from '../actions/FixActions';
 import {
     FixListType,
@@ -38,6 +41,29 @@ export default createReducer(INITIAL_STATE, {
     },
 
     [ADD_FIX_TO_LIST_ERROR]: (state, { error }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            error
+        }
+    ),
+
+    [REMOVE_FIX_START]: (state) => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [REMOVE_FIX_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
+
+    [REMOVE_FIX_ERROR]: (state, { error }) => mergeState(
         state,
         {
             isLoading: false,
