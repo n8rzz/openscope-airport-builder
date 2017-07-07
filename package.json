@@ -28,7 +28,8 @@
     "all": false,
     "include": [
       "src/assets/scripts/**/*.js",
-      "!**/*.spec.js"
+      "!**/*.spec.js",
+      "!**/_mocks/**"
     ]
   },
   "dependencies": {

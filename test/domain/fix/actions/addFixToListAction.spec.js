@@ -27,9 +27,8 @@ ava('.addFixToList() dispatches an error action when passed invalid data', async
 
 ava('.addFixToList() dispatches a success action when passed valid data', async (t) => {
     const dispatchSpy = sinon.spy();
-    const getStateStub = sinon.stub.resolves({});
 
-    await addFixToList(FixUpdateTypeFixture)(dispatchSpy, getStateStub);
+    await addFixToList(FixUpdateTypeFixture)(dispatchSpy);
 
     t.true(dispatchSpy.callCount === 2);
     t.true(dispatchSpy.getCall(1).args[0].type === ADD_FIX_TO_LIST_SUCCESS);

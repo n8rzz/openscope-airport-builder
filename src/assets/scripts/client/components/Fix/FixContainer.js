@@ -10,7 +10,7 @@ const FixContainer = function FixContainer(props) {
     return (
         <div>
             <h2>Fix</h2>
-            <FixList />
+            <FixList fixList={ props.fixList } />
             <FixCreate fix={ props.fix }
                 onSaveFix={ props.saveFix } />
             <FixImport />
@@ -20,11 +20,13 @@ const FixContainer = function FixContainer(props) {
 
 FixContainer.propTypes = {
     fix: PropTypes.object,
+    fixList: PropTypes.array,
     saveFix: PropTypes.func.isRequired
 };
 
 const mapStoreToProps = (state) => ({
-    fix: state.fix.payload
+    fix: state.fix.payload,
+    fixList: state.fixList.payload
 });
 
 const mapDispatchToProps = (dispatch) => ({

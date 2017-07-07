@@ -1,4 +1,7 @@
-import { FixUpdateType } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
+import {
+    FixUpdateType,
+    FixListType
+} from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
 
 export const fixUpdateTypeMock = {
     name: 'COWBY',
@@ -9,3 +12,16 @@ export const fixUpdateTypeMock = {
 };
 
 export const FixUpdateTypeFixture = new FixUpdateType(fixUpdateTypeMock);
+
+export const fixListTypeMock = [
+    ...fixUpdateTypeMock,
+    {
+        name: 'GRNPA',
+        position: {
+            latitude: 'N36.26467677181758',
+            longitude: 'W114.51481791576114'
+        }
+    }
+];
+
+export const FixListTypeFixture = new FixListType(fixListTypeMock);

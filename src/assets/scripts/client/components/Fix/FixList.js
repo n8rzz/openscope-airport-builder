@@ -1,41 +1,45 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import _map from 'lodash/map';
 
-export default class Fix extends Component {
-    constructor(props) {
-        super();
-    }
-
-    render() {
+const FixList = function FixList(props) {
+    const fixListTableRows = _map(props.fixList, (fix, i) => {
         return (
-            <div>
-                <h3>List</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Latitude</th>
-                            <th>Longitude</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>ASDAK</td>
-                            <td>50.602222</td>
-                            <td>6.251944</td>
-                        </tr>
-                        <tr>
-                            <td>ASPIX</td>
-                            <td>50.485361</td>
-                            <td>5.416583</td>
-                        </tr>
-                        <tr>
-                            <td>BABUV</td>
-                            <td>51.160494</td>
-                            <td>6.738392</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <tr key={ `fixListItem-${i}` }>
+                <td>{ fix.name }</td>
+                <td>{ fix.position.latitude }</td>
+                <td>{ fix.position.longitude }</td>
+            </tr>
         );
-    }
+    });
+
+    return (
+        <div>
+            <h3>List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { fixListTableRows }
+                </tbody>
+            </table>
+        </div>
+    );
 }
+
+FixList.displayName = 'FixList';
+
+FixList.propTypes = {
+    fixList: PropTypes.array
+};
+
+FixList.defaultProps = {
+    fixList: []
+};
+
+export default FixList;

@@ -14,16 +14,19 @@ FixUpdateType.prototype.getPositionDisplay = function() {
     return this.position.getDisplayValue();
 };
 
+export const FixListType = t.list(t.maybe(FixUpdateType));
+
 export const FixImportType = t.struct({
     data: t.String
 }, 'FixImportType');
 
-export const FixDict = t.dict(t.String, Position2dType, 'FixDict');
 
 export const FixStateType = BaseStateType.extend({
     payload: t.maybe(FixUpdateType)
 }, 'FixStateType');
 
 export const FixListStateType = BaseStateType.extend({
-    payload: t.list(t.maybe(FixUpdateType))
+    payload: FixListType
 });
+
+export const FixDict = t.dict(t.String, Position2dType, 'FixDict');

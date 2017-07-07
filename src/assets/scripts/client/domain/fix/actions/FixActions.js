@@ -16,7 +16,7 @@ const addFixToListError = (error) => ({
     error
 });
 
-export const addFixToList = (fixToAdd) => (dispatch, getState) => {
+export const addFixToList = (fixToAdd) => (dispatch) => {
     dispatch(addFixToListStart());
 
     if (!FixUpdateType.is(fixToAdd)) {
@@ -24,11 +24,6 @@ export const addFixToList = (fixToAdd) => (dispatch, getState) => {
 
         return dispatch(addFixToListError(error));
     }
-
-    console.log(getState());
-    // mockFixList = Object.assign({}, mockFixList, {
-    //     [fixFormValues.name]: fixFormValues.getPositionDisplay()
-    // });
 
     return dispatch(addFixToListSuccess(fixToAdd));
 };
