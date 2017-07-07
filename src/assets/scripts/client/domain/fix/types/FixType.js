@@ -30,3 +30,21 @@ export const FixListStateType = BaseStateType.extend({
 });
 
 export const FixDict = t.dict(t.String, Position2dType, 'FixDict');
+
+export const FixImportParsedCsvType = t.struct({
+    name: t.String,
+    latitude: t.String,
+    longitude: t.String
+}, 'FixImportParsedCsvType');
+
+FixImportParsedCsvType.prototype.toFixUpdateType = function toFixUpdateType() {
+    return new FixUpdateType({
+        name: this.name,
+        position: {
+            latitude: this.latitude,
+            longitude: this.longitude
+        }
+    });
+};
+
+export const FixImportParsedCsvListType = t.list(FixImportParsedCsvType, 'FixImportParsedCsvListType');

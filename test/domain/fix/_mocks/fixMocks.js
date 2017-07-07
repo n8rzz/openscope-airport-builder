@@ -1,6 +1,8 @@
 import {
     FixUpdateType,
-    FixListType
+    FixListType,
+    FixImportParsedCsvType,
+    FixImportParsedCsvListType,
 } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
 
 export const fixUpdateTypeMock = {
@@ -25,3 +27,22 @@ export const fixListTypeMock = [
 ];
 
 export const FixListTypeFixture = new FixListType(fixListTypeMock);
+
+export const fixImportParsedCsvTypeMock = {
+    name: 'ASDAK',
+    latitude: '50.602222',
+    longitude: '6.251944'
+};
+
+export const FixImportParsedCsvTypeFixture = new FixImportParsedCsvType(fixImportParsedCsvTypeMock);
+
+export const fixImportParsedCsvListTypeMock = [
+    ...fixImportParsedCsvTypeMock,
+    {
+        name: 'BLUU',
+        latitude: '50.602222',
+        longitude: '6.251944'
+    }
+];
+
+export const FixImportParsedCsvListTypeFixture = new FixImportParsedCsvListType(fixImportParsedCsvListTypeMock);

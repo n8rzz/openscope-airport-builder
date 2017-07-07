@@ -5,8 +5,8 @@ import {
     ADD_FIX_TO_LIST_ERROR
 } from '../../../../src/assets/scripts/client/domain/fix/actions/FixActions';
 import { FixListStateType } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
-import saveFixReducer from '../../../../src/assets/scripts/client/domain/fix/reducers/FixListReducer';
-import { FixListTypeFixture } from '../_mocks/fixMocks';
+import addFixToList from '../../../../src/assets/scripts/client/domain/fix/reducers/FixListReducer';
+import { FixUpdateTypeFixture } from '../_mocks/fixMocks';
 
 const INITIAL_STATE = new FixListStateType({
     isLoading: false,
@@ -14,42 +14,42 @@ const INITIAL_STATE = new FixListStateType({
     error: null
 });
 
-ava('saveFixReducer updates #isLoading on ADD_FIX_TO_LIST_START action', (t) => {
-    t.notThrows(() => saveFixReducer(INITIAL_STATE, { type: ADD_FIX_TO_LIST_START }));
+ava('addFixToList updates #isLoading on ADD_FIX_TO_LIST_START action', (t) => {
+    t.notThrows(() => addFixToList(INITIAL_STATE, { type: ADD_FIX_TO_LIST_START }));
 
-    const loadingState = saveFixReducer(INITIAL_STATE, { type: ADD_FIX_TO_LIST_START });
+    const loadingState = addFixToList(INITIAL_STATE, { type: ADD_FIX_TO_LIST_START });
 
     t.true(loadingState.isLoading);
     t.true(loadingState.error === null);
 });
 
-ava('saveFixReducer reducer sets payload', (t) => {
+ava('addFixToList reducer sets payload', (t) => {
     t.notThrows(() => {
-        saveFixReducer(INITIAL_STATE, {
+        addFixToList(INITIAL_STATE, {
             type: ADD_FIX_TO_LIST_SUCCESS,
-            payload: FixListTypeFixture
+            payload: FixUpdateTypeFixture
         });
     });
 
-    const loadingState = saveFixReducer(INITIAL_STATE, {
+    const loadingState = addFixToList(INITIAL_STATE, {
         type: ADD_FIX_TO_LIST_SUCCESS,
-        payload: FixListTypeFixture
+        payload: FixUpdateTypeFixture
     });
 
     t.false(loadingState.isLoading);
     t.is(loadingState.error, null);
 });
 
-ava('saveFixReducer reducer sets error on ADD_FIX_TO_LIST_ERROR', (t) => {
+ava('addFixToList reducer sets error on ADD_FIX_TO_LIST_ERROR', (t) => {
     const networkError = new Error('network error');
     t.notThrows(() => {
-        saveFixReducer(INITIAL_STATE, {
+        addFixToList(INITIAL_STATE, {
             type: ADD_FIX_TO_LIST_ERROR,
             errors: networkError
         });
     });
 
-    const errorState = saveFixReducer(INITIAL_STATE, {
+    const errorState = addFixToList(INITIAL_STATE, {
         type: ADD_FIX_TO_LIST_ERROR,
         error: networkError
     });

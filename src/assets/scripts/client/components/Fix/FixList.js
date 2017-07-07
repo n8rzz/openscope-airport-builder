@@ -30,7 +30,7 @@ const FixList = function FixList(props) {
             </table>
         </div>
     );
-}
+};
 
 FixList.displayName = 'FixList';
 

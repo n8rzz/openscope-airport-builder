@@ -36,6 +36,7 @@
     "classnames": "^2.2.5",
     "express": "^4.15.3",
     "lodash": "^4.17.4",
+    "papaparse": "^4.3.3",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.0",

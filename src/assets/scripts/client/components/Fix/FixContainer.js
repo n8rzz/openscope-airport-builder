@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { saveFix } from '../../domain/fix/actions/FixActions';
+import {
+    saveFix,
+    importFixList
+} from '../../domain/fix/actions/FixActions';
 import FixCreate from './FixCreate';
 import FixImport from './FixImport';
 import FixList from './FixList';
 
-const FixContainer = function FixContainer(props) {
-    return (
-        <div>
-            <h2>Fix</h2>
-            <FixList fixList={ props.fixList } />
-            <FixCreate fix={ props.fix }
-                onSaveFix={ props.saveFix } />
-            <FixImport />
-        </div>
-    );
-};
+class FixContainer extends Component {
+    constructor() {
+        super();
+    }
+
+
+    render() {
+        return (
+            <div>
+                <h2>Fix</h2>
+                <FixList fixList={ this.props.fixList } />
+                <FixCreate fix={ this.props.fix }
+                    onSaveFix={ this.props.saveFix } />
+                <FixImport onImportFixList={ this.props.importFixList } />
+            </div>
+        );
+    }
+}
 
 FixContainer.propTypes = {
     fix: PropTypes.object,
     fixList: PropTypes.array,
-    saveFix: PropTypes.func.isRequired
+    saveFix: PropTypes.func.isRequired,
+    importFixList: PropTypes.func.isRequired
 };
 
 const mapStoreToProps = (state) => ({
@@ -30,7 +41,8 @@ const mapStoreToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    saveFix: (fixFormValues) => dispatch(saveFix(fixFormValues))
+    saveFix: (fixFormValues) => dispatch(saveFix(fixFormValues)),
+    importFixList: (fixListFormValues) => dispatch(importFixList(fixListFormValues))
 });
 
 export default connect(
