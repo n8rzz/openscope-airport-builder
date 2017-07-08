@@ -13,6 +13,10 @@ export const Position3dCreationType = Position2dCreationType.extend({
     elevation: t.String
 }, 'Position3dCreationType');
 
+Position3dCreationType.prototype.getDisplayValue = function() {
+    return [`${this.latitude}`, `${this.longitude}`, `${this.elevation}`];
+};
+
 export const PositionValueType = t.union([
     t.String,
     t.Number
@@ -26,6 +30,6 @@ PositionValueType.dispatch = (v) => {
     return t.Number;
 };
 
-export const Position2dType = t.list(PositionValueType);
+export const Position2dType = t.list(PositionValueType, 'Position2dType');
 
-export const Position3dType = t.refinement(Position2dType, (v) => t.Any.is(v), 'Position3dType');
+export const Position3dType = t.list(PositionValueType, 'Position3dType');

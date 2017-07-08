@@ -3,8 +3,8 @@ import {
     Position2dCreationType,
     Position3dCreationType,
     PositionValueType
-} from '../../base/PositionType';
-import { BaseStateType } from '../../base/StateType';
+} from '../../common/PositionType';
+import { BaseStateType } from '../../common/StateType';
 import { AirspaceListType } from '../../airport/AirspaceType';
 import { FixDict } from '../../fix/types/FixType';
 import {

@@ -19,6 +19,7 @@ export default class FixCreate extends Component {
     get getValue() {
         return this._fixForm.getValue();
     }
+
     get validate() {
         return this._fixForm.validate();
     }

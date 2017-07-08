@@ -2,8 +2,8 @@ import t from 'tcomb';
 import {
     Position2dCreationType,
     Position2dType
-} from '../../base/PositionType';
-import { BaseStateType } from '../../base/StateType';
+} from '../../common/PositionType';
+import { BaseStateType } from '../../common/StateType';
 
 export const FixUpdateType = t.struct({
     name: t.String,

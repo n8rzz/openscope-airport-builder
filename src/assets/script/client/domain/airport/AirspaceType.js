@@ -1,5 +1,4 @@
 import t from 'tcomb';
-// import { Position2dType } from '../base/PositionType';
 
 export const AirspaceClassEnum = t.enums.of([
     'B',

@@ -1,11 +1,13 @@
 import t from 'tcomb';
-import { Position3dType } from '../../base/PositionType';
+import { BaseStateType } from '../../common/StateType';
+import { Position3dCreationType } from '../../common/PositionType';
 
-export const RunwayCreationType = t.struct({
+export const RunwayUpdateType = t.struct({
     name: t.String,
-    position: Position3dType,
-    ils: t.Boolean
-}, 'RunwayCreationType');
+    position: Position3dCreationType,
+    ils: t.Boolean,
+    relatedTo: t.String
+}, 'RunwayUpdateType');
 
 export const RunwayPreviewType = t.struct({
     name: t.list(t.String),
@@ -14,3 +16,7 @@ export const RunwayPreviewType = t.struct({
 }, 'RunwayPreviewType');
 
 export const RunwayListPreviewType = t.list(RunwayPreviewType, 'RunwayListPreviewType');
+
+export const RunwaySingleStateType = BaseStateType.extend({
+    payload: t.maybe(RunwayUpdateType)
+}, 'RunwaySingleStateType');

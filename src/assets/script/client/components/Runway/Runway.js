@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import t from 'tcomb-form';
-import { RunwayCreationType } from '../../domain/runway/types/RunwayType';
+import { RunwayUpdateType } from '../../domain/runway/types/RunwayType';
 
 const Form = t.form.Form;
 
@@ -16,7 +16,7 @@ export default class Runway extends Component {
                 <div>
                     <h3>Add</h3>
                     <Form ref="runwayForm"
-                        type={ RunwayCreationType } />
+                        type={ RunwayUpdateType } />
                 </div>
                 <div>
                     <h3>List</h3>
