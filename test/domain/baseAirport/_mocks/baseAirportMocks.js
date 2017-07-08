@@ -1,4 +1,4 @@
-import { BaseAirportCreationType } from '../../../../src/assets/scripts/client/domain/baseAirport/types/AirportType';
+import { BaseAirportCreationType } from '../../../../src/assets/script/client/domain/baseAirport/types/AirportType';
 
 export const baseAirportTypeMock = {
     icao: 'klas',

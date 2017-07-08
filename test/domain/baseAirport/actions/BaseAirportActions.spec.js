@@ -5,7 +5,7 @@ import {
     SAVE_BASE_AIRPORT_SUCCESS,
     SAVE_BASE_AIRPORT_ERROR,
     saveBaseAirport
-} from '../../../../src/assets/scripts/client/domain/baseAirport/actions/BaseAirportActions';
+} from '../../../../src/assets/script/client/domain/baseAirport/actions/BaseAirportActions';
 
 ava('.saveBaseAirport() dispatches a start action', async (t) => {
     const dispatchSpy = sinon.spy();

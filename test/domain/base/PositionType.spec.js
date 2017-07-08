@@ -4,7 +4,7 @@ import {
     Position3dCreationType,
     Position3dType,
     Position2dType
-} from '../../../src/assets/scripts/client/domain/base/PositionType';
+} from '../../../src/assets/script/client/domain/base/PositionType';
 import {
     POSITION_2D_CREATION_MOCK,
     POSITION_3D_CREATION_MOCK,

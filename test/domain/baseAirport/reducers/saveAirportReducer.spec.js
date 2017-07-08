@@ -3,12 +3,12 @@ import {
     SAVE_BASE_AIRPORT_START,
     SAVE_BASE_AIRPORT_SUCCESS,
     SAVE_BASE_AIRPORT_ERROR
-} from '../../../../src/assets/scripts/client/domain/baseAirport/actions/BaseAirportActions';
+} from '../../../../src/assets/script/client/domain/baseAirport/actions/BaseAirportActions';
 import {
     // BaseAirportType,
     BaseAirportStateType
-} from '../../../../src/assets/scripts/client/domain/baseAirport/types/AirportType';
-import saveAirportReducer from '../../../../src/assets/scripts/client/domain/baseAirport/reducers/BaseAirportReducer';
+} from '../../../../src/assets/script/client/domain/baseAirport/types/AirportType';
+import saveAirportReducer from '../../../../src/assets/script/client/domain/baseAirport/reducers/BaseAirportReducer';
 import { baseAirportTypeMock } from '../_mocks/baseAirportMocks';
 
 const INITIAL_STATE = new BaseAirportStateType({

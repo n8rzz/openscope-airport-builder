@@ -1,6 +1,6 @@
 import ava from 'ava';
 import _noop from 'lodash/noop';
-import ParseCsv from '../../../src/assets/scripts/client/lib/ParseCsv/ParseCsv';
+import ParseCsv from '../../../src/assets/script/client/lib/ParseCsv/ParseCsv';
 import { rawCsvMock } from './_mocks/parseCsvMocks';
 
 ava('ParseCsv.parse() accepts a raw csv string', (t) => {

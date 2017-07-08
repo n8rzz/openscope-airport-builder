@@ -3,9 +3,9 @@ import {
     ADD_FIX_TO_LIST_START,
     ADD_FIX_TO_LIST_SUCCESS,
     ADD_FIX_TO_LIST_ERROR
-} from '../../../../src/assets/scripts/client/domain/fix/actions/FixActions';
-import { FixListStateType } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
-import addFixToList from '../../../../src/assets/scripts/client/domain/fix/reducers/FixListReducer';
+} from '../../../../src/assets/script/client/domain/fix/actions/FixActions';
+import { FixListStateType } from '../../../../src/assets/script/client/domain/fix/types/FixType';
+import addFixToList from '../../../../src/assets/script/client/domain/fix/reducers/FixListReducer';
 import { FixUpdateTypeFixture } from '../_mocks/fixMocks';
 
 const INITIAL_STATE = new FixListStateType({

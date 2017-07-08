@@ -3,7 +3,7 @@ import {
     BaseSpawnPatternType,
     SpawnPatternListType,
     NumberOrTupleNumber
-} from '../../../src/assets/scripts/client/domain/airport/SpawnPatternType';
+} from '../../../src/assets/script/client/domain/airport/SpawnPatternType';
 import { airportJsonMock } from '../../_mocks/airportJsonMock';
 
 ava('BaseSpawnPatternType', (t) => {

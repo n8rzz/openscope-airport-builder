@@ -5,7 +5,7 @@ import {
     FixDict,
     FixImportParsedCsvType,
     FixImportParsedCsvListType
-} from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
+} from '../../../../src/assets/script/client/domain/fix/types/FixType';
 import {
     fixUpdateTypeMock,
     fixListTypeMock,

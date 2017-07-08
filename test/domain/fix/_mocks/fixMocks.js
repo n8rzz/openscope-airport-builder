@@ -3,7 +3,7 @@ import {
     FixListType,
     FixImportParsedCsvType,
     FixImportParsedCsvListType
-} from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
+} from '../../../../src/assets/script/client/domain/fix/types/FixType';
 
 export const fixUpdateTypeMock = {
     name: 'COWBY',

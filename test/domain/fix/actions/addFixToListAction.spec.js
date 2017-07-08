@@ -5,7 +5,7 @@ import {
     ADD_FIX_TO_LIST_SUCCESS,
     ADD_FIX_TO_LIST_ERROR,
     addFixToList
-} from '../../../../src/assets/scripts/client/domain/fix/actions/FixActions';
+} from '../../../../src/assets/script/client/domain/fix/actions/FixActions';
 import { FixUpdateTypeFixture } from '../_mocks/fixMocks';
 
 const getStateStub = () => ({

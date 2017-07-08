@@ -5,7 +5,7 @@ import {
     REMOVE_FIX_SUCCESS,
     REMOVE_FIX_ERROR,
     removeFix
-} from '../../../../src/assets/scripts/client/domain/fix/actions/FixActions';
+} from '../../../../src/assets/script/client/domain/fix/actions/FixActions';
 
 const getStateStub = () => ({
     fixList: {

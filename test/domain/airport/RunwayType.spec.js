@@ -2,7 +2,7 @@ import ava from 'ava';
 import {
     RunwayType,
     RunwayListType
-} from '../../../src/assets/scripts/client/domain/airport/RunwayType';
+} from '../../../src/assets/script/client/domain/airport/RunwayType';
 import { airportJsonMock } from '../../_mocks/airportJsonMock';
 
 ava('RunwayType', (t) => {

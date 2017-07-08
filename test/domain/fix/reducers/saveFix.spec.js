@@ -3,9 +3,9 @@ import {
     SAVE_FIX_START,
     SAVE_FIX_SUCCESS,
     SAVE_FIX_ERROR
-} from '../../../../src/assets/scripts/client/domain/fix/actions/FixActions';
-import { FixStateType } from '../../../../src/assets/scripts/client/domain/fix/types/FixType';
-import saveFixReducer from '../../../../src/assets/scripts/client/domain/fix/reducers/FixSingleReducer';
+} from '../../../../src/assets/script/client/domain/fix/actions/FixActions';
+import { FixStateType } from '../../../../src/assets/script/client/domain/fix/types/FixType';
+import saveFixReducer from '../../../../src/assets/script/client/domain/fix/reducers/FixSingleReducer';
 import { FixUpdateTypeFixture } from '../_mocks/fixMocks';
 
 const INITIAL_STATE = new FixStateType({

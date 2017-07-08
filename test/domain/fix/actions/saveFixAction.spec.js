@@ -5,7 +5,7 @@ import {
     SAVE_FIX_SUCCESS,
     SAVE_FIX_ERROR,
     saveFix
-} from '../../../../src/assets/scripts/client/domain/fix/actions/FixActions';
+} from '../../../../src/assets/script/client/domain/fix/actions/FixActions';
 
 ava('.saveFix() dispatches a start action', async (t) => {
     const dispatchSpy = sinon.spy();

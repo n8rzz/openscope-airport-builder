@@ -7,7 +7,7 @@
     "build": "gulp build",
     "test": "nyc --require babel-core/register ava --concurrency=5",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
-    "start": "node ./src/assets/scripts/server/index.js"
+    "start": "node ./src/assets/script/server/index.js"
   },
   "author": "Nate Geslin <teamtomkins23@gmail.com>",
   "license": "MIT",
