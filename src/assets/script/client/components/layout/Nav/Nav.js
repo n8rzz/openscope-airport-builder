@@ -12,6 +12,9 @@ const Nav = function() {
                     <li>
                         <Link to="/fixes">Fixes</Link>
                     </li>
+                    <li>
+                        <Link to="/runways">Runways</Link>
+                    </li>
                 </ul>
             </div>
         );
