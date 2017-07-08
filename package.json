@@ -7,7 +7,7 @@
     "build": "gulp build",
     "test": "nyc --require babel-core/register ava --concurrency=5",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
-    "start": "node ./src/assets/script/server/index.js"
+    "start": "nodemon --watch build ./src/assets/script/server/index.js"
   },
   "author": "Nate Geslin <teamtomkins23@gmail.com>",
   "license": "MIT",
@@ -36,6 +36,7 @@
     "classnames": "^2.2.5",
     "express": "^4.15.3",
     "lodash": "^4.17.4",
+    "nodemon": "^1.11.0",
     "papaparse": "^4.3.3",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
