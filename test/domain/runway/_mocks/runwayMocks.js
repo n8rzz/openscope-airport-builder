@@ -1,5 +1,6 @@
 import {
-    RunwayUpdateType
+    RunwayUpdateType,
+    RunwayUpdateListType
 } from '../../../../src/assets/script/client/domain/runway/types/RunwayType';
 
 export const runwayUpdateTypeMock = {
@@ -14,6 +15,22 @@ export const runwayUpdateTypeMock = {
 };
 
 export const RunwayUpdateTypeFixture = new RunwayUpdateType(runwayUpdateTypeMock);
+
+export const runwayUpdateListTypeMock = [
+    ...runwayUpdateTypeMock,
+    {
+        name: '25R',
+        position: {
+            latitude: 'N36d4m35.05',
+            longitude: 'W115d7m15.93',
+            elevation: '2033ft'
+        },
+        ils: true,
+        relatedTo: '07L'
+    }
+];
+
+export const RunwayUpdateListTypeFixture = new RunwayUpdateListType(runwayUpdateListTypeMock);
 
 export const runwayPreviewTypeMock = {
     name: ['07L', '25R'],

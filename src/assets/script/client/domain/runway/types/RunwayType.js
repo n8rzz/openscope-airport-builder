@@ -9,6 +9,8 @@ export const RunwayUpdateType = t.struct({
     relatedTo: t.String
 }, 'RunwayUpdateType');
 
+export const RunwayUpdateListType = t.list(RunwayUpdateType, 'RunwayUpdateListType');
+
 export const RunwayPreviewType = t.struct({
     name: t.list(t.String),
     end: t.list(t.list(t.String)),
@@ -20,3 +22,7 @@ export const RunwayListPreviewType = t.list(RunwayPreviewType, 'RunwayListPrevie
 export const RunwaySingleStateType = BaseStateType.extend({
     payload: t.maybe(RunwayUpdateType)
 }, 'RunwaySingleStateType');
+
+export const RunwayListStateType = BaseStateType.extend({
+    payload: RunwayUpdateListType
+}, 'RunwayListStateType');
