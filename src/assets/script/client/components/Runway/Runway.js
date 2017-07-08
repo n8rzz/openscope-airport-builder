@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import t from 'tcomb-form';
-import { RunwayCreationType } from '../../domain/airport/RunwayType';
+import { RunwayCreationType } from '../../domain/runway/types/RunwayType';
 
 const Form = t.form.Form;
 

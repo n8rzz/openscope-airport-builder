@@ -12,7 +12,7 @@ import {
     StarProcedureRouteDict
 } from '../../airport/ProcedureRouteType';
 import { RadioType } from '../../airport/RadioType';
-import { RunwayListType } from '../../airport/RunwayType';
+import { RunwayListPreviewType } from '../../runway/types/RunwayType';
 import { SpawnPatternListType } from '../../airport/SpawnPatternType';
 import { WindType } from '../../airport/WindType';
 
@@ -50,7 +50,7 @@ export const BaseAirportType = t.struct({
 export const AirportType = BaseAirportType.extend({
     airspace: AirspaceListType,
     fixes: FixDict,
-    runways: RunwayListType,
+    runways: RunwayListPreviewType,
     sids: SidProcedureRouteDict,
     stars: StarProcedureRouteDict,
     spawnPatterns: SpawnPatternListType
