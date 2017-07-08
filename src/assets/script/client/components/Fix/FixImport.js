@@ -42,7 +42,6 @@ export default class FixImport extends Component {
     render() {
         return (
             <div>
-                <h3>Import</h3>
                 <Form ref={ (f) => { this._fixImportForm = f; } }
                     options={ FORM_OPTIONS }
                     type={ FixImportType } />

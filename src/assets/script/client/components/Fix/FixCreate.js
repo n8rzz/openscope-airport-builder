@@ -41,7 +41,6 @@ export default class FixCreate extends Component {
     render() {
         return (
             <div>
-                <h3>Add Fix</h3>
                 <FlashMessage errorList={ this.state.fixFormErrors } />
                 <Form ref={ (f) => { this._fixForm = f; } }
                     type={ FixUpdateType }

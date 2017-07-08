@@ -6,25 +6,16 @@ import {
     importFixList,
     removeFix
 } from '../../domain/fix/actions/FixActions';
-import FixCreate from './FixCreate';
-import FixImport from './FixImport';
-import FixList from './FixList';
+import FixRoot from './FixRoot';
 
 class FixContainer extends Component {
-    // constructor() {
-    //     super();
-    // }
-
     render() {
         return (
-            <div>
-                <h2>Fix</h2>
-                <FixList fixList={ this.props.fixList }
-                    onRemoveFix={ this.props.removeFix } />
-                <FixCreate fix={ this.props.fix }
-                    onSaveFix={ this.props.saveFix } />
-                <FixImport onImportFixList={ this.props.importFixList } />
-            </div>
+            <FixRoot fix={ this.props.fix }
+                fixList={ this.props.fixList }
+                onRemoveFix={ this.props.removeFix }
+                onSaveFix={ this.props.saveFix }
+                onImportFixList={ this.props.importFixList } />
         );
     }
 }

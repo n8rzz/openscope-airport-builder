@@ -60,7 +60,6 @@ export default class FixList extends Component {
 
         return (
             <div>
-                <h3>List</h3>
                 { renderFixListBody() }
             </div>
         );
