@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _map from 'lodash/map';
 
-class FixList extends Component {
+export default class FixList extends Component {
     constructor(props) {
         super();
     }
@@ -77,5 +77,3 @@ FixList.propTypes = {
 FixList.defaultProps = {
     fixList: []
 };
-
-export default FixList;

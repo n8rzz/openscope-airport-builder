@@ -21,7 +21,8 @@ const DIR = {
 };
 
 const GLOB = {
-    LESS: path.join(srcStyleDir, '**/*.less')
+    LESS: path.join(srcStyleDir, '**/*.less'),
+    SRC: path.join(srcDir, '**/*')
 };
 
 OPTIONS.ROOT = ROOT;
