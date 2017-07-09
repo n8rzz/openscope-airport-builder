@@ -1,18 +1,17 @@
 import ava from 'ava';
 import {
-    RunwayUpdateType,
+    RunwayPairType,
     RunwayPreviewType,
     RunwayListPreviewType
 } from '../../../../src/assets/script/client/domain/runway/types/RunwayType';
 import {
-    runwayUpdateTypeMock,
+    runwayPairTypeMock,
     runwayPreviewTypeMock,
     runwayPreviewListTypeMock
 } from '../_mocks/runwayMocks';
 
-
-ava('RunwayUpdateType', (t) => {
-    t.notThrows(() => RunwayUpdateType(runwayUpdateTypeMock));
+ava('RunwayPairType', (t) => {
+    t.notThrows(() => RunwayPairType(runwayPairTypeMock));
 });
 
 ava('RunwayPreviewType', (t) => {

@@ -1,36 +1,56 @@
 import {
-    RunwayUpdateType,
-    RunwayUpdateListType
+    RunwayPairType,
+    RunwayPairListType
 } from '../../../../src/assets/script/client/domain/runway/types/RunwayType';
 
-export const runwayUpdateTypeMock = {
-    name: '07L',
-    position: {
-        latitude: 'N36d4m34.82',
-        longitude: 'W115d10m16.98',
-        elevation: '2179ft'
+export const runwayPairTypeMock = {
+    runwayLeft: {
+        name: '07L',
+        position: {
+            latitude: 'N36d4m34.82',
+            longitude: 'W115d10m16.98',
+            elevation: '2179ft'
+        },
+        ils: false
     },
-    ils: false,
-    relatedTo: '25R'
-};
-
-export const RunwayUpdateTypeFixture = new RunwayUpdateType(runwayUpdateTypeMock);
-
-export const runwayUpdateListTypeMock = [
-    ...runwayUpdateTypeMock,
-    {
+    runwayRight: {
         name: '25R',
         position: {
             latitude: 'N36d4m35.05',
             longitude: 'W115d7m15.93',
             elevation: '2033ft'
         },
-        ils: true,
-        relatedTo: '07L'
+        ils: true
+    }
+};
+
+export const RunwayPairTypeFixture = new RunwayPairType(runwayPairTypeMock);
+
+export const runwayPairListTypeMock = [
+    ...runwayPairTypeMock,
+    {
+        runwayLeft: {
+            name: '12L',
+            position: {
+                latitude: 'N36d4m34.82',
+                longitude: 'W115d10m16.98',
+                elevation: '2179ft'
+            },
+            ils: false
+        },
+        runwayRight: {
+            name: '30R',
+            position: {
+                latitude: 'N36d4m35.05',
+                longitude: 'W115d7m15.93',
+                elevation: '2033ft'
+            },
+            ils: true
+        }
     }
 ];
 
-export const RunwayUpdateListTypeFixture = new RunwayUpdateListType(runwayUpdateListTypeMock);
+export const RunwayPairListTypeFixture = new RunwayPairListType(runwayPairListTypeMock);
 
 export const runwayPreviewTypeMock = {
     name: ['07L', '25R'],

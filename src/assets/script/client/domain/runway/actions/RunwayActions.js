@@ -1,6 +1,6 @@
 import _findIndex from 'lodash/findIndex';
 import {
-    RunwayUpdateType
+    RunwayPairType
 } from '../types/RunwayType';
 
 export const ADD_RUNWAY_TO_LIST_START = 'ADD_RUNWAY_TO_LIST_START';
@@ -22,7 +22,7 @@ const addRunwayToListError = (error) => ({
 export const addRunwayToList = (runwayToAdd) => (dispatch, getState) => {
     dispatch(addRunwayToListStart());
 
-    if (!RunwayUpdateType.is(runwayToAdd)) {
+    if (!RunwayPairType.is(runwayToAdd)) {
         const error = new TypeError('Invalid data sent to .addRunwayToList()');
 
         return dispatch(addRunwayToListError(error));
@@ -59,11 +59,12 @@ const saveRunwayError = (error) => ({
 export const saveRunway = (runwayFormValues) => (dispatch) => {
     dispatch(saveRunwayStart());
 
-    if (!RunwayUpdateType.is(runwayFormValues)) {
+    if (!RunwayPairType.is(runwayFormValues)) {
         const error = new TypeError('Invalid values supplied to .saveRunway()');
 
         return dispatch(saveRunwayError(error));
     }
 
+    dispatch(addRunwayToList(runwayFormValues));
     return dispatch(saveRunwaySuccess(runwayFormValues));
 };

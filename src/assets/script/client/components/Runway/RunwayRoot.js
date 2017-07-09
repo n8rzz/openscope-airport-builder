@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RunwaySingle from './RunwaySingle';
+import RunwayPair from './RunwayPair';
 
 export default class RunwayRoot extends Component {
     render() {
         return (
             <div>
-                <RunwaySingle runway={ this.props.runway }
+                <RunwayPair runwayPair={ this.props.runwayPair }
                     onSaveRunway={ this.props.onSaveRunway } />
             </div>
         );
@@ -16,6 +16,7 @@ export default class RunwayRoot extends Component {
 RunwayRoot.displayName = 'RunwayRoot';
 
 RunwayRoot.propTypes = {
-    runway: PropTypes.object,
+    runwayPair: PropTypes.object,
+    runwayList: PropTypes.array,
     onSaveRunway: PropTypes.func.isRequired
 };

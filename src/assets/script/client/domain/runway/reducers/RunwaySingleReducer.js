@@ -4,15 +4,15 @@ import {
     SAVE_RUNWAY_SUCCESS,
     SAVE_RUNWAY_ERROR
 } from '../actions/RunwayActions';
-import { RunwaySingleStateType } from '../types/RunwayType';
+import { RunwayPairStateType } from '../types/RunwayType';
 
-const INITIAL_STATE = new RunwaySingleStateType({
+const INITIAL_STATE = new RunwayPairStateType({
     isLoading: false,
     payload: null,
     error: null
 });
 
-const mergeState = (state, updates) => RunwaySingleStateType.update(state, { $merge: updates });
+const mergeState = (state, updates) => RunwayPairStateType.update(state, { $merge: updates });
 
 export default createReducer(INITIAL_STATE, {
     [SAVE_RUNWAY_START]: (state) => mergeState(

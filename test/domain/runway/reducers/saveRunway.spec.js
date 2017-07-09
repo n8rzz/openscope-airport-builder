@@ -4,11 +4,11 @@ import {
     SAVE_RUNWAY_SUCCESS,
     SAVE_RUNWAY_ERROR
 } from '../../../../src/assets/script/client/domain/runway/actions/RunwayActions';
-import { RunwaySingleStateType } from '../../../../src/assets/script/client/domain/runway/types/RunwayType';
+import { RunwayPairStateType } from '../../../../src/assets/script/client/domain/runway/types/RunwayType';
 import saveRunwayReducer from '../../../../src/assets/script/client/domain/runway/reducers/RunwaySingleReducer';
-import { RunwayUpdateTypeFixture } from '../_mocks/runwayMocks';
+import { RunwayPairTypeFixture } from '../_mocks/runwayMocks';
 
-const INITIAL_STATE = new RunwaySingleStateType({
+const INITIAL_STATE = new RunwayPairStateType({
     isLoading: false,
     payload: null,
     error: null
@@ -28,13 +28,13 @@ ava('saveRunwayReducer reducer sets payload', (t) => {
     t.notThrows(() => {
         saveRunwayReducer(INITIAL_STATE, {
             type: SAVE_RUNWAY_SUCCESS,
-            payload: RunwayUpdateTypeFixture
+            payload: RunwayPairTypeFixture
         });
     });
 
     const loadingState = saveRunwayReducer(INITIAL_STATE, {
         type: SAVE_RUNWAY_SUCCESS,
-        payload: RunwayUpdateTypeFixture
+        payload: RunwayPairTypeFixture
     });
 
     t.false(loadingState.isLoading);

@@ -6,7 +6,7 @@ import {
 } from '../../../../src/assets/script/client/domain/runway/actions/RunwayActions';
 import { RunwayListStateType } from '../../../../src/assets/script/client/domain/runway/types/RunwayType';
 import addRunwayToList from '../../../../src/assets/script/client/domain/runway/reducers/RunwayListReducer';
-import { RunwayUpdateListTypeFixture } from '../_mocks/runwayMocks';
+import { RunwayPairTypeFixture } from '../_mocks/runwayMocks';
 
 const INITIAL_STATE = new RunwayListStateType({
     isLoading: false,
@@ -27,13 +27,13 @@ ava('addRunwayToList reducer sets payload', (t) => {
     t.notThrows(() => {
         addRunwayToList(INITIAL_STATE, {
             type: ADD_RUNWAY_TO_LIST_SUCCESS,
-            payload: RunwayUpdateListTypeFixture
+            payload: RunwayPairTypeFixture
         });
     });
 
     const loadingState = addRunwayToList(INITIAL_STATE, {
         type: ADD_RUNWAY_TO_LIST_SUCCESS,
-        payload: RunwayUpdateListTypeFixture
+        payload: RunwayPairTypeFixture
     });
 
     t.false(loadingState.isLoading);

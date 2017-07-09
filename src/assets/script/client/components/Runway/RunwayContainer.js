@@ -1,34 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { saveRunway } from '../../domain/runway/actions/RunwayActions';
 import RunwayRoot from './RunwayRoot';
 
-class RunwayContainer extends Component {
-    // constructor(props) {
-    //     super();
-    // }
-
-    render() {
-        return (
-            <div>
-                <h2>Runway</h2>
-                <RunwayRoot runway={ this.props.runway }
-                    onSaveRunway={ this.props.saveRunway } />
-            </div>
-        );
-    }
-}
+const RunwayContainer = function(props) {
+    return (
+        <div>
+            <h2 className="hdg">Runway</h2>
+            <RunwayRoot runwayPair={ props.runwayPair }
+                runwayList={ props.runwayList }
+                onSaveRunway={ props.saveRunway } />
+        </div>
+    );
+};
 
 RunwayContainer.displayName = 'RunwayContainer';
 
 RunwayContainer.propTypes = {
-    runway: PropTypes.object,
+    runwayPair: PropTypes.object,
+    runwayList: PropTypes.array,
     saveRunway: PropTypes.func.isRequired
 };
 
 const mapStoreToProps = (store) => ({
-    runway: store.runway.payload
+    runwayPair: store.runwayPair.payload,
+    runwayList: store.runwayList.payload
 });
 
 const mapDispatchToProps = (dispatch) => ({
