@@ -14,7 +14,7 @@ export const Position3dCreationType = Position2dCreationType.extend({
 }, 'Position3dCreationType');
 
 Position3dCreationType.prototype.getDisplayValue = function() {
-    return [`${this.latitude}`, `${this.longitude}`, `${this.elevation}`];
+    return `[${this.latitude}, ${this.longitude}, ${this.elevation}]`;
 };
 
 export const PositionValueType = t.union([
