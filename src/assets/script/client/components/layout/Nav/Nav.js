@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
 const Nav = function() {
@@ -7,13 +7,16 @@ const Nav = function() {
             <div className="nav">
                 <ul className="hlist">
                     <li>
-                        <Link to="/">Base</Link>
+                        <Link to="/">Airport</Link>
                     </li>
                     <li>
                         <Link to="/fixes">Fixes</Link>
                     </li>
                     <li>
                         <Link to="/runways">Runways</Link>
+                    </li>
+                    <li>
+                        <Link to="/procedures">Procedures</Link>
                     </li>
                 </ul>
             </div>
