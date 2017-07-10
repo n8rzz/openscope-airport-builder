@@ -27,7 +27,26 @@ export const runwayPairTypeMock = {
 export const RunwayPairTypeFixture = new RunwayPairType(runwayPairTypeMock);
 
 export const runwayPairListTypeMock = [
-    ...runwayPairTypeMock,
+    {
+        runwayLeft: {
+            name: '07L',
+            position: {
+                latitude: 'N36d4m34.82',
+                longitude: 'W115d10m16.98',
+                elevation: '2179ft'
+            },
+            ils: false
+        },
+        runwayRight: {
+            name: '25R',
+            position: {
+                latitude: 'N36d4m35.05',
+                longitude: 'W115d7m15.93',
+                elevation: '2033ft'
+            },
+            ils: true
+        }
+    },
     {
         runwayLeft: {
             name: '12L',

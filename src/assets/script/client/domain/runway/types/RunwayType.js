@@ -13,7 +13,6 @@ export const RunwayPairType = t.struct({
     runwayRight: RunwayUpdateType
 }, 'RunwayPairType');
 
-// DEPRECATED
 export const RunwayPairListType = t.list(RunwayPairType, 'RunwayPairListType');
 
 export const RunwayPreviewType = t.struct({

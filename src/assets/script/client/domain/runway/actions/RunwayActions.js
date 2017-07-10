@@ -1,3 +1,4 @@
+import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 import {
     RunwayPairType
@@ -67,4 +68,67 @@ export const saveRunway = (runwayFormValues) => (dispatch) => {
 
     dispatch(addRunwayToList(runwayFormValues));
     return dispatch(saveRunwaySuccess(runwayFormValues));
+};
+
+
+export const REMOVE_RUNWAY_PAIR_START = 'REMOVE_RUNWAY_PAIR_START';
+export const REMOVE_RUNWAY_PAIR_SUCCESS = 'REMOVE_RUNWAY_PAIR_SUCCESS';
+export const REMOVE_RUNWAY_PAIR_ERROR = 'REMOVE_RUNWAY_PAIR_ERROR';
+
+const removeRunwayPairStart = () => ({ type: REMOVE_RUNWAY_PAIR_START });
+
+const removeRunwayPairSuccess = (payload) => ({
+    type: REMOVE_RUNWAY_PAIR_SUCCESS,
+    payload
+});
+
+const removeRunwayPairError = (error) => ({
+    type: REMOVE_RUNWAY_PAIR_ERROR,
+    error
+});
+
+// exporting only so it can be tested
+export const _findRunwayPairIndex = (runwayPair, runwayList) => {
+    let runwayPairIndex = -1;
+
+    for (let i = 0; i < runwayList.length; i++) {
+        const comparisionRunwayPair = runwayList[i];
+
+        if (
+            comparisionRunwayPair.runwayLeft.name === runwayPair.runwayLeft.name &&
+            comparisionRunwayPair.runwayRight.name === runwayPair.runwayRight.name
+        ) {
+            runwayPairIndex = i;
+
+            break;
+        }
+    }
+
+    return runwayPairIndex;
+};
+
+export const removeRunwayPair = (runwayPair) => (dispatch, getState) => {
+    dispatch(removeRunwayPairStart());
+
+    if (!RunwayPairType.is(runwayPair)) {
+        const error = new TypeError('Invalid data passed to .removeRunwayPair(). Expected a RunwayPairType');
+
+        return dispatch(removeRunwayPairError(error));
+    }
+
+    const { runwayList } = getState();
+    const existingRunwayPairIndex = _findRunwayPairIndex(runwayPair, runwayList.payload);
+
+    if (existingRunwayPairIndex === -1) {
+        const error = new Error(`Could not find runwayPair ${runwayPair}. No runwayPair was removed.`);
+
+        return dispatch(removeRunwayPairError(error));
+    }
+
+    const updatedRunwayPairList = _filter(
+        runwayList.payload,
+        (runwayPair) => runwayPair.runwayLeft.name !== runwayPair.runwayLeft.name
+    );
+
+    return dispatch(removeRunwayPairSuccess(updatedRunwayPairList));
 };
