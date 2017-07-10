@@ -10,7 +10,7 @@ import { FixDict } from '../../fix/types/FixType';
 import {
     SidProcedureRouteDict,
     StarProcedureRouteDict
-} from '../../airport/ProcedureRouteType';
+} from '../../procedure/types/ProcedureType';
 import { RadioType } from '../../airport/RadioType';
 import { RunwayListPreviewType } from '../../runway/types/RunwayType';
 import { SpawnPatternListType } from '../../airport/SpawnPatternType';

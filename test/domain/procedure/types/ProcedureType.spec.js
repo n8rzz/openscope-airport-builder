@@ -5,8 +5,8 @@ import {
     StarProcedureRouteType,
     SidProcedureRouteDict,
     StarProcedureRouteDict
-} from '../../../src/assets/script/client/domain/airport/ProcedureRouteType';
-import { airportJsonMock } from '../../_mocks/airportJsonMock';
+} from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
+import { airportJsonMock } from '../../../_mocks/airportJsonMock';
 
 ava('BaseProcedureRouteType', (t) => {
     t.notThrows(() => BaseProcedureRouteType(airportJsonMock.stars.GRNPA1));
