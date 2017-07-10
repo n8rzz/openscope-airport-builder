@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { saveRunway } from '../../domain/runway/actions/RunwayActions';
+import {
+    saveRunway,
+    removeRunwayPair
+} from '../../domain/runway/actions/RunwayActions';
 import RunwayRoot from './RunwayRoot';
 
 const RunwayContainer = function(props) {
@@ -10,7 +13,8 @@ const RunwayContainer = function(props) {
             <h2 className="hdg">Runway</h2>
             <RunwayRoot runwayPair={ props.runwayPair }
                 runwayList={ props.runwayList }
-                onSaveRunway={ props.saveRunway } />
+                onSaveRunway={ props.saveRunway }
+                onRemoveRunwayPair={ props.removeRunwayPair }/>
         </div>
     );
 };
@@ -20,7 +24,8 @@ RunwayContainer.displayName = 'RunwayContainer';
 RunwayContainer.propTypes = {
     runwayPair: PropTypes.object,
     runwayList: PropTypes.array,
-    saveRunway: PropTypes.func.isRequired
+    saveRunway: PropTypes.func.isRequired,
+    removeRunwayPair: PropTypes.func.isRequired
 };
 
 const mapStoreToProps = (store) => ({
@@ -29,7 +34,8 @@ const mapStoreToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    saveRunway: (runwayFormValues) => dispatch(saveRunway(runwayFormValues))
+    saveRunway: (runwayFormValues) => dispatch(saveRunway(runwayFormValues)),
+    removeRunwayPair: (runwayPair) => dispatch(removeRunwayPair(runwayPair))
 });
 
 export default connect(

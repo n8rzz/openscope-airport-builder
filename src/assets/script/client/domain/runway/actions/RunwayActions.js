@@ -107,27 +107,27 @@ export const _findRunwayPairIndex = (runwayPair, runwayList) => {
     return runwayPairIndex;
 };
 
-export const removeRunwayPair = (runwayPair) => (dispatch, getState) => {
+export const removeRunwayPair = (runwayPairToRemove) => (dispatch, getState) => {
     dispatch(removeRunwayPairStart());
 
-    if (!RunwayPairType.is(runwayPair)) {
+    if (!RunwayPairType.is(runwayPairToRemove)) {
         const error = new TypeError('Invalid data passed to .removeRunwayPair(). Expected a RunwayPairType');
 
         return dispatch(removeRunwayPairError(error));
     }
 
     const { runwayList } = getState();
-    const existingRunwayPairIndex = _findRunwayPairIndex(runwayPair, runwayList.payload);
+    const existingRunwayPairIndex = _findRunwayPairIndex(runwayPairToRemove, runwayList.payload);
 
     if (existingRunwayPairIndex === -1) {
-        const error = new Error(`Could not find runwayPair ${runwayPair}. No runwayPair was removed.`);
+        const error = new Error(`Could not find runwayPair ${runwayPairToRemove}. No runwayPair was removed.`);
 
         return dispatch(removeRunwayPairError(error));
     }
 
     const updatedRunwayPairList = _filter(
         runwayList.payload,
-        (runwayPair) => runwayPair.runwayLeft.name !== runwayPair.runwayLeft.name
+        (runwayPair) => runwayPair.runwayLeft.name !== runwayPairToRemove.runwayLeft.name
     );
 
     return dispatch(removeRunwayPairSuccess(updatedRunwayPairList));

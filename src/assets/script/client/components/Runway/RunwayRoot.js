@@ -7,7 +7,8 @@ export default class RunwayRoot extends Component {
     render() {
         return (
             <div>
-                <RunwayList runwayList={ this.props.runwayList } />
+                <RunwayList runwayList={ this.props.runwayList }
+                    onRemoveRunwayPair={ this.props.onRemoveRunwayPair } />
                 <RunwayPair runwayPair={ this.props.runwayPair }
                     onSaveRunway={ this.props.onSaveRunway } />
             </div>
@@ -20,5 +21,6 @@ RunwayRoot.displayName = 'RunwayRoot';
 RunwayRoot.propTypes = {
     runwayPair: PropTypes.object,
     runwayList: PropTypes.array,
-    onSaveRunway: PropTypes.func.isRequired
+    onSaveRunway: PropTypes.func.isRequired,
+    onRemoveRunwayPair: PropTypes.func.isRequired
 };

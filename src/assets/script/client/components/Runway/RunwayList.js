@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import _map from 'lodash/map';
 
 export default class RunwayList extends Component {
+    _onRemoveRunwayPair = (event, runwayPair) => {
+        event.preventDefault();
+
+        this.props.onRemoveRunwayPair(runwayPair);
+    };
+
     _buildRunwayListJsx() {
         const runwayListJsx = _map(this.props.runwayList, (runwayPair, i) => {
             const { runwayLeft, runwayRight } = runwayPair;
@@ -34,7 +40,9 @@ export default class RunwayList extends Component {
                     </td>
                     <td>
                         <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={ (e) => this._onRemoveRunwayPair(e, runwayPair) }>
+                            Delete
+                        </button>
                     </td>
                 </tr>
             );
@@ -78,5 +86,6 @@ export default class RunwayList extends Component {
 }
 
 RunwayList.propTypes = {
-    runwayList: PropTypes.array
+    runwayList: PropTypes.array,
+    onRemoveRunwayPair: PropTypes.func.isRequired
 };

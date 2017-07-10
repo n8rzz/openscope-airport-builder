@@ -37,7 +37,7 @@ export default createReducer(INITIAL_STATE, {
                 isLoading: false,
                 payload: updatedRunwaylist
             }
-        )
+        );
     },
 
     [ADD_RUNWAY_TO_LIST_ERROR]: (state, { error }) => mergeState(
