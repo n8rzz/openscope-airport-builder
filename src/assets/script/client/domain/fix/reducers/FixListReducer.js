@@ -11,10 +11,11 @@ import {
     FixListType,
     FixListStateType
 } from '../types/FixType';
+import { FixListTypeFixture } from '../../../../../../../test/domain/fix/_mocks/fixMocks';
 
 const INITIAL_STATE = new FixListStateType({
     isLoading: false,
-    payload: [],
+    payload: FixListTypeFixture,
     error: null
 });
 

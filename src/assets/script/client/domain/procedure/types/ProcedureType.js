@@ -1,5 +1,7 @@
 import t from 'tcomb';
 
+// PreviewTypes
+// Update types will need to be translated into these types
 export const RouteSegmentWaypointType = t.union([
     t.String,
     t.tuple([t.String, t.String])

@@ -11,10 +11,11 @@ import {
     RunwayPairListType,
     RunwayListStateType
 } from '../types/RunwayType';
+import { RunwayPairListTypeFixture } from '../../../../../../../test/domain/runway/_mocks/runwayMocks';
 
 const INITIAL_STATE = RunwayListStateType({
     isLoading: false,
-    payload: [],
+    payload: RunwayPairListTypeFixture,
     error: null
 });
 

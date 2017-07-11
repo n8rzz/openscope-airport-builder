@@ -1,4 +1,5 @@
 import t from 'tcomb';
+import _map from 'lodash/map';
 import {
     Position2dCreationType,
     Position2dType
@@ -15,6 +16,16 @@ FixUpdateType.prototype.getPositionDisplay = function() {
 };
 
 export const FixListType = t.list(t.maybe(FixUpdateType));
+
+FixListType.buildFixListEnum = function(fixList) {
+    if (!FixListType.is(fixList)) {
+        throw new TypeError('Invalid data passed to FixListType.buildFixListEnum()');
+    }
+
+    const fixNames = _map(fixList, (fix) => fix.name);
+
+    return t.enums.of(fixNames, 'FixListEnum');
+};
 
 export const FixImportType = t.struct({
     data: t.String

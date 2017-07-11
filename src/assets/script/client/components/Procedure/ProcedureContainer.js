@@ -7,12 +7,23 @@ const ProcedureContainer = function(props) {
     return (
         <div>
             <h2>Procedures</h2>
-            <ProcedureRoot />
+            <ProcedureRoot fixList={ props.fixList }
+                runwayList={ props.runwayList } />
         </div>
     );
 };
 
-const mapStoreToProps = (store) => ({});
+ProcedureContainer.displayName = 'ProcedureContainer';
+
+ProcedureContainer.propTypes = {
+    fixList: PropTypes.array,
+    runwayList: PropTypes.array
+};
+
+const mapStoreToProps = (store) => ({
+    fixList: store.fixList.payload,
+    runwayList: store.runwayList.payload
+});
 
 const mapDispatchToProps = (dispatch) => ({});
 

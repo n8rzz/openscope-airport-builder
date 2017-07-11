@@ -9,6 +9,7 @@ import {
 import {
     fixUpdateTypeMock,
     fixListTypeMock,
+    FixListTypeFixture,
     fixImportParsedCsvTypeMock,
     fixImportParsedCsvListTypeMock,
     FixImportParsedCsvTypeFixture
@@ -21,6 +22,12 @@ ava('FixUpdateType', (t) => {
 
 ava('FixListType', (t) => {
     t.notThrows(() => FixListType(fixListTypeMock));
+});
+
+ava('FixListType.buildFixListEnum()', (t) => {
+    const result = FixListType.buildFixListEnum(FixListTypeFixture);
+
+    t.true(result.meta.name === 'FixListEnum');
 });
 
 ava('FixDict', (t) => {

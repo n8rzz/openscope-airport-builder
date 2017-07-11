@@ -1,4 +1,6 @@
 import t from 'tcomb';
+import _flatten from 'lodash/flatten';
+import _map from 'lodash/map';
 import { BaseStateType } from '../../common/StateType';
 import { Position3dCreationType } from '../../common/PositionType';
 
@@ -14,6 +16,23 @@ export const RunwayPairType = t.struct({
 }, 'RunwayPairType');
 
 export const RunwayPairListType = t.list(RunwayPairType, 'RunwayPairListType');
+
+RunwayPairListType.buildRunwayNamesEnum = function(runwayPairList) {
+    if (!RunwayPairListType.is(runwayPairList)) {
+        throw new TypeError('Invalid data passed to .buildRunwayEnum()');
+    }
+
+    const runwayNameList = _map(runwayPairList, (runwayPair) => {
+        const runwayPairNames = [
+            runwayPair.runwayLeft.name,
+            runwayPair.runwayRight.name
+        ];
+
+        return runwayPairNames;
+    });
+
+    return t.enums.of(_flatten(runwayNameList), 'RunwayNamesEnum');
+};
 
 export const RunwayPreviewType = t.struct({
     name: t.list(t.String),
