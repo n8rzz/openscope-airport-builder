@@ -6,11 +6,9 @@ export const routeSegmentWaypointLayout = (locals) => {
     }
 
     return (
-        <div>
-            <ul className="hlist">
-                <li>{ locals.inputs.name }</li>
-                <li>{ locals.inputs.restrictions }</li>
-            </ul>
-        </div>
+        <ul className="hlist">
+            <li>{ locals.inputs.name }</li>
+            <li>{ locals.inputs.restrictions }</li>
+        </ul>
     );
 };

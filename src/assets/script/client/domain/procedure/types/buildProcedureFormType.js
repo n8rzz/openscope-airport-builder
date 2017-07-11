@@ -8,6 +8,13 @@ export const ProcedureRouteTypeEnum = t.enums.of([
     'STAR'
 ], 'ProcedureRouteTypeEnum');
 
+const BaseSegmentUpdateType = t.struct({
+    type: ProcedureRouteTypeEnum,
+    icao: t.String,
+    name: t.String
+}, 'BaseSegmentUpdateType');
+
+
 const RestrictionQualifierEnum = t.enums({
     GT: 'Greater Than',
     LT: 'Less Than'
@@ -17,15 +24,8 @@ const RouteSegmentWaypointRestrictionUpdateType = t.struct({
     altitude: t.maybe(t.Number),
     altitudeRestrictionQulifier: t.maybe(RestrictionQualifierEnum),
     speed: t.maybe(t.Number),
-    speedRestrctionQualifier: t.maybe(RestrictionQualifierEnum)
+    speedRestrictionQulifier: t.maybe(RestrictionQualifierEnum)
 }, 'RouteSegmentWaypointRestrictionUpdateType');
-
-const BaseSegmentUpdateType = t.struct({
-    type: ProcedureRouteTypeEnum,
-    icao: t.String,
-    name: t.String
-}, 'BaseSegmentUpdateType');
-
 
 const _buildRouteSegmentWaypointUpdateListType = (waypointListEnum) => {
     const RouteSegmentWaypointUpdateType = t.struct({
@@ -53,7 +53,7 @@ export const buildInitialProcedureFormType = (formValues, runwayListEnum, fixLis
 
 export const buildProcedureFormTypeForSid = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
     // draw: t.list(fixListEnum),
-    rwy: buildRouteSegmentListType(runwayListEnum, fixListEnum),
+    rwy: buildRouteSegmentListType(runwayListEnum, fixListEnum)
     // body: t.list(fixListEnum),
     // exitPoints: buildRouteSegmentListType(fixListEnum, fixListEnum)
 });
