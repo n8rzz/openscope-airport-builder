@@ -36,7 +36,7 @@ const _buildRouteSegmentWaypointUpdateListType = (waypointListEnum) => {
     return t.list(RouteSegmentWaypointUpdateType, 'RouteSegmentWaypointUpdateListType');
 };
 
-const _buildRouteSegmentListType = (trimmedEntryListEnum, waypointListEnum) => {
+export const buildRouteSegmentListType = (trimmedEntryListEnum, waypointListEnum) => {
     const waypointWithRestrictionsListType = _buildRouteSegmentWaypointUpdateListType(waypointListEnum);
 
     const RouteSegmentType = t.struct({
@@ -47,29 +47,22 @@ const _buildRouteSegmentListType = (trimmedEntryListEnum, waypointListEnum) => {
     return t.list(RouteSegmentType, 'RouteSegmentListType');
 };
 
-const _trimEnumOfUsedValues = (usedValues, originalEnum) => {};
-
-const _generateUsedWaypointValuelist = (formValues) => {};
-
-const _generateUsedRouteSegmentValueList = (formValues) => {};
-
-
-const _buildInitialProcedureFormType = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
+export const buildInitialProcedureFormType = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
     draw: t.list(fixListEnum)
 });
 
-const _buildProcedureFormTypeForSid = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
-    draw: t.list(fixListEnum),
-    rwy: _buildRouteSegmentListType(runwayListEnum, fixListEnum),
-    body: t.list(fixListEnum),
-    exitPoints: _buildRouteSegmentListType(fixListEnum, fixListEnum)
+export const buildProcedureFormTypeForSid = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
+    // draw: t.list(fixListEnum),
+    rwy: buildRouteSegmentListType(runwayListEnum, fixListEnum),
+    // body: t.list(fixListEnum),
+    // exitPoints: buildRouteSegmentListType(fixListEnum, fixListEnum)
 });
 
-const _buildProcedureFormTypeForStar = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
+export const buildProcedureFormTypeForStar = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
     draw: t.list(fixListEnum),
-    entryPoints: _buildRouteSegmentListType(runwayListEnum, fixListEnum),
+    entryPoints: buildRouteSegmentListType(runwayListEnum, fixListEnum),
     body: t.list(fixListEnum),
-    rwy: _buildRouteSegmentListType(runwayListEnum, fixListEnum)
+    rwy: buildRouteSegmentListType(runwayListEnum, fixListEnum)
 });
 
 
@@ -81,15 +74,15 @@ export function buildProcedureFormType(formValues, fixList, runwayList) {
 
     switch (procedureType) {
         case ProcedureRouteTypeEnum.meta.map.SID:
-            procedureFormType = _buildProcedureFormTypeForSid;
+            procedureFormType = buildProcedureFormTypeForSid;
 
             break;
-        case ProcedureRouteTypeEnum.meta.map.STAR:
-            procedureFormType = _buildProcedureFormTypeForStar;
-
-            break;
+        // case ProcedureRouteTypeEnum.meta.map.STAR:
+        //     procedureFormType = buildProcedureFormTypeForStar;
+        //
+        //     break;
         default:
-            procedureFormType = _buildInitialProcedureFormType;
+            procedureFormType = buildInitialProcedureFormType;
 
             break;
     }
