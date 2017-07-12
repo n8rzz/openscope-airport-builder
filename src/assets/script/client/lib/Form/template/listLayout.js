@@ -5,7 +5,6 @@ import _map from 'lodash/map';
 import classNames from 'classnames';
 
 export const listLayout = (locals) => {
-    console.log('listLayout', locals.label, locals);
     const buildVlistClassNames = () => classNames({
         vlist: true,
         'vlist-divided': _get(locals, 'config.divided', false),
