@@ -20,6 +20,40 @@ const RestrictionQualifierEnum = t.enums({
     LT: 'Less Than'
 }, 'RestrictionQualifierEnum');
 
+// const MinMaxRestrctionType = t.struct({
+//     minValue: t.Number,
+//     maxValue: t.Number
+// }, 'MinMaxRestrctionType');
+//
+// const LessThenGreaterThanRestrictionType = t.struct({
+//     value: t.Number,
+//     qualifier: RestrictionQualifierEnum
+// }, 'LessThenGreaterThanRestrictionType');
+//
+// const RestrictionTypeEnum = t.enums({
+//     MIN_MAX: 'min/max',
+//     LT_GT: 'less/greater than',
+//     NONE: 'none'
+// }, 'RestrictionTypeEnum');
+//
+// const RestrictionTypeUnion = t.union([
+//     MinMaxRestrctionType,
+//     LessThenGreaterThanRestrictionType
+// ], 'RestrictionTypeUnion');
+//
+// RestrictionTypeUnion.dispatch = (value) => {
+//     if (!value) {
+//         return;
+//     }
+//
+//     if (value.type === 'min/max') {
+//         return MinMaxRestrctionType;
+//     } else if (value.type === 'less/greater than') {
+//         return LessThenGreaterThanRestrictionType;
+//     }
+// };
+
+
 const RouteSegmentWaypointRestrictionUpdateType = t.struct({
     altitude: t.maybe(t.Number),
     altitudeRestrictionQulifier: t.maybe(RestrictionQualifierEnum),
@@ -29,7 +63,7 @@ const RouteSegmentWaypointRestrictionUpdateType = t.struct({
 
 const _buildRouteSegmentWaypointUpdateListType = (waypointListEnum) => {
     const RouteSegmentWaypointUpdateType = t.struct({
-        name: waypointListEnum,
+        waypointName: waypointListEnum,
         restrictions: RouteSegmentWaypointRestrictionUpdateType
     }, 'RouteSegmentWaypointUpdateType');
 
@@ -73,16 +107,17 @@ export function buildProcedureFormType(formValues, fixList, runwayList) {
     let procedureFormType;
 
     switch (procedureType) {
-        case ProcedureRouteTypeEnum.meta.map.SID:
-            procedureFormType = buildProcedureFormTypeForSid;
-
-            break;
+        // case ProcedureRouteTypeEnum.meta.map.SID:
+        //     procedureFormType = buildProcedureFormTypeForSid;
+        //
+        //     break;
         // case ProcedureRouteTypeEnum.meta.map.STAR:
         //     procedureFormType = buildProcedureFormTypeForStar;
         //
         //     break;
         default:
-            procedureFormType = buildInitialProcedureFormType;
+            // procedureFormType = buildInitialProcedureFormType;
+            procedureFormType = buildProcedureFormTypeForSid;
 
             break;
     }

@@ -7,11 +7,20 @@ import {
 
 const routeSegmentConfig = {
     template: listLayout,
+    config: {
+        striped: true,
+        divided: true
+    },
     item: {
         template: routeSegmentLayout,
         fields: {
             waypoints: {
                 template: listLayout,
+                config: {
+                    striped: true,
+                    divided: false,
+                    hideLegend: true
+                },
                 item: {
                     template: routeSegmentWaypointLayout,
                     fields: {

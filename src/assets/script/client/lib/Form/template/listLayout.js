@@ -1,8 +1,29 @@
 import React from 'react';
 import _camelCase from 'lodash/camelCase';
+import _get from 'lodash/get';
 import _map from 'lodash/map';
+import classNames from 'classnames';
 
 export const listLayout = (locals) => {
+    console.log('listLayout', locals.label, locals);
+    const buildVlistClassNames = () => classNames({
+        vlist: true,
+        'vlist-divided': _get(locals, 'config.divided', false),
+        'mix-vlist_striped': _get(locals, 'config.striped', false)
+    });
+
+    const buildListLegend = () => {
+        if (_get(locals, 'config.hideLegend', false)) {
+            return null;
+        }
+
+        return (
+            <div>
+                { locals.label }
+            </div>
+        );
+    };
+
     const itemsMap = _map(locals.items, (item) => {
         const itemButtons = _map(item.buttons, (button, i) => {
             return (
@@ -26,13 +47,13 @@ export const listLayout = (locals) => {
 
     return (
         <fieldset className={`fieldset fieldset-depth-1 fieldset-${_camelCase(locals.label)}`}>
-            <div>{ locals.label }</div>
-            <ul className="vlist">
+            { buildListLegend() }
+            <ul className={ buildVlistClassNames() }>
                 { itemsMap }
             </ul>
             <button className="btn btn-default btn-add"
                 onClick={ locals.add.click }>
-                { locals.add.label }
+                { `${locals.add.label} ${locals.label}` }
             </button>
         </fieldset>
     );
