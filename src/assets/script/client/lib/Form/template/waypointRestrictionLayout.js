@@ -6,7 +6,8 @@ export const waypointRestrictionLayout = (locals) => {
     }
 
     return (
-        <ul className="vlist">
+        <ul className="vlist vlist-child">
+            {/* waypointRestrictionLayout */}
             <li>
                 <ul className="hlist">
                     <li>{ locals.inputs.altitude }</li>

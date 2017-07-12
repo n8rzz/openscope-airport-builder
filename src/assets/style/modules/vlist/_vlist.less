@@ -1,13 +1,19 @@
-.vlist > * {}
+.vlist > * {
+    padding: 10px;
+}
+
+.vlist-child > * {
+    padding-top: 0;
+}
 
 .vlist > * + * {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .vlist-divided > * + * {
     border-top: 1px solid #000;
 }
 
-.mix-vlist_striped > *:nth-child(even) {
+.mix-vlist_striped > *:nth-child(odd) {
     background-color: #efefef;
 }

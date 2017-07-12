@@ -1,5 +1,68 @@
 
-
+export const sidProcedureFormValues = {
+    type: 'SID',
+    rwy: [
+        {
+            name: '07L',
+            waypoints: [
+                {
+                    waypointName: 'BAKRR'
+                },
+                {
+                    waypointName: 'BCE'
+                },
+                {
+                    waypointName: 'BESSY'
+                }
+            ]
+        },
+        {
+            name: '25R',
+            waypoints: [
+                {
+                    waypointName: 'COWBY'
+                },
+                {
+                    waypointName: 'CUTRO'
+                },
+                {
+                    waypointName: 'DBIGE'
+                }
+            ]
+        }
+    ],
+    body: [
+        'DUBLX',
+        'FEBET'
+    ],
+    exitPoints: [
+        {
+            name: 'FUZZY',
+            waypoints: [
+                {
+                    waypointName: 'FIXIX'
+                },
+                {
+                    waypointName: 'FLYES'
+                },
+                {
+                    waypointName: 'FUZZY'
+                }
+            ]
+        },
+        {
+            name: 'GRNPA',
+            waypoints: [
+                {
+                    waypointName: 'GALNE'
+                },
+                {
+                    waypointName: 'GRNPA'
+                }
+            ]
+        }
+    ]
+};
 
 export const sidProcedureRouteDictMock = {
     COWBY6: {

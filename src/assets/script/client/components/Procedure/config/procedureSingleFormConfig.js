@@ -1,5 +1,6 @@
 import {
     listLayout,
+    childListLayout,
     routeSegmentLayout,
     routeSegmentWaypointLayout,
     waypointRestrictionLayout
@@ -9,18 +10,22 @@ const routeSegmentConfig = {
     template: listLayout,
     config: {
         striped: true,
-        divided: true
+        divided: true,
+        depth: 1
     },
+    disableOrder: true,
     item: {
         template: routeSegmentLayout,
         fields: {
             waypoints: {
-                template: listLayout,
+                template: childListLayout,
                 config: {
                     striped: true,
                     divided: false,
-                    hideLegend: true
+                    hideLegend: true,
+                    depth: 2
                 },
+                disableOrder: true,
                 item: {
                     template: routeSegmentWaypointLayout,
                     fields: {

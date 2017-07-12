@@ -30,8 +30,6 @@ export default class ProcedureSingle extends Component {
     }
 
     onChange = (formValues) => {
-        console.log(formValues);
-
         const formConfig = this._updateFormConfig(formValues);
 
         this.setState({ formValues, formConfig });

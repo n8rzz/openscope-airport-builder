@@ -4,7 +4,7 @@ import _get from 'lodash/get';
 import _map from 'lodash/map';
 import classNames from 'classnames';
 
-export const listLayout = (locals) => {
+export const childListLayout = (locals) => {
     const buildRootClassNames = () => classNames({
         fieldset: true,
         [`fieldset-${_camelCase(locals.label)}`]: true,
@@ -15,6 +15,7 @@ export const listLayout = (locals) => {
 
     const buildVlistClassNames = () => classNames({
         vlist: true,
+        'vlist-child': true,
         'vlist-divided': _get(locals, 'config.divided', false),
         'mix-vlist_striped': _get(locals, 'config.striped', false)
     });
@@ -35,7 +36,7 @@ export const listLayout = (locals) => {
         const itemButtons = _map(item.buttons, (button, i) => {
             return (
                 <button className="btn"
-                    key={ `listLayout-item-button-${i}` }
+                    key={ `childListLayout-item-button-${i}` }
                     onClick={ button.click }>
                     { button.label }
                 </button>
@@ -44,11 +45,11 @@ export const listLayout = (locals) => {
 
         return (
             <li key={ item.key }>
-                <div>
-                    { item.input }
-                </div>
-                <div className="btn-group">
+                <div className="btn-group u-floatRight" style={ { width: '20%' } }>
                     { itemButtons }
+                </div>
+                <div style={ { width: '80%' } }>
+                    { item.input }
                 </div>
             </li>
         );
@@ -56,9 +57,9 @@ export const listLayout = (locals) => {
 
     return (
         <fieldset className={ buildRootClassNames() }>
-            {/* listLayout */}
+            {/* childListLayout */}
             { buildListLegend() }
-            <div className="vr_x2">
+            <div>
                 <ul className={ buildVlistClassNames() }>
                     { itemsMap }
                 </ul>
