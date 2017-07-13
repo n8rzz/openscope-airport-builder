@@ -2,8 +2,8 @@ import {
     listLayout,
     childListLayout,
     routeSegmentLayout,
-    routeSegmentWaypointLayout,
-    waypointRestrictionLayout
+    // routeSegmentWaypointLayout,
+    // waypointRestrictionLayout
 } from '../../../lib/Form/template';
 
 const routeSegmentConfig = {
@@ -26,14 +26,14 @@ const routeSegmentConfig = {
                     depth: 2
                 },
                 disableOrder: true,
-                item: {
-                    template: routeSegmentWaypointLayout,
-                    fields: {
-                        restrictions: {
-                            template: waypointRestrictionLayout
-                        }
-                    }
-                }
+                // item: {
+                //     template: routeSegmentWaypointLayout,
+                //     fields: {
+                //         restrictions: {
+                //             template: waypointRestrictionLayout
+                //         }
+                //     }
+                // }
             }
         }
     }

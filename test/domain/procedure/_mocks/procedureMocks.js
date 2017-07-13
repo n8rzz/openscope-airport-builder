@@ -1,68 +1,100 @@
+// import {
+//     RestrictionQualifierEnum
+// } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 
-export const sidProcedureFormValues = {
+export const baseSegmentUpdateTypeMock = {
     type: 'SID',
-    rwy: [
-        {
-            name: '07L',
-            waypoints: [
-                {
-                    waypointName: 'BAKRR'
-                },
-                {
-                    waypointName: 'BCE'
-                },
-                {
-                    waypointName: 'BESSY'
-                }
-            ]
-        },
-        {
-            name: '25R',
-            waypoints: [
-                {
-                    waypointName: 'COWBY'
-                },
-                {
-                    waypointName: 'CUTRO'
-                },
-                {
-                    waypointName: 'DBIGE'
-                }
-            ]
-        }
-    ],
-    body: [
-        'DUBLX',
-        'FEBET'
-    ],
-    exitPoints: [
-        {
-            name: 'FUZZY',
-            waypoints: [
-                {
-                    waypointName: 'FIXIX'
-                },
-                {
-                    waypointName: 'FLYES'
-                },
-                {
-                    waypointName: 'FUZZY'
-                }
-            ]
-        },
-        {
-            name: 'GRNPA',
-            waypoints: [
-                {
-                    waypointName: 'GALNE'
-                },
-                {
-                    waypointName: 'GRNPA'
-                }
-            ]
-        }
-    ]
+    icao: 'COWBY6',
+    name: 'Cowboy Six'
 };
+
+export const minMaxRestrictionTypeMock = {
+    minValue: 123,
+    maxValue: 321
+};
+
+export const lessThenGreaterThanRestrictionTypeMock = {
+    value: 222
+};
+
+export const baseWaypointRestrictionTypeMock = {
+    restrictionQulifier: 'MIN_MAX'
+};
+
+export const routeSegmentWaypointRestrictionMinMaxTypeMock = Object.assign({}, baseWaypointRestrictionTypeMock, {
+    minValue: 123,
+    maxValue: 321
+});
+
+export const routeSegmentWaypointRestrictionLtGtTypeMock = {
+    restrictionQulifier: 'GT',
+    value: 123
+};
+
+// export const sidProcedureFormValues = {
+//     type: 'SID',
+//     rwy: [
+//         {
+//             name: '07L',
+//             waypoints: [
+//                 {
+//                     waypointName: 'BAKRR'
+//                 },
+//                 {
+//                     waypointName: 'BCE'
+//                 },
+//                 {
+//                     waypointName: 'BESSY'
+//                 }
+//             ]
+//         },
+//         {
+//             name: '25R',
+//             waypoints: [
+//                 {
+//                     waypointName: 'COWBY'
+//                 },
+//                 {
+//                     waypointName: 'CUTRO'
+//                 },
+//                 {
+//                     waypointName: 'DBIGE'
+//                 }
+//             ]
+//         }
+//     ],
+//     body: [
+//         'DUBLX',
+//         'FEBET'
+//     ],
+//     exitPoints: [
+//         {
+//             name: 'FUZZY',
+//             waypoints: [
+//                 {
+//                     waypointName: 'FIXIX'
+//                 },
+//                 {
+//                     waypointName: 'FLYES'
+//                 },
+//                 {
+//                     waypointName: 'FUZZY'
+//                 }
+//             ]
+//         },
+//         {
+//             name: 'GRNPA',
+//             waypoints: [
+//                 {
+//                     waypointName: 'GALNE'
+//                 },
+//                 {
+//                     waypointName: 'GRNPA'
+//                 }
+//             ]
+//         }
+//     ]
+// };
 
 export const sidProcedureRouteDictMock = {
     COWBY6: {

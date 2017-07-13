@@ -2,69 +2,17 @@ import t from 'tcomb';
 import _get from 'lodash/get';
 import { FixListType } from '../../fix/types/FixType';
 import { RunwayPairListType } from '../../runway/types/RunwayType';
-
-export const ProcedureRouteTypeEnum = t.enums.of([
-    'SID',
-    'STAR'
-], 'ProcedureRouteTypeEnum');
-
-const BaseSegmentUpdateType = t.struct({
-    type: ProcedureRouteTypeEnum,
-    icao: t.String,
-    name: t.String
-}, 'BaseSegmentUpdateType');
-
-
-const RestrictionQualifierEnum = t.enums({
-    GT: 'Greater Than',
-    LT: 'Less Than'
-}, 'RestrictionQualifierEnum');
-
-// const MinMaxRestrctionType = t.struct({
-//     minValue: t.Number,
-//     maxValue: t.Number
-// }, 'MinMaxRestrctionType');
-//
-// const LessThenGreaterThanRestrictionType = t.struct({
-//     value: t.Number,
-//     qualifier: RestrictionQualifierEnum
-// }, 'LessThenGreaterThanRestrictionType');
-//
-// const RestrictionTypeEnum = t.enums({
-//     MIN_MAX: 'min/max',
-//     LT_GT: 'less/greater than',
-//     NONE: 'none'
-// }, 'RestrictionTypeEnum');
-//
-// const RestrictionTypeUnion = t.union([
-//     MinMaxRestrctionType,
-//     LessThenGreaterThanRestrictionType
-// ], 'RestrictionTypeUnion');
-//
-// RestrictionTypeUnion.dispatch = (value) => {
-//     if (!value) {
-//         return;
-//     }
-//
-//     if (value.type === 'min/max') {
-//         return MinMaxRestrctionType;
-//     } else if (value.type === 'less/greater than') {
-//         return LessThenGreaterThanRestrictionType;
-//     }
-// };
-
-
-const RouteSegmentWaypointRestrictionUpdateType = t.struct({
-    altitude: t.maybe(t.Number),
-    altitudeRestrictionQulifier: t.maybe(RestrictionQualifierEnum),
-    speed: t.maybe(t.Number),
-    speedRestrictionQulifier: t.maybe(RestrictionQualifierEnum)
-}, 'RouteSegmentWaypointRestrictionUpdateType');
+import {
+    ProcedureRouteTypeEnum,
+    BaseSegmentUpdateType,
+    RouteSegmentWaypointRestrictionType
+} from '../types/ProcedureType';
 
 const _buildRouteSegmentWaypointUpdateListType = (waypointListEnum) => {
     const RouteSegmentWaypointUpdateType = t.struct({
-        waypointName: waypointListEnum
-        // restrictions: RouteSegmentWaypointRestrictionUpdateType
+        waypointName: waypointListEnum,
+        altitude: RouteSegmentWaypointRestrictionType,
+        speed: RouteSegmentWaypointRestrictionType
     }, 'RouteSegmentWaypointUpdateType');
 
     return t.list(RouteSegmentWaypointUpdateType, 'RouteSegmentWaypointUpdateListType');
@@ -80,7 +28,6 @@ export const buildRouteSegmentListType = (trimmedEntryListEnum, waypointListEnum
 
     return t.list(RouteSegmentType, 'RouteSegmentListType');
 };
-
 
 export const buildInitialProcedureFormType = () => BaseSegmentUpdateType;
 

@@ -45,11 +45,11 @@ export const childListLayout = (locals) => {
 
         return (
             <li key={ item.key }>
-                <div className="btn-group u-floatRight" style={ { width: '20%' } }>
-                    { itemButtons }
-                </div>
-                <div style={ { width: '80%' } }>
+                <div>
                     { item.input }
+                </div>
+                <div className="btn-group">
+                    { itemButtons }
                 </div>
             </li>
         );
@@ -57,7 +57,6 @@ export const childListLayout = (locals) => {
 
     return (
         <fieldset className={ buildRootClassNames() }>
-            {/* childListLayout */}
             { buildListLegend() }
             <div>
                 <ul className={ buildVlistClassNames() }>
