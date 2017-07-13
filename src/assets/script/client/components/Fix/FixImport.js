@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
+import Button from '../layout/Button/Button';
 import { FixImportType } from '../../domain/fix/types/FixType';
 
 const Form = t.form.Form;
@@ -49,9 +50,9 @@ export default class FixImport extends Component {
                 <Form ref={ (f) => { this._fixImportForm = f; } }
                     options={ FORM_OPTIONS }
                     type={ FixImportType } />
-                <button type="submit"
-                    className="btn btn-success"
-                    onClick={ this.onSubmit }>Import</button>
+                <Button type={ Button.TYPE.ADD }
+                    onClick={ this.onSubmit }
+                    label="Import" />
             </div>
         );
     }
