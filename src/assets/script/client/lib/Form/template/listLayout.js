@@ -34,7 +34,7 @@ export const listLayout = (locals) => {
     const itemsMap = _map(locals.items, (item) => {
         const itemButtons = _map(item.buttons, (button, i) => {
             return (
-                <button className="btn"
+                <button className={`btn btn-${button.type}`}
                     key={ `listLayout-item-button-${i}` }
                     onClick={ button.click }>
                     { button.label }

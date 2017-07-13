@@ -7,8 +7,12 @@ const Form = t.form.Form;
 const FORM_OPTIONS = {
     fields: {
         data: {
-            label: '',
-            type: 'textarea'
+            legend: false,
+            label: false,
+            type: 'textarea',
+            attrs: {
+                className: 'input input-textarea'
+            }
         }
     }
 };
@@ -45,7 +49,9 @@ export default class FixImport extends Component {
                 <Form ref={ (f) => { this._fixImportForm = f; } }
                     options={ FORM_OPTIONS }
                     type={ FixImportType } />
-                <button type="submit" onClick={ this.onSubmit }>Import</button>
+                <button type="submit"
+                    className="btn btn-success"
+                    onClick={ this.onSubmit }>Import</button>
             </div>
         );
     }

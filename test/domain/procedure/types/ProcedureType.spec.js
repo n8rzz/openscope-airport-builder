@@ -1,10 +1,10 @@
 import ava from 'ava';
 import {
     BaseSegmentUpdateType,
-    MinMaxRestrictionType,
-    LessThenGreaterThanRestrictionType,
+    MinMaxValueType,
+    LessThenGreaterThanValueType,
     BaseWaypointRestrictionType,
-    RouteSegmentWaypointRestrictionType,
+    RouteWaypointRestrictionType,
     BaseProcedureRouteType,
     SidProcedureRouteType,
     StarProcedureRouteType,
@@ -13,8 +13,8 @@ import {
 } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 import {
     baseSegmentUpdateTypeMock,
-    minMaxRestrictionTypeMock,
-    lessThenGreaterThanRestrictionTypeMock,
+    minMaxValueTypeMock,
+    lessThenGreaterThanValueTypeMock,
     baseWaypointRestrictionTypeMock,
     routeSegmentWaypointRestrictionMinMaxTypeMock,
     routeSegmentWaypointRestrictionLtGtTypeMock
@@ -25,22 +25,22 @@ ava('BaseSegmentUpdateType', (t) => {
     t.notThrows(() => BaseSegmentUpdateType(baseSegmentUpdateTypeMock));
 });
 
-ava('MinMaxRestrictionType', (t) => {
-    t.notThrows(() => MinMaxRestrictionType(minMaxRestrictionTypeMock));
+ava('MinMaxValueType', (t) => {
+    t.notThrows(() => MinMaxValueType(minMaxValueTypeMock));
 });
 
-ava('LessThenGreaterThanRestrictionType', (t) => {
-    t.notThrows(() => LessThenGreaterThanRestrictionType(lessThenGreaterThanRestrictionTypeMock));
+ava('LessThenGreaterThanValueType', (t) => {
+    t.notThrows(() => LessThenGreaterThanValueType(lessThenGreaterThanValueTypeMock));
 });
 
 ava('BaseWaypointRestrictionType', (t) => {
     t.notThrows(() => BaseWaypointRestrictionType(baseWaypointRestrictionTypeMock));
 });
 
-ava('RouteSegmentWaypointRestrictionType', (t) => {
-    t.notThrows(() => RouteSegmentWaypointRestrictionType({ restrictionQualifier: undefined }));
-    t.notThrows(() => RouteSegmentWaypointRestrictionType(routeSegmentWaypointRestrictionMinMaxTypeMock));
-    t.notThrows(() => RouteSegmentWaypointRestrictionType(routeSegmentWaypointRestrictionLtGtTypeMock));
+ava('RouteWaypointRestrictionType', (t) => {
+    t.notThrows(() => RouteWaypointRestrictionType({ restrictionQualifier: undefined }));
+    t.notThrows(() => RouteWaypointRestrictionType(routeSegmentWaypointRestrictionMinMaxTypeMock));
+    t.notThrows(() => RouteWaypointRestrictionType(routeSegmentWaypointRestrictionLtGtTypeMock));
 });
 
 ava('BaseProcedureRouteType', (t) => {

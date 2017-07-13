@@ -1,5 +1,4 @@
 // import {
-//     RestrictionQualifierEnum
 // } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 
 export const baseSegmentUpdateTypeMock = {
@@ -8,12 +7,12 @@ export const baseSegmentUpdateTypeMock = {
     name: 'Cowboy Six'
 };
 
-export const minMaxRestrictionTypeMock = {
+export const minMaxValueTypeMock = {
     minValue: 123,
     maxValue: 321
 };
 
-export const lessThenGreaterThanRestrictionTypeMock = {
+export const lessThenGreaterThanValueTypeMock = {
     value: 222
 };
 

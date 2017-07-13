@@ -24,13 +24,13 @@ export default class ProcedureSingle extends Component {
     _updateFormConfig(formValues) {
         return buildProcedureFormType(
             formValues,
-            this.props.fixList,
-            this.props.runwayList
+            this.props.runwayList,
+            this.props.fixList
         );
     }
 
     onChange = (formValues) => {
-        console.log(formValues);
+        // console.log(formValues);
         const formConfig = this._updateFormConfig(formValues);
 
         this.setState({ formValues, formConfig });

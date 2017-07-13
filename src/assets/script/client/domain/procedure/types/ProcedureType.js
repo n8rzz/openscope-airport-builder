@@ -6,20 +6,25 @@ export const ProcedureRouteTypeEnum = t.enums.of([
     'STAR'
 ], 'ProcedureRouteTypeEnum');
 
+export const BaseRouteWaypointType = t.struct({
+    isHold: t.Boolean,
+    isVector: t.Boolean
+}, 'BaswRouteWaypointType');
+
 export const BaseSegmentUpdateType = t.struct({
     type: ProcedureRouteTypeEnum,
     icao: t.String,
     name: t.String
 }, 'BaseSegmentUpdateType');
 
-export const MinMaxRestrictionType = t.struct({
+export const MinMaxValueType = t.struct({
     minValue: t.Number,
     maxValue: t.Number
-}, 'MinMaxRestrictionType');
+}, 'MinMaxValueType');
 
-export const LessThenGreaterThanRestrictionType = t.struct({
+export const LessThenGreaterThanValueType = t.struct({
     value: t.Number
-}, 'LessThenGreaterThanRestrictionType');
+}, 'LessThenGreaterThanValueType');
 
 export const RestrictionQualifierEnum = t.enums({
     GT: 'Greater Than',
@@ -31,27 +36,26 @@ export const BaseWaypointRestrictionType = t.struct({
     restrictionQualifier: t.maybe(RestrictionQualifierEnum)
 }, 'BaseWaypointRestrictionType');
 
-export const RouteSegmentWaypointRestrictionType = t.union([
+export const RouteWaypointRestrictionType = t.union([
     BaseWaypointRestrictionType,
-    MinMaxRestrictionType,
-    LessThenGreaterThanRestrictionType
-], 'RouteSegmentWaypointRestrictionType');
+    MinMaxValueType,
+    LessThenGreaterThanValueType
+], 'RouteWaypointRestrictionType');
 
-RouteSegmentWaypointRestrictionType.dispatch = (value) => {
+RouteWaypointRestrictionType.dispatch = (value) => {
     if (!value || !value.restrictionQualifier) {
         return BaseWaypointRestrictionType;
     }
 
     if (value.restrictionQualifier === 'MIN_MAX') {
-        return BaseWaypointRestrictionType.extend(MinMaxRestrictionType);
+        return BaseWaypointRestrictionType.extend(MinMaxValueType);
     }
 
-    return BaseWaypointRestrictionType.extend(LessThenGreaterThanRestrictionType);
+    return BaseWaypointRestrictionType.extend(LessThenGreaterThanValueType);
 };
 
 
 // PreviewTypes
-// Update types will need to be translated into these types
 export const RouteSegmentWaypointType = t.union([
     t.String,
     t.tuple([t.String, t.String])

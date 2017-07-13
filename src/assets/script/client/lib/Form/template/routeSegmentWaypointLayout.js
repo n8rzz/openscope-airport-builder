@@ -7,7 +7,11 @@ export const routeSegmentWaypointLayout = (locals) => {
 
     return (
         <ul className="hlist hlist-spacious">
-            <li>{ locals.inputs.waypointName }</li>
+            <li>
+                <div>{ locals.inputs.waypointName }</div>
+                <div>{ locals.inputs.isHold }</div>
+                <div>{ locals.inputs.isVector }</div>
+            </li>
             <li>{ locals.inputs.altitude }</li>
             <li>{ locals.inputs.speed }</li>
         </ul>

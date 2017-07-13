@@ -5,10 +5,30 @@ import {
     routeSegmentWaypointLayout
 } from '../../../lib/Form/template';
 
+const drawConfig = {
+    template: listLayout,
+    disableOrder: true,
+    item: {
+        fields: {
+            drawSegment: {
+                template: childListLayout,
+                disableOrder: true,
+                config: {
+                    hideLegend: true,
+                    hlist: true
+                },
+                item: {
+                    disableOrder: true
+                }
+            }
+        }
+    }
+};
+
 const routeSegmentConfig = {
     template: listLayout,
     config: {
-        striped: true,
+        striped: false,
         divided: true,
         depth: 1
     },
@@ -19,7 +39,7 @@ const routeSegmentConfig = {
             waypoints: {
                 template: childListLayout,
                 config: {
-                    striped: true,
+                    striped: false,
                     divided: false,
                     hideLegend: true,
                     depth: 2
@@ -61,9 +81,7 @@ export const FORM_CONFIG = {
         up: 'Up'            // move up button
     },
     fields: {
-        draw: {
-            template: listLayout
-        },
+        draw: drawConfig,
         body: {
             template: listLayout,
             disableOrder: true

@@ -13,9 +13,10 @@ export const childListLayout = (locals) => {
         'fieldset-depth-3': _get(locals, 'config.depth', 1) === 3
     });
 
-    const buildVlistClassNames = () => classNames({
-        vlist: true,
-        'vlist-child': true,
+    const buildListClassNames = () => classNames({
+        hlist: _get(locals, 'config.hlist', false),
+        vlist: !_get(locals, 'config.hlist', false),
+        'vlist-child': !_get(locals, 'config.hlist', false),
         'vlist-divided': _get(locals, 'config.divided', false),
         'mix-vlist_striped': _get(locals, 'config.striped', false)
     });
@@ -35,7 +36,7 @@ export const childListLayout = (locals) => {
     const itemsMap = _map(locals.items, (item) => {
         const itemButtons = _map(item.buttons, (button, i) => {
             return (
-                <button className="btn"
+                <button className={`btn btn-${button.type}`}
                     key={ `childListLayout-item-button-${i}` }
                     onClick={ button.click }>
                     { button.label }
@@ -59,7 +60,7 @@ export const childListLayout = (locals) => {
         <fieldset className={ buildRootClassNames() }>
             { buildListLegend() }
             <div>
-                <ul className={ buildVlistClassNames() }>
+                <ul className={ buildListClassNames() }>
                     { itemsMap }
                 </ul>
             </div>

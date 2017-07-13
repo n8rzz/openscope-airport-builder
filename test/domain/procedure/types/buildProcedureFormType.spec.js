@@ -4,5 +4,10 @@ import { FixListTypeFixture } from '../../fix/_mocks/fixMocks';
 import { RunwayPairListTypeFixture } from '../../runway/_mocks/runwayMocks';
 
 ava('.buildProcedureFormType()', (t) => {
-    t.notThrows(() => buildProcedureFormType(RunwayPairListTypeFixture, FixListTypeFixture));
+    try {
+        buildProcedureFormType({}, RunwayPairListTypeFixture, FixListTypeFixture)
+    } catch (e) {
+        console.log(e);
+    }
+    t.notThrows(() => buildProcedureFormType({}, RunwayPairListTypeFixture, FixListTypeFixture));
 });
