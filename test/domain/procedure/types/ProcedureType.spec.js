@@ -38,7 +38,7 @@ ava('BaseWaypointRestrictionType', (t) => {
 });
 
 ava('RouteSegmentWaypointRestrictionType', (t) => {
-    t.notThrows(() => RouteSegmentWaypointRestrictionType({ restrictionQulifier: undefined }));
+    t.notThrows(() => RouteSegmentWaypointRestrictionType({ restrictionQualifier: undefined }));
     t.notThrows(() => RouteSegmentWaypointRestrictionType(routeSegmentWaypointRestrictionMinMaxTypeMock));
     t.notThrows(() => RouteSegmentWaypointRestrictionType(routeSegmentWaypointRestrictionLtGtTypeMock));
 });

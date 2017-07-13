@@ -6,10 +6,10 @@ export const routeSegmentWaypointLayout = (locals) => {
     }
 
     return (
-        <ul className="hlist">
+        <ul className="hlist hlist-spacious">
             <li>{ locals.inputs.waypointName }</li>
-            <li>{ locals.inputs.altitudeRestrictionType }</li>
-            <li>{ locals.inputs.speedRestrictionType }</li>
+            <li>{ locals.inputs.altitude }</li>
+            <li>{ locals.inputs.speed }</li>
         </ul>
     );
 };

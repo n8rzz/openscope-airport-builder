@@ -28,7 +28,7 @@ export const RestrictionQualifierEnum = t.enums({
 }, 'RestrictionQualifierEnum');
 
 export const BaseWaypointRestrictionType = t.struct({
-    restrictionQulifier: t.maybe(RestrictionQualifierEnum)
+    restrictionQualifier: t.maybe(RestrictionQualifierEnum)
 }, 'BaseWaypointRestrictionType');
 
 export const RouteSegmentWaypointRestrictionType = t.union([
@@ -38,11 +38,11 @@ export const RouteSegmentWaypointRestrictionType = t.union([
 ], 'RouteSegmentWaypointRestrictionType');
 
 RouteSegmentWaypointRestrictionType.dispatch = (value) => {
-    if (!value || !value.restrictionQulifier) {
+    if (!value || !value.restrictionQualifier) {
         return BaseWaypointRestrictionType;
     }
 
-    if (value.restrictionQulifier === 'MIN_MAX') {
+    if (value.restrictionQualifier === 'MIN_MAX') {
         return BaseWaypointRestrictionType.extend(MinMaxRestrictionType);
     }
 
