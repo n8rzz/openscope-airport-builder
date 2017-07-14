@@ -1,8 +1,6 @@
 import ava from 'ava';
 import {
     BaseSegmentUpdateType,
-    MinMaxValueType,
-    LessThenGreaterThanValueType,
     BaseWaypointRestrictionType,
     RouteWaypointRestrictionType,
     BaseProcedureRouteType,
@@ -13,8 +11,6 @@ import {
 } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 import {
     baseSegmentUpdateTypeMock,
-    minMaxValueTypeMock,
-    lessThenGreaterThanValueTypeMock,
     baseWaypointRestrictionTypeMock,
     routeSegmentWaypointRestrictionMinMaxTypeMock,
     routeSegmentWaypointRestrictionLtGtTypeMock
@@ -23,14 +19,6 @@ import { airportJsonMock } from '../../../_mocks/airportJsonMock';
 
 ava('BaseSegmentUpdateType', (t) => {
     t.notThrows(() => BaseSegmentUpdateType(baseSegmentUpdateTypeMock));
-});
-
-ava('MinMaxValueType', (t) => {
-    t.notThrows(() => MinMaxValueType(minMaxValueTypeMock));
-});
-
-ava('LessThenGreaterThanValueType', (t) => {
-    t.notThrows(() => LessThenGreaterThanValueType(lessThenGreaterThanValueTypeMock));
 });
 
 ava('BaseWaypointRestrictionType', (t) => {

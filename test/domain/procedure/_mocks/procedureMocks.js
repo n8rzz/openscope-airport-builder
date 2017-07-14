@@ -7,15 +7,6 @@ export const baseSegmentUpdateTypeMock = {
     name: 'Cowboy Six'
 };
 
-export const minMaxValueTypeMock = {
-    minValue: 123,
-    maxValue: 321
-};
-
-export const lessThenGreaterThanValueTypeMock = {
-    value: 222
-};
-
 export const baseWaypointRestrictionTypeMock = {
     restrictionQulifier: 'MIN_MAX'
 };

@@ -1,5 +1,15 @@
 import t from 'tcomb';
 
+export const MinMaxValueType = t.struct({
+    minValue: t.Number,
+    maxValue: t.Number
+}, 'MinMaxValueType');
+
+export const SingleNumberValueType = t.struct({
+    value: t.Number
+}, 'SingleNumberValueType');
+
+
 const StringOrNumberType = t.union([t.String, t.Number], 'StringOrNumberType');
 const StringOrNumberTypeList = t.list(StringOrNumberType);
 

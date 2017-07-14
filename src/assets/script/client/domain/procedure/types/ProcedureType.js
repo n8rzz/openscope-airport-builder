@@ -1,4 +1,8 @@
 import t from 'tcomb';
+import {
+    MinMaxValueType,
+    SingleNumberValueType
+} from '../../../domain/common/BaseTypes';
 
 // Form/Update types
 export const ProcedureRouteTypeEnum = t.enums.of([
@@ -17,15 +21,6 @@ export const BaseSegmentUpdateType = t.struct({
     name: t.String
 }, 'BaseSegmentUpdateType');
 
-export const MinMaxValueType = t.struct({
-    minValue: t.Number,
-    maxValue: t.Number
-}, 'MinMaxValueType');
-
-export const LessThenGreaterThanValueType = t.struct({
-    value: t.Number
-}, 'LessThenGreaterThanValueType');
-
 export const RestrictionQualifierEnum = t.enums({
     GT: 'Greater Than',
     LT: 'Less Than',
@@ -39,7 +34,7 @@ export const BaseWaypointRestrictionType = t.struct({
 export const RouteWaypointRestrictionType = t.union([
     BaseWaypointRestrictionType,
     MinMaxValueType,
-    LessThenGreaterThanValueType
+    SingleNumberValueType
 ], 'RouteWaypointRestrictionType');
 
 RouteWaypointRestrictionType.dispatch = (value) => {
@@ -51,7 +46,7 @@ RouteWaypointRestrictionType.dispatch = (value) => {
         return BaseWaypointRestrictionType.extend(MinMaxValueType);
     }
 
-    return BaseWaypointRestrictionType.extend(LessThenGreaterThanValueType);
+    return BaseWaypointRestrictionType.extend(SingleNumberValueType);
 };
 
 
