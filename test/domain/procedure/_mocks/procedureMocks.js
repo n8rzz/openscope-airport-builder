@@ -1,5 +1,6 @@
-// import {
-// } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
+import {
+    ProcedureSingleType
+} from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 
 export const baseSegmentTypeMock = {
     type: 'SID',
@@ -253,6 +254,8 @@ export const starProcedureFormValueMock = {
         }
     ]
 };
+
+export const ProcedureSingleTypeFixture = new ProcedureSingleType(sidProcedureFormValueMock);
 
 // Preview Types
 export const sidProcedureRoutePreviewTypeMock = {
