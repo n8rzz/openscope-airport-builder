@@ -56,7 +56,6 @@ export const listLayout = (locals) => {
 
     return (
         <fieldset className={ buildRootClassNames() }>
-            {/* listLayout */}
             { buildListLegend() }
             <div className="vr_x2">
                 <ul className={ buildVlistClassNames() }>
@@ -64,8 +63,7 @@ export const listLayout = (locals) => {
                 </ul>
             </div>
             <div className="btn-group">
-                <button className="btn btn-default btn-add"
-                    type={ Button.TYPE.ADD }
+                <Button type={ Button.TYPE.ADD }
                     label={ `${locals.add.label} ${locals.label}` }
                     onClick={ locals.add.click } />
             </div>

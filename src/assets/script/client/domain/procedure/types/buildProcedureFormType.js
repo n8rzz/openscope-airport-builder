@@ -17,7 +17,7 @@ const buildSegmentDrawListType = (fixListEnum) => {
     return t.list(DrawListType, 'SegmentDrawListType');
 };
 
-const _buildRouteSegmentWaypointUpdateListType = (waypointListEnum) => {
+const buildRouteSegmentWaypointUpdateListType = (waypointListEnum) => {
     const RouteSegmentWaypointUpdateType = BaseRouteWaypointType.extend({
         waypointName: waypointListEnum,
         altitude: RouteWaypointRestrictionType,
@@ -30,7 +30,7 @@ const _buildRouteSegmentWaypointUpdateListType = (waypointListEnum) => {
 export const buildRouteSegmentListType = (trimmedEntryListEnum, waypointListEnum) => {
     const RouteSegmentType = t.struct({
         name: trimmedEntryListEnum,
-        waypoints: _buildRouteSegmentWaypointUpdateListType(waypointListEnum)
+        waypoints: buildRouteSegmentWaypointUpdateListType(waypointListEnum)
     }, 'RouteSegmentType');
 
     return t.list(RouteSegmentType, 'RouteSegmentListType');
@@ -38,25 +38,30 @@ export const buildRouteSegmentListType = (trimmedEntryListEnum, waypointListEnum
 
 export const buildInitialProcedureFormType = () => BaseSegmentUpdateType;
 
-export const buildSidProcedureFormType = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
-    rwy: buildRouteSegmentListType(runwayListEnum, fixListEnum),
-    body: t.list(fixListEnum),
-    exitPoints: buildRouteSegmentListType(fixListEnum, fixListEnum),
-    draw: buildSegmentDrawListType(fixListEnum)
-}, 'SidProcedureFormType');
+export const buildSidProcedureFormType =
+    (formValues, runwayListEnum, fixListEnum, suffixType) => BaseSegmentUpdateType.extend({
+        suffix: suffixType,
+        rwy: buildRouteSegmentListType(runwayListEnum, fixListEnum),
+        body: buildRouteSegmentWaypointUpdateListType(fixListEnum),
+        exitPoints: buildRouteSegmentListType(fixListEnum, fixListEnum),
+        draw: buildSegmentDrawListType(fixListEnum)
+    }, 'SidProcedureFormType');
 
-export const buildStarProcedureFormType = (formValues, runwayListEnum, fixListEnum) => BaseSegmentUpdateType.extend({
-    entryPoints: buildRouteSegmentListType(fixListEnum, runwayListEnum),
-    body: t.list(fixListEnum),
-    rwy: buildRouteSegmentListType(runwayListEnum, fixListEnum),
-    draw: buildSegmentDrawListType(fixListEnum)
-}, 'StarProcedureFormType');
+export const buildStarProcedureFormType =
+    (formValues, runwayListEnum, fixListEnum, suffixType) => BaseSegmentUpdateType.extend({
+        suffix: suffixType,
+        entryPoints: buildRouteSegmentListType(fixListEnum, runwayListEnum),
+        body: buildRouteSegmentWaypointUpdateListType(fixListEnum),
+        rwy: buildRouteSegmentListType(runwayListEnum, fixListEnum),
+        draw: buildSegmentDrawListType(fixListEnum)
+    }, 'StarProcedureFormType');
 
 
 export function buildProcedureFormType(formValues, runwayList, fixList) {
     const procedureType = _get(formValues, 'type', null);
     const fixListEnum = FixListType.buildFixListEnum(fixList);
     const runwayListEnum = RunwayPairListType.buildRunwayNamesEnum(runwayList);
+    const suffixType = RunwayPairListType.buildSuffixFormType(runwayList);
     let procedureFormType;
 
     switch (procedureType) {
@@ -74,5 +79,5 @@ export function buildProcedureFormType(formValues, runwayList, fixList) {
             break;
     }
 
-    return procedureFormType(formValues, runwayListEnum, fixListEnum);
+    return procedureFormType(formValues, runwayListEnum, fixListEnum, suffixType);
 }

@@ -22,6 +22,12 @@ ava('RunwayPairListType.buildRunwayNamesEnum', (t) => {
     t.true(result.meta.name === 'RunwayNamesEnum');
 });
 
+ava.only('RunwayPairListType.buildSuffixFormType', (t) => {
+    const result = RunwayPairListType.buildSuffixFormType(RunwayPairListTypeFixture);
+
+    t.true(result.meta.name === 'SuffixType');
+});
+
 ava('RunwayPreviewType', (t) => {
     t.notThrows(() => RunwayPreviewType(runwayPreviewTypeMock));
 });

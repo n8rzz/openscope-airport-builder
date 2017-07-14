@@ -40,7 +40,7 @@ const routeSegmentConfig = {
                 template: childListLayout,
                 config: {
                     striped: false,
-                    divided: false,
+                    divided: true,
                     hideLegend: true,
                     depth: 2
                 },
@@ -84,7 +84,28 @@ export const FORM_CONFIG = {
         draw: drawConfig,
         body: {
             template: listLayout,
-            disableOrder: true
+            disableOrder: true,
+            item: {
+                template: routeSegmentWaypointLayout,
+                fields: {
+                    altitude: {
+                        label: 'Altitude Restriction',
+                        fields: {
+                            restrictionQualifier: {
+                                legend: false
+                            }
+                        }
+                    },
+                    speed: {
+                        label: 'Speed Restriction',
+                        fields: {
+                            restrictionQualifier: {
+                                legend: false
+                            }
+                        }
+                    }
+                }
+            }
         },
         rwy: routeSegmentConfig,
         entryPoints: routeSegmentConfig,

@@ -1,6 +1,7 @@
 import t from 'tcomb';
 import _flatten from 'lodash/flatten';
 import _map from 'lodash/map';
+import _reduce from 'lodash/reduce';
 import { BaseStateType } from '../../common/StateType';
 import { Position3dCreationType } from '../../common/PositionType';
 
@@ -17,11 +18,7 @@ export const RunwayPairType = t.struct({
 
 export const RunwayPairListType = t.list(RunwayPairType, 'RunwayPairListType');
 
-RunwayPairListType.buildRunwayNamesEnum = function(runwayPairList) {
-    if (!RunwayPairListType.is(runwayPairList)) {
-        throw new TypeError('Invalid data passed to .buildRunwayEnum()');
-    }
-
+const _buildFlatRunwayNameList = (runwayPairList) => {
     const runwayNameList = _map(runwayPairList, (runwayPair) => {
         const runwayPairNames = [
             runwayPair.runwayLeft.name,
@@ -31,7 +28,32 @@ RunwayPairListType.buildRunwayNamesEnum = function(runwayPairList) {
         return runwayPairNames;
     });
 
-    return t.enums.of(_flatten(runwayNameList), 'RunwayNamesEnum');
+    return _flatten(runwayNameList).sort();
+};
+
+RunwayPairListType.buildRunwayNamesEnum = function(runwayPairList) {
+    if (!RunwayPairListType.is(runwayPairList)) {
+        throw new TypeError('Invalid data passed to .buildRunwayEnum()');
+    }
+
+    const runwayNameList = _buildFlatRunwayNameList(runwayPairList);
+
+    return t.enums.of(runwayNameList, 'RunwayNamesEnum');
+};
+
+RunwayPairListType.buildSuffixFormType = function(runwayPairList) {
+    if (!RunwayPairListType.is(runwayPairList)) {
+        throw new TypeError('Invalid data passed to .buildSuffixFormType()');
+    }
+
+    const runwayNameList = _buildFlatRunwayNameList(runwayPairList);
+    const runwayEnumWithType = _reduce(runwayNameList, (sum, name) => {
+        sum[name] = t.maybe(t.String);
+
+        return sum;
+    }, {});
+
+    return t.struct(runwayEnumWithType, 'SuffixType');
 };
 
 export const RunwayPreviewType = t.struct({
