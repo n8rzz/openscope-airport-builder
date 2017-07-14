@@ -4,22 +4,10 @@ import {
     SingleNumberValueType
 } from '../../../domain/common/BaseTypes';
 
-// Form/Update types
-export const ProcedureRouteTypeEnum = t.enums.of([
+export const RouteTypeEnum = t.enums.of([
     'SID',
     'STAR'
-], 'ProcedureRouteTypeEnum');
-
-export const BaseRouteWaypointType = t.struct({
-    isHold: t.Boolean,
-    isVector: t.Boolean
-}, 'BaswRouteWaypointType');
-
-export const BaseSegmentUpdateType = t.struct({
-    type: ProcedureRouteTypeEnum,
-    icao: t.String,
-    name: t.String
-}, 'BaseSegmentUpdateType');
+], 'RouteTypeEnum');
 
 export const RestrictionQualifierEnum = t.enums({
     MAINTAIN: 'Maintain',
@@ -28,6 +16,19 @@ export const RestrictionQualifierEnum = t.enums({
     MIN_MAX: 'Min/Max'
 }, 'RestrictionQualifierEnum');
 
+export const BaseRouteWaypointType = t.struct({
+    isHold: t.Boolean,
+    isVector: t.Boolean
+}, 'BaswRouteWaypointType');
+
+export const BaseSegmentType = t.struct({
+    type: RouteTypeEnum,
+    icao: t.String,
+    name: t.String
+}, 'BaseSegmentType');
+
+
+// Form types
 export const BaseWaypointRestrictionType = t.struct({
     restrictionQualifier: t.maybe(RestrictionQualifierEnum)
 }, 'BaseWaypointRestrictionType');
@@ -50,6 +51,84 @@ RouteWaypointRestrictionType.dispatch = (value) => {
     return BaseWaypointRestrictionType.extend(SingleNumberValueType);
 };
 
+export const buildSegmentWaypointListFormType = (waypointListEnum) => {
+    const RouteSegmentWaypointUpdateType = BaseRouteWaypointType.extend({
+        waypointName: waypointListEnum,
+        altitude: RouteWaypointRestrictionType,
+        speed: RouteWaypointRestrictionType
+    }, 'RouteSegmentWaypointUpdateType');
+
+    return t.list(RouteSegmentWaypointUpdateType, 'RouteSegmentWaypointUpdateListType');
+};
+
+export const buildDrawListFormType = (fixListEnum) => {
+    const DrawListType = t.struct({
+        drawSegment: t.list(fixListEnum)
+    }, 'DrawSegmentType');
+
+    return t.list(DrawListType, 'SegmentDrawListType');
+};
+
+export const buildSegmentListFormType = (trimmedEntryListEnum, waypointListEnum) => {
+    const RouteSegmentType = t.struct({
+        name: trimmedEntryListEnum,
+        waypoints: buildSegmentWaypointListFormType(waypointListEnum)
+    }, 'RouteSegmentType');
+
+    return t.list(RouteSegmentType, 'RouteSegmentListType');
+};
+
+export const buildInitialProcedureFormType = () => BaseSegmentType;
+
+export const buildSidProcedureFormType =
+    (formValues, runwayListEnum, fixListEnum, suffixType) => BaseSegmentType.extend({
+        suffix: suffixType,
+        rwy: buildSegmentListFormType(runwayListEnum, fixListEnum),
+        body: buildSegmentWaypointListFormType(fixListEnum),
+        exitPoints: buildSegmentListFormType(fixListEnum, fixListEnum),
+        draw: buildDrawListFormType(fixListEnum)
+    }, 'SidProcedureFormType');
+
+export const buildStarProcedureFormType =
+    (formValues, runwayListEnum, fixListEnum, suffixType) => BaseSegmentType.extend({
+        suffix: suffixType,
+        entryPoints: buildSegmentListFormType(fixListEnum, runwayListEnum),
+        body: buildSegmentWaypointListFormType(fixListEnum),
+        rwy: buildSegmentListFormType(runwayListEnum, fixListEnum),
+        draw: buildDrawListFormType(fixListEnum)
+    }, 'StarProcedureFormType');
+
+// State types
+export const SegmentWaypointSingleType = t.struct({
+    waypointName: t.String,
+    altitude: t.maybe(RouteWaypointRestrictionType),
+    speed: t.maybe(RouteWaypointRestrictionType)
+}, 'WaypointSingleType');
+
+export const SementWaypointListType = t.list(SegmentWaypointSingleType, 'SegmentWaypointListType');
+
+export const SegmentSingleType = t.struct({
+    name: t.String,
+    waypoints: SementWaypointListType
+}, 'SegmentSingleType');
+
+export const SegmentListType = t.list(SegmentSingleType, 'SegmentListType');
+
+// export const BaseProcedureSingleType = BaseSegmentType.extend({
+//     suffix: t.dict(t.String, t.String),
+//     rwy: SegmentListType
+//     // body: null,
+//     // draw: null
+// }, 'SidProcedureSingleType');
+//
+// export const SidProcedureSingleType = BaseProcedureSingleType.extend({
+//     exitPoints: null
+// }, 'SidProcedureSingleType');
+//
+// export const StarProcedureSingleType = BaseProcedureSingleType.extend({
+//     entryPoints: null
+// }, 'SidProcedureSingleType');
+
 
 // PreviewTypes
 export const RouteSegmentWaypointType = t.union([
@@ -59,7 +138,7 @@ export const RouteSegmentWaypointType = t.union([
 
 export const RouteSegmentWaypointListType = t.list(RouteSegmentWaypointType, 'RouteSegmentWaypointListType');
 
-export const BaseProcedureRouteType = t.struct({
+export const BaseProcedureRoutePreviewType = t.struct({
     icao: t.String,
     name: t.String,
     suffix: t.dict(t.String, t.String),
@@ -68,14 +147,14 @@ export const BaseProcedureRouteType = t.struct({
     draw: t.list(t.list(t.String))
 }, 'ProcedureRouteType');
 
-export const SidProcedureRouteType = BaseProcedureRouteType.extend({
+export const SidProcedureRoutePreviewType = BaseProcedureRoutePreviewType.extend({
     exitPoints: t.dict(t.String, RouteSegmentWaypointListType)
-}, 'StarProcedureRouteType');
+}, 'StarProcedureRoutePreviewType');
 
-export const SidProcedureRouteDict = t.dict(t.String, SidProcedureRouteType);
+export const SidProcedureRouteDict = t.dict(t.String, SidProcedureRoutePreviewType);
 
-export const StarProcedureRouteType = BaseProcedureRouteType.extend({
+export const StarProcedureRoutePreviewType = BaseProcedureRoutePreviewType.extend({
     entryPoints: t.dict(t.String, RouteSegmentWaypointListType)
-}, 'StarProcedureRouteType');
+}, 'StarProcedureRoutePreviewType');
 
-export const StarProcedureRouteDict = t.dict(t.String, StarProcedureRouteType);
+export const StarProcedureRouteDict = t.dict(t.String, StarProcedureRoutePreviewType);

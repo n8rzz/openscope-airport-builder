@@ -1,7 +1,7 @@
 // import {
 // } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 
-export const baseSegmentUpdateTypeMock = {
+export const baseSegmentTypeMock = {
     type: 'SID',
     icao: 'COWBY6',
     name: 'Cowboy Six'
@@ -26,72 +26,206 @@ export const waypointRestrictionMaintainMock = {
     value: 123
 };
 
-// export const sidProcedureFormValues = {
-//     type: 'SID',
-//     rwy: [
-//         {
-//             name: '07L',
-//             waypoints: [
-//                 {
-//                     waypointName: 'BAKRR'
-//                 },
-//                 {
-//                     waypointName: 'BCE'
-//                 },
-//                 {
-//                     waypointName: 'BESSY'
-//                 }
-//             ]
-//         },
-//         {
-//             name: '25R',
-//             waypoints: [
-//                 {
-//                     waypointName: 'COWBY'
-//                 },
-//                 {
-//                     waypointName: 'CUTRO'
-//                 },
-//                 {
-//                     waypointName: 'DBIGE'
-//                 }
-//             ]
-//         }
-//     ],
-//     body: [
-//         'DUBLX',
-//         'FEBET'
-//     ],
-//     exitPoints: [
-//         {
-//             name: 'FUZZY',
-//             waypoints: [
-//                 {
-//                     waypointName: 'FIXIX'
-//                 },
-//                 {
-//                     waypointName: 'FLYES'
-//                 },
-//                 {
-//                     waypointName: 'FUZZY'
-//                 }
-//             ]
-//         },
-//         {
-//             name: 'GRNPA',
-//             waypoints: [
-//                 {
-//                     waypointName: 'GALNE'
-//                 },
-//                 {
-//                     waypointName: 'GRNPA'
-//                 }
-//             ]
-//         }
-//     ]
-// };
+export const segmentWaypointSingleTypeMock = {
+    isHold: true,
+    isVector: false,
+    waypointName: 'BESSY',
+    altitude: {
+        restrictionQualifier: 'MIN_MAX',
+        minValue: 120,
+        maxValue: 150
+    },
+    speed: {
+        restrictionQualifier: 'MIN_MAX',
+        minValue: 250,
+        maxValue: 275
+    }
+};
 
-export const sidProcedureRouteDictMock = {
+export const segmentWaypointListTypeMock = [
+    {
+        waypointName: '_NAPSE068',
+        isVector: true
+    },
+    {
+        waypointName: 'BAKRR',
+        altitude: {
+            restrictionQualifier: 'MAINTAIN',
+            value: 20
+        }
+    }
+];
+
+export const segmentSingleTypeMock = {
+    name: 'COWBY',
+    waypoints: segmentWaypointListTypeMock
+};
+
+export const segmentListTypeMock = [
+    {
+        name: 'COWBY',
+        waypoints: segmentWaypointListTypeMock
+    },
+    {
+        name: 'FIXIX',
+        waypoints: segmentWaypointListTypeMock
+    }
+];
+
+export const sidProcedureFormValueMock = {
+    type: 'SID',
+    icao: 'COWBY6',
+    name: 'Cowboy 6',
+    suffix: {
+        '07L': '3D'
+    },
+    rwy: [
+        {
+            name: '07L',
+            waypoints: [
+                {
+                    waypointName: '_NAPSE068',
+                    isVector: true
+                },
+                {
+                    waypointName: 'BAKRR',
+                    altitude: {
+                        restrictionQualifier: 'MAINTAIN',
+                        value: '020'
+                    }
+                },
+                {
+                    waypointName: 'BCE',
+                    speed: {
+                        restrictionQualifier: 'LT',
+                        value: '250'
+                    }
+                },
+                {
+                    isHold: true,
+                    waypointName: 'BESSY',
+                    altitude: {
+                        restrictionQualifier: 'MIN_MAX',
+                        minValue: '120',
+                        maxValue: '150'
+                    },
+                    speed: {
+                        restrictionQualifier: 'MIN_MAX',
+                        minValue: '250',
+                        maxValue: '275'
+                    }
+                }
+            ]
+        }
+    ],
+    body: [
+        {
+            waypointName: 'COWBY'
+        }
+    ],
+    exitPoints: [
+        {
+            name: 'FLICR',
+            waypoints: [
+                {
+                    waypointName: 'DUBLX'
+                },
+                {
+                    waypointName: 'FLICR'
+                }
+            ]
+        }
+    ],
+    draw: [
+        {
+            drawSegment: [
+                'BAKRR',
+                'BCE',
+                'BESSY',
+                'COWBY',
+                'DUBLX',
+                'FLICR'
+            ]
+        }
+    ]
+};
+
+export const starProcedureFormValueMock = {
+    type: 'STAR',
+    icao: 'COWBY6',
+    name: 'Cowboy 6',
+    suffix: {
+        '07L': '3D'
+    },
+    entryPoints: [
+        {
+            name: 'FLICR',
+            waypoints: [
+                {
+                    waypointName: 'DUBLX'
+                },
+                {
+                    waypointName: 'FLICR'
+                }
+            ]
+        }
+    ],
+    body: [
+        {
+            waypointName: 'COWBY'
+        }
+    ],
+    rwy: [
+        {
+            name: '07L',
+            waypoints: [
+                {
+                    isHold: true,
+                    waypointName: 'BESSY',
+                    altitude: {
+                        restrictionQualifier: 'MIN_MAX',
+                        minValue: '120',
+                        maxValue: '150'
+                    },
+                    speed: {
+                        restrictionQualifier: 'MIN_MAX',
+                        minValue: '250',
+                        maxValue: '275'
+                    }
+                },
+                {
+                    waypointName: 'BAKRR',
+                    altitude: {
+                        restrictionQualifier: 'MAINTAIN',
+                        value: '020'
+                    }
+                },
+                {
+                    waypointName: 'BCE',
+                    speed: {
+                        restrictionQualifier: 'LT',
+                        value: '250'
+                    }
+                },
+            ]
+        }
+    ],
+    draw: [
+        {
+            drawSegment: [
+                'BAKRR',
+                'BCE',
+                'BESSY',
+                'COWBY',
+                'DUBLX',
+                'FLICR'
+            ]
+        }
+    ]
+};
+
+// Preview Types
+export const sidProcedureRoutePreviewTypeMock = {
     COWBY6: {
         icao: 'COWBY6',
         name: 'Cowboy Six',
@@ -122,7 +256,7 @@ export const sidProcedureRouteDictMock = {
     }
 };
 
-export const starProcedureRouteDictMock = {
+export const starProcedureRoutePreviewTypeMock = {
     GRNPA1: {
         icao: 'GRNPA1',
         name: 'Grandpa One',

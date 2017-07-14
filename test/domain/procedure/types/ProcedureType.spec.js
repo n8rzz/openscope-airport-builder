@@ -1,16 +1,16 @@
 import ava from 'ava';
 import {
-    BaseSegmentUpdateType,
+    BaseSegmentType,
     BaseWaypointRestrictionType,
     RouteWaypointRestrictionType,
-    BaseProcedureRouteType,
-    SidProcedureRouteType,
-    StarProcedureRouteType,
+    BaseProcedureRoutePreviewType,
+    SidProcedureRoutePreviewType,
+    StarProcedureRoutePreviewType,
     SidProcedureRouteDict,
     StarProcedureRouteDict
 } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 import {
-    baseSegmentUpdateTypeMock,
+    baseSegmentTypeMock,
     baseWaypointRestrictionTypeMock,
     waypointRestrictionMinMaxTypeMock,
     waypointRestrictionLtGtTypeMock,
@@ -18,8 +18,14 @@ import {
 } from '../_mocks/procedureMocks';
 import { airportJsonMock } from '../../../_mocks/airportJsonMock';
 
-ava('BaseSegmentUpdateType', (t) => {
-    t.notThrows(() => BaseSegmentUpdateType(baseSegmentUpdateTypeMock));
+ava.only('BaseSegmentType', (t) => {
+    try {
+        BaseSegmentType(baseSegmentTypeMock)
+    } catch (e) {
+        console.log(e);
+    }
+
+    t.notThrows(() => BaseSegmentType(baseSegmentTypeMock));
 });
 
 ava('BaseWaypointRestrictionType', (t) => {
@@ -33,21 +39,21 @@ ava('RouteWaypointRestrictionType', (t) => {
     t.notThrows(() => RouteWaypointRestrictionType(waypointRestrictionLtGtTypeMock));
 });
 
-ava('BaseProcedureRouteType', (t) => {
-    t.notThrows(() => BaseProcedureRouteType(airportJsonMock.stars.GRNPA1));
-    t.notThrows(() => BaseProcedureRouteType(airportJsonMock.sids.COWBY6));
+ava('BaseProcedureRoutePreviewType', (t) => {
+    t.notThrows(() => BaseProcedureRoutePreviewType(airportJsonMock.stars.GRNPA1));
+    t.notThrows(() => BaseProcedureRoutePreviewType(airportJsonMock.sids.COWBY6));
 });
 
-ava('SidProcedureRouteType', (t) => {
-    t.notThrows(() => SidProcedureRouteType(airportJsonMock.sids.COWBY6));
+ava('SidProcedureRoutePreviewType', (t) => {
+    t.notThrows(() => SidProcedureRoutePreviewType(airportJsonMock.sids.COWBY6));
 });
 
 ava('SidProcedureRouteDict', (t) => {
     t.notThrows(() => SidProcedureRouteDict(airportJsonMock.sids));
 });
 
-ava('StarProcedureRouteType', (t) => {
-    t.notThrows(() => StarProcedureRouteType(airportJsonMock.stars.GRNPA1));
+ava('StarProcedureRoutePreviewType', (t) => {
+    t.notThrows(() => StarProcedureRoutePreviewType(airportJsonMock.stars.GRNPA1));
 });
 
 ava('StarProcedureRouteDict', (t) => {
