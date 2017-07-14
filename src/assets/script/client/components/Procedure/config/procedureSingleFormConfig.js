@@ -42,6 +42,7 @@ const routeSegmentConfig = {
                     striped: false,
                     divided: true,
                     hideLegend: true,
+                    hlistSpacious: true,
                     depth: 2
                 },
                 disableOrder: true,
@@ -49,7 +50,7 @@ const routeSegmentConfig = {
                     template: routeSegmentWaypointLayout,
                     fields: {
                         altitude: {
-                            label: 'Altitude Restriction',
+                            // label: 'Altitude Restriction',
                             fields: {
                                 restrictionQualifier: {
                                     legend: false
@@ -57,7 +58,7 @@ const routeSegmentConfig = {
                             }
                         },
                         speed: {
-                            label: 'Speed Restriction',
+                            // label: 'Speed Restriction',
                             fields: {
                                 restrictionQualifier: {
                                     legend: false

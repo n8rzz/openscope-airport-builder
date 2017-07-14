@@ -11,13 +11,18 @@ export const baseWaypointRestrictionTypeMock = {
     restrictionQulifier: 'MIN_MAX'
 };
 
-export const routeSegmentWaypointRestrictionMinMaxTypeMock = Object.assign({}, baseWaypointRestrictionTypeMock, {
+export const waypointRestrictionMinMaxTypeMock = Object.assign({}, baseWaypointRestrictionTypeMock, {
     minValue: 123,
     maxValue: 321
 });
 
-export const routeSegmentWaypointRestrictionLtGtTypeMock = {
+export const waypointRestrictionLtGtTypeMock = {
     restrictionQulifier: 'GT',
+    value: 123
+};
+
+export const waypointRestrictionMaintainMock = {
+    restrictionQulifier: 'MAINTAIN',
     value: 123
 };
 

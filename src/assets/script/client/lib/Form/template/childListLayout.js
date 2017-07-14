@@ -16,6 +16,7 @@ export const childListLayout = (locals) => {
 
     const buildListClassNames = () => classNames({
         hlist: _get(locals, 'config.hlist', false),
+        'hlist-spacious': _get(locals, 'config.hlist', false) && _get(locals, 'config.hlistSpacious', false),
         vlist: !_get(locals, 'config.hlist', false),
         'vlist-child': !_get(locals, 'config.hlist', false),
         'vlist-divided': _get(locals, 'config.divided', false),

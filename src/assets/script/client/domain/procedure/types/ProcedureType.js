@@ -22,6 +22,7 @@ export const BaseSegmentUpdateType = t.struct({
 }, 'BaseSegmentUpdateType');
 
 export const RestrictionQualifierEnum = t.enums({
+    MAINTAIN: 'Maintain',
     GT: 'Greater Than',
     LT: 'Less Than',
     MIN_MAX: 'Min/Max'

@@ -12,8 +12,9 @@ import {
 import {
     baseSegmentUpdateTypeMock,
     baseWaypointRestrictionTypeMock,
-    routeSegmentWaypointRestrictionMinMaxTypeMock,
-    routeSegmentWaypointRestrictionLtGtTypeMock
+    waypointRestrictionMinMaxTypeMock,
+    waypointRestrictionLtGtTypeMock,
+    waypointRestrictionMaintainMock
 } from '../_mocks/procedureMocks';
 import { airportJsonMock } from '../../../_mocks/airportJsonMock';
 
@@ -27,8 +28,9 @@ ava('BaseWaypointRestrictionType', (t) => {
 
 ava('RouteWaypointRestrictionType', (t) => {
     t.notThrows(() => RouteWaypointRestrictionType({ restrictionQualifier: undefined }));
-    t.notThrows(() => RouteWaypointRestrictionType(routeSegmentWaypointRestrictionMinMaxTypeMock));
-    t.notThrows(() => RouteWaypointRestrictionType(routeSegmentWaypointRestrictionLtGtTypeMock));
+    t.notThrows(() => RouteWaypointRestrictionType(waypointRestrictionMaintainMock));
+    t.notThrows(() => RouteWaypointRestrictionType(waypointRestrictionMinMaxTypeMock));
+    t.notThrows(() => RouteWaypointRestrictionType(waypointRestrictionLtGtTypeMock));
 });
 
 ava('BaseProcedureRouteType', (t) => {

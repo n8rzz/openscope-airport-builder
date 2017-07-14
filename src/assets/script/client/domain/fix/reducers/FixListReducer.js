@@ -15,7 +15,7 @@ import { FixListTypeFixture } from '../../../../../../../test/domain/fix/_mocks/
 
 const INITIAL_STATE = new FixListStateType({
     isLoading: false,
-    payload: [], // FixListTypeFixture,
+    payload: FixListTypeFixture,
     error: null
 });
 
