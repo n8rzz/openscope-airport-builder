@@ -61,9 +61,16 @@ export const buildSegmentWaypointListFormType = (waypointListEnum) => {
     return t.list(RouteSegmentWaypointUpdateType, 'RouteSegmentWaypointUpdateListType');
 };
 
-export const buildDrawListFormType = (fixListEnum) => {
+export const buildDrawListFormType = (fixListEnum = null) => {
+    let drawSegmentDataType = fixListEnum;
+
+    // used for state types
+    if (!fixListEnum) {
+        drawSegmentDataType = t.String;
+    }
+
     const DrawListType = t.struct({
-        drawSegment: t.list(fixListEnum)
+        drawSegment: t.list(drawSegmentDataType)
     }, 'DrawSegmentType');
 
     return t.list(DrawListType, 'SegmentDrawListType');
@@ -114,21 +121,16 @@ export const SegmentSingleType = t.struct({
 
 export const SegmentListType = t.list(SegmentSingleType, 'SegmentListType');
 
-// export const BaseProcedureSingleType = BaseSegmentType.extend({
-//     suffix: t.dict(t.String, t.String),
-//     rwy: SegmentListType
-//     // body: null,
-//     // draw: null
-// }, 'SidProcedureSingleType');
-//
-// export const SidProcedureSingleType = BaseProcedureSingleType.extend({
-//     exitPoints: null
-// }, 'SidProcedureSingleType');
-//
-// export const StarProcedureSingleType = BaseProcedureSingleType.extend({
-//     entryPoints: null
-// }, 'SidProcedureSingleType');
+export const ProcedureSingleType = BaseSegmentType.extend({
+    suffix: t.dict(t.String, t.String),
+    rwy: SegmentListType,
+    body: SementWaypointListType,
+    draw: buildDrawListFormType(),
+    entryPoints: t.maybe(SegmentListType),
+    exitPoints: t.maybe(SegmentListType)
+}, 'SidProcedureSingleType');
 
+export const ProcedureListType = t.list(ProcedureSingleType, 'ProcedureListType');
 
 // PreviewTypes
 export const RouteSegmentWaypointType = t.union([

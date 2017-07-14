@@ -7,6 +7,10 @@ export const baseSegmentTypeMock = {
     name: 'Cowboy Six'
 };
 
+export const suffixDictMock = {
+    '07L': '3T'
+};
+
 export const baseWaypointRestrictionTypeMock = {
     restrictionQulifier: 'MIN_MAX'
 };
@@ -72,6 +76,32 @@ export const segmentListTypeMock = [
     }
 ];
 
+export const drawSegmentTypeMock = {
+    drawSegment: ['COWBY', 'FIXIX']
+};
+
+export const drawSegmentListTypeMock = [
+    {
+        drawSegment: ['COWBY', 'FIXIX']
+    },
+    {
+        drawSegment: ['GRNPA', 'FLICR']
+    }
+];
+
+export const procedureSingleTypeMock = {
+    ...baseSegmentTypeMock,
+    suffix: suffixDictMock,
+    rwy: segmentListTypeMock,
+    body: segmentWaypointListTypeMock,
+    draw: drawSegmentListTypeMock
+};
+
+export const procedureListTypeMock = [
+    procedureSingleTypeMock,
+    procedureSingleTypeMock
+];
+
 export const sidProcedureFormValueMock = {
     type: 'SID',
     icao: 'COWBY6',
@@ -91,14 +121,14 @@ export const sidProcedureFormValueMock = {
                     waypointName: 'BAKRR',
                     altitude: {
                         restrictionQualifier: 'MAINTAIN',
-                        value: '020'
+                        value: 20
                     }
                 },
                 {
                     waypointName: 'BCE',
                     speed: {
                         restrictionQualifier: 'LT',
-                        value: '250'
+                        value: 250
                     }
                 },
                 {
@@ -106,13 +136,13 @@ export const sidProcedureFormValueMock = {
                     waypointName: 'BESSY',
                     altitude: {
                         restrictionQualifier: 'MIN_MAX',
-                        minValue: '120',
-                        maxValue: '150'
+                        minValue: 120,
+                        maxValue: 150
                     },
                     speed: {
                         restrictionQualifier: 'MIN_MAX',
-                        minValue: '250',
-                        maxValue: '275'
+                        minValue: 250,
+                        maxValue: 275
                     }
                 }
             ]
@@ -184,29 +214,29 @@ export const starProcedureFormValueMock = {
                     waypointName: 'BESSY',
                     altitude: {
                         restrictionQualifier: 'MIN_MAX',
-                        minValue: '120',
-                        maxValue: '150'
+                        minValue: 120,
+                        maxValue: 150
                     },
                     speed: {
                         restrictionQualifier: 'MIN_MAX',
-                        minValue: '250',
-                        maxValue: '275'
+                        minValue: 250,
+                        maxValue: 275
                     }
                 },
                 {
                     waypointName: 'BAKRR',
                     altitude: {
                         restrictionQualifier: 'MAINTAIN',
-                        value: '020'
+                        value: 20
                     }
                 },
                 {
                     waypointName: 'BCE',
                     speed: {
                         restrictionQualifier: 'LT',
-                        value: '250'
+                        value: 250
                     }
-                },
+                }
             ]
         }
     ],
@@ -286,6 +316,6 @@ export const starProcedureRoutePreviewTypeMock = {
             '25L': [],
             '25R': []
         },
-        draw: [['ENI*','PYE'], ['MXW*','PYE'], ['PYE','STINS','HADLY','OSI']]
+        draw: [['ENI*', 'PYE'], ['MXW*', 'PYE'], ['PYE', 'STINS', 'HADLY', 'OSI']]
     }
 };

@@ -140,6 +140,7 @@ export const fixListTypeMock = [
 ];
 
 export const FixListTypeFixture = new FixListType(fixListTypeMock);
+export const FixListEnumFixture = FixListType.buildFixListEnum(FixListTypeFixture);
 
 export const shortFixListTypeMock = [
     {

@@ -3,12 +3,14 @@ import {
     BaseSegmentType,
     BaseWaypointRestrictionType,
     RouteWaypointRestrictionType,
+    buildDrawListFormType,
     BaseProcedureRoutePreviewType,
     SidProcedureRoutePreviewType,
     StarProcedureRoutePreviewType,
     SidProcedureRouteDict,
     StarProcedureRouteDict
 } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
+import { FixListEnumFixture } from '../../fix/_mocks/fixMocks';
 import {
     baseSegmentTypeMock,
     baseWaypointRestrictionTypeMock,
@@ -18,13 +20,7 @@ import {
 } from '../_mocks/procedureMocks';
 import { airportJsonMock } from '../../../_mocks/airportJsonMock';
 
-ava.only('BaseSegmentType', (t) => {
-    try {
-        BaseSegmentType(baseSegmentTypeMock)
-    } catch (e) {
-        console.log(e);
-    }
-
+ava('BaseSegmentType', (t) => {
     t.notThrows(() => BaseSegmentType(baseSegmentTypeMock));
 });
 
@@ -37,6 +33,11 @@ ava('RouteWaypointRestrictionType', (t) => {
     t.notThrows(() => RouteWaypointRestrictionType(waypointRestrictionMaintainMock));
     t.notThrows(() => RouteWaypointRestrictionType(waypointRestrictionMinMaxTypeMock));
     t.notThrows(() => RouteWaypointRestrictionType(waypointRestrictionLtGtTypeMock));
+});
+
+ava('.buildDrawListFormType()', (t) => {
+    t.notThrows(() => buildDrawListFormType());
+    t.notThrows(() => buildDrawListFormType(FixListEnumFixture));
 });
 
 ava('BaseProcedureRoutePreviewType', (t) => {

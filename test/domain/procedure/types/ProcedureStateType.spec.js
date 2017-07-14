@@ -5,17 +5,18 @@ import {
     SementWaypointListType,
     SegmentSingleType,
     SegmentListType,
-    // BaseProcedureSingleType,
-    // SidProcedureSingleType,
-    // StarProcedureSingleType
+    ProcedureSingleType,
+    ProcedureListType
 } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 import {
     segmentWaypointSingleTypeMock,
     segmentWaypointListTypeMock,
     segmentSingleTypeMock,
-    segmentListTypeMock
-    // sidProcedureFormValueMock,
-    // starProcedureFormValueMock
+    segmentListTypeMock,
+    procedureSingleTypeMock,
+    procedureListTypeMock,
+    sidProcedureFormValueMock,
+    starProcedureFormValueMock
 } from '../_mocks/procedureMocks';
 
 ava('SegmentWaypointSingleType', (t) => {
@@ -34,14 +35,12 @@ ava('SegmentListType', (t) => {
     t.notThrows(() => SegmentListType(segmentListTypeMock));
 });
 
-// ava('BaseProcedureSingleType', (t) => {
-//     t.notThrows(() => BaseProcedureSingleType());
-// });
-//
-// ava('SidProcedureSingleType', (t) => {
-//     t.notThrows(() => SidProcedureSingleType());
-// });
-//
-// ava('StarProcedureSingleType', (t) => {
-//     t.notThrows(() => StarProcedureSingleType());
-// });
+ava('ProcedureSingleType', (t) => {
+    t.notThrows(() => ProcedureSingleType(procedureSingleTypeMock));
+    t.notThrows(() => ProcedureSingleType(sidProcedureFormValueMock));
+    t.notThrows(() => ProcedureSingleType(starProcedureFormValueMock));
+});
+
+ava('ProcedureListType', (t) => {
+    t.notThrows(() => ProcedureListType(procedureListTypeMock));
+});
