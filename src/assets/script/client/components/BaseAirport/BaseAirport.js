@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
 import FlashMessage from '../layout/FlashMessage/FlashMessage';
+import Button from '../layout/Button/Button';
 import { BaseAirportCreationType } from '../../domain/baseAirport/types/AirportType';
 
 const Form = t.form.Form;
@@ -47,12 +48,16 @@ export default class AirportForm extends Component {
     render() {
         return (
             <div>
-                <h2>Base Airport</h2>
+                <h2 className="hdg">
+                    Base Airport
+                </h2>
                 <FlashMessage errorList={ this.state.baseAirportFormErrors } />
                 <Form ref={ (f) => { this._baseAirportForm = f; } }
                     type={ BaseAirportCreationType }
                     value={ this.state.baseAirportFormValues } />
-                <button type="submit" onClick={ this.onSubmit }>Submit</button>
+                <Button type={ Button.TYPE.ADD }
+                    label="Save"
+                    onClick={ this.onSubmit } />
             </div>
         );
     }

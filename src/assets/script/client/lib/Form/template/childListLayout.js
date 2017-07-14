@@ -3,6 +3,7 @@ import _camelCase from 'lodash/camelCase';
 import _get from 'lodash/get';
 import _map from 'lodash/map';
 import classNames from 'classnames';
+import Button from '../../../components/layout/Button/Button';
 
 export const childListLayout = (locals) => {
     const buildRootClassNames = () => classNames({
@@ -36,11 +37,10 @@ export const childListLayout = (locals) => {
     const itemsMap = _map(locals.items, (item) => {
         const itemButtons = _map(item.buttons, (button, i) => {
             return (
-                <button className={`btn btn-${button.type}`}
-                    key={ `childListLayout-item-button-${i}` }
-                    onClick={ button.click }>
-                    { button.label }
-                </button>
+                <Button key={ `childListLayout-item-button-${i}` }
+                    type={ Button.TYPE[button.type.toUpperCase()] }
+                    label={ button.label }
+                    onClick={ button.click } />
             );
         });
 
@@ -65,10 +65,9 @@ export const childListLayout = (locals) => {
                 </ul>
             </div>
             <div className="btn-group">
-                <button className="btn btn-default btn-add"
-                    onClick={ locals.add.click }>
-                    { `${locals.add.label} ${locals.label}` }
-                </button>
+                <Button type={ Button.TYPE.ADD }
+                    label={ `${locals.add.label} ${locals.label}` }
+                    onClick={ locals.add.click } />
             </div>
         </fieldset>
     );

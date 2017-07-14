@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 const CLASSNAME = {
     ADD: 'btn-add',
+    DEFAULT: 'btn-default',
     REMOVE: 'btn-remove',
     SUBMIT: 'btn-submit',
     SUCCESS: 'btn-success'
@@ -36,6 +37,7 @@ const Button = function(props) {
 
 Button.TYPE = {
     ADD: 'ADD',
+    DEFAULT: 'DEFAULT',
     REMOVE: 'REMOVE',
     SUBMIT: 'SUBMIT',
     SUCCESS: 'SUCCESS'

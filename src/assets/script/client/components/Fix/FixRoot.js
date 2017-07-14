@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FixCreate from './FixCreate';
+import FixSingle from './FixSingle';
 import FixImport from './FixImport';
 import FixList from './FixList';
 
@@ -9,7 +9,7 @@ const FixRoot = (props) => {
         <div>
             <h2 className="hdg">Fix</h2>
                 <FixImport onImportFixList={ props.onImportFixList } />
-                <FixCreate fix={ props.fix }
+                <FixSingle fix={ props.fix }
                     onSaveFix={ props.onSaveFix } />
                 <FixList fixList={ props.fixList }
                     onRemoveFix={ props.onRemoveFix } />

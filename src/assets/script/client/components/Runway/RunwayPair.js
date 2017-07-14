@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
 import FlashMessage from '../layout/FlashMessage/FlashMessage';
+import Button from '../layout/Button/Button';
 import { RunwayPairType } from '../../domain/runway/types/RunwayType';
 
 const Form = t.form.Form;
@@ -42,7 +43,9 @@ export default class RunwayPair extends Component {
                     value={ this.state.runwayPairFormValues }
                     type={ RunwayPairType } />
 
-                <button onClick={ this.onSubmit }>Save</button>
+                <Button type={ Button.TYPE.SUBMIT }
+                    label="Save"
+                    onClick={ this.onSubmit } />
             </div>
         );
     }

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
 import FlashMessage from '../layout/FlashMessage/FlashMessage';
+import Button from '../layout/Button/Button';
 import { FixUpdateType } from '../../domain/fix/types/FixType';
 
 const Form = t.form.Form;
 
-export default class FixCreate extends Component {
+export default class FixSingle extends Component {
     constructor(props) {
         super();
 
@@ -46,13 +47,15 @@ export default class FixCreate extends Component {
                 <Form ref={ (f) => { this._fixForm = f; } }
                     type={ FixUpdateType }
                     value={ this.state.fixFormValues } />
-                <button type="submit" onClick={ this.onSubmit }>Add Fix</button>
+                <Button type={ Button.TYPE.SUBMIT }
+                    label="Add Fix"
+                    onClick={ this.onSubmit } />
             </div>
         );
     }
 }
 
-FixCreate.propTypes = {
+FixSingle.propTypes = {
     fix: PropTypes.object,
     onSaveFix: PropTypes.func.isRequired
 };

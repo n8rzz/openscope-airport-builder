@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _map from 'lodash/map';
+import Button from '../layout/Button/Button';
 
 export default class RunwayList extends Component {
     _onRemoveRunwayPair = (event, runwayPair) => {
@@ -35,14 +36,15 @@ export default class RunwayList extends Component {
                         <div>{ runwayRight.position.elevation }</div>
                     </td>
                     <td>
-                        <div>{ runwayLeft.ils }</div>
-                        <div>{ runwayRight.ils }</div>
+                        <div>{ runwayLeft.ils ? 'true' : 'false'}</div>
+                        <div>{ runwayRight.ils ? 'true' : 'false' }</div>
                     </td>
                     <td>
-                        <button>Edit</button>
-                        <button onClick={ (e) => this._onRemoveRunwayPair(e, runwayPair) }>
-                            Delete
-                        </button>
+                        <Button type={ Button.TYPE.DEFAULT }
+                            label="Edit" />
+                        <Button type={ Button.TYPE.REMOVE }
+                            label="Delete"
+                            onClick={ (e) => this._onRemoveRunwayPair(e, runwayPair) } />
                     </td>
                 </tr>
             );
