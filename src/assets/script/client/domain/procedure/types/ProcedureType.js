@@ -3,6 +3,7 @@ import {
     MinMaxValueType,
     SingleNumberValueType
 } from '../../../domain/common/BaseTypes';
+import { BaseStateType } from '../../../domain/common/StateType';
 
 export const RouteTypeEnum = t.enums.of([
     'SID',
@@ -131,6 +132,14 @@ export const ProcedureSingleType = BaseSegmentType.extend({
 }, 'SidProcedureSingleType');
 
 export const ProcedureListType = t.list(ProcedureSingleType, 'ProcedureListType');
+
+export const ProcedureSingleStateType = BaseStateType.extend({
+    payload: t.maybe(ProcedureSingleType)
+}, 'ProcedureSingleStateType');
+
+export const ProcedureListStateType = BaseStateType.extend({
+    payload: t.maybe(ProcedureListType)
+}, 'ProcedureSingleStateType');
 
 // PreviewTypes
 export const RouteSegmentWaypointType = t.union([
