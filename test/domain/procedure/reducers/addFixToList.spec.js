@@ -6,11 +6,11 @@ import {
 } from '../../../../src/assets/script/client/domain/procedure/actions/ProcedureActions';
 import { ProcedureListStateType } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 import addProcedureToList from '../../../../src/assets/script/client/domain/procedure/reducers/ProcedureListReducer';
-import { ProcedureListTypeFixture } from '../_mocks/procedureMocks';
+import { ProcedureSingleTypeFixture } from '../_mocks/procedureMocks';
 
 const INITIAL_STATE = new ProcedureListStateType({
     isLoading: false,
-    payload: [],
+    payload: [ProcedureSingleTypeFixture],
     error: null
 });
 
@@ -23,17 +23,17 @@ ava('addProcedureToList updates #isLoading on ADD_PROCEDURE_TO_LIST_START action
     t.true(loadingState.error === null);
 });
 
-ava('addProcedureToList reducer sets payload', (t) => {
+ava('addProcedureToList reducer sets payload on ADD_PROCEDURE_TO_LIST_SUCCESS', (t) => {
     t.notThrows(() => {
         addProcedureToList(INITIAL_STATE, {
             type: ADD_PROCEDURE_TO_LIST_SUCCESS,
-            payload: ProcedureListTypeFixture
+            payload: ProcedureSingleTypeFixture
         });
     });
 
     const loadingState = addProcedureToList(INITIAL_STATE, {
         type: ADD_PROCEDURE_TO_LIST_SUCCESS,
-        payload: ProcedureListTypeFixture
+        payload: ProcedureSingleTypeFixture
     });
 
     t.false(loadingState.isLoading);

@@ -4,7 +4,7 @@ import {
     ADD_PROCEDURE_TO_LIST_SUCCESS,
     ADD_PROCEDURE_TO_LIST_ERROR
 } from '../actions/ProcedureActions';
-import { ProcedureListStateType } from '../types/ProcedureType';
+import { ProcedureListType, ProcedureListStateType } from '../types/ProcedureType';
 
 const INITIAL_STATE = new ProcedureListStateType({
     isLoading: false,
@@ -22,13 +22,17 @@ export default createReducer(INITIAL_STATE, {
         }
     ),
 
-    [ADD_PROCEDURE_TO_LIST_SUCCESS]: (state, { payload }) => mergeState(
-        state,
-        {
-            isLoading: false,
-            payload
-        }
-    ),
+    [ADD_PROCEDURE_TO_LIST_SUCCESS]: (state, { payload }) => {
+        const updatedProcedureList = ProcedureListType.update(state.payload, { $push: [payload] });
+
+        return mergeState(
+            state,
+            {
+                isLoading: false,
+                payload: updatedProcedureList
+            }
+        );
+    },
 
     [ADD_PROCEDURE_TO_LIST_ERROR]: (state, { error }) => mergeState(
         state,

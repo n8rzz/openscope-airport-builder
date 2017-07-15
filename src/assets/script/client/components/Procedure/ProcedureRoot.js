@@ -20,7 +20,8 @@ export default class ProcedureRoot extends Component {
         return (
             <div>
                 <ProcedureSingle fixList={ this.props.fixList }
-                    runwayList={ this.props.runwayList } />
+                    runwayList={ this.props.runwayList }
+                    onSaveProcedure={ this.props.onSaveProcedure } />
             </div>
         );
     }
@@ -30,5 +31,6 @@ ProcedureRoot.displayName = 'ProcedureRoot';
 
 ProcedureRoot.propTypes = {
     fixList: PropTypes.array,
-    runwayList: PropTypes.array
+    runwayList: PropTypes.array,
+    onSaveProcedure: PropTypes.func.isRequired
 };

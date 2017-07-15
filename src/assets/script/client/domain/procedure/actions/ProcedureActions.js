@@ -45,15 +45,15 @@ const saveProcedureError = (error) => ({
     error
 });
 
-export const saveProcedure = (procedureFormValues) => (dispatch) => {
+export const saveProcedure = (procedureSingleValues) => (dispatch) => {
     dispatch(saveProcedureStart());
 
-    if (!ProcedureSingleType.is(procedureFormValues)) {
+    if (!ProcedureSingleType.is(procedureSingleValues)) {
         const error = new TypeError('Invalid data passed to .saveProcedure()');
 
         return dispatch(saveProcedureError(error));
     }
 
-    dispatch(addProcedureToList(procedureFormValues));
-    return dispatch(saveProcedureSuccess({}));
+    dispatch(addProcedureToList(procedureSingleValues));
+    return dispatch(saveProcedureSuccess(procedureSingleValues));
 };

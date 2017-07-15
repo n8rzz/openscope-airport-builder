@@ -28,7 +28,6 @@ export const BaseSegmentType = t.struct({
     name: t.String
 }, 'BaseSegmentType');
 
-
 // Form types
 export const BaseWaypointRestrictionType = t.struct({
     restrictionQualifier: t.maybe(RestrictionQualifierEnum)
@@ -67,7 +66,7 @@ export const buildDrawListFormType = (fixListEnum = null) => {
 
     // used for state types
     if (!fixListEnum) {
-        drawSegmentDataType = t.String;
+        drawSegmentDataType = t.maybe(t.String);
     }
 
     const DrawListType = t.struct({
@@ -123,13 +122,13 @@ export const SegmentSingleType = t.struct({
 export const SegmentListType = t.list(SegmentSingleType, 'SegmentListType');
 
 export const ProcedureSingleType = BaseSegmentType.extend({
-    suffix: t.dict(t.String, t.String),
+    suffix: t.dict(t.String, t.maybe(t.String)),
     rwy: SegmentListType,
     body: SementWaypointListType,
     draw: buildDrawListFormType(),
     entryPoints: t.maybe(SegmentListType),
     exitPoints: t.maybe(SegmentListType)
-}, 'SidProcedureSingleType');
+}, 'ProcedureSingleType');
 
 export const ProcedureListType = t.list(ProcedureSingleType, 'ProcedureListType');
 
@@ -140,6 +139,29 @@ export const ProcedureSingleStateType = BaseStateType.extend({
 export const ProcedureListStateType = BaseStateType.extend({
     payload: t.maybe(ProcedureListType)
 }, 'ProcedureSingleStateType');
+
+/**
+ * Create a new `ProcedureSingleType` instance from a current `BaseSegmentType`.
+ *
+ * `BaseSegmentType` is inherited by all of the dynamic procedure formTypes.
+ * This instance method will thus be available by any one of those types,
+ * and gives us a way to create a `ProcedureSingleType` that can be used
+ * within the reducers.
+ *
+ * @for BaseSegmentType
+ * @method toProcedureSingleType
+ * @return {ProcedureSingleType}
+ */
+BaseSegmentType.prototype.toProcedureSingleType = function toProcedureSingleType() {
+    const procedureSingle = new ProcedureSingleType(this);
+
+    if (!procedureSingle) {
+        // eslint-disable-next-line max-len
+        throw new TypeError('Invalid data supplied to .toProcedureSingleType(). Expected a valid instance of `BaseSegmentType`');
+    }
+
+    return procedureSingle;
+};
 
 // PreviewTypes
 export const RouteSegmentWaypointType = t.union([
