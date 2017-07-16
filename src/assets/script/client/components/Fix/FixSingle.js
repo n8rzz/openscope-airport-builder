@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
+import _isEqual from 'lodash/isEqual';
 import FlashMessage from '../layout/FlashMessage/FlashMessage';
 import Button from '../layout/Button/Button';
 import { FixUpdateType } from '../../domain/fix/types/FixType';
@@ -13,16 +14,18 @@ export default class FixSingle extends Component {
 
         this._fixForm = null;
         this.state = {
-            fixFormValues: props.fix
+            formValues: props.fix
         };
     }
 
-    get getValue() {
-        return this._fixForm.getValue();
-    }
+    componentWillReceiveProps(nextProps) {
+        if (_isEqual(nextProps.fix, this.state.formValues)) {
+            return;
+        }
 
-    get validate() {
-        return this._fixForm.validate();
+        this.setState({
+            formValues: nextProps.fix
+        });
     }
 
     onSubmit = (event) => {
@@ -46,7 +49,7 @@ export default class FixSingle extends Component {
                 <FlashMessage errorList={ this.state.fixFormErrors } />
                 <Form ref={ (f) => { this._fixForm = f; } }
                     type={ FixUpdateType }
-                    value={ this.state.fixFormValues } />
+                    value={ this.state.formValues } />
                 <Button type={ Button.TYPE.SUBMIT }
                     label="Add Fix"
                     onClick={ this.onSubmit } />

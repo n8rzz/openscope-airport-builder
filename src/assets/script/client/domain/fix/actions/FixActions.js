@@ -152,3 +152,31 @@ export const removeFix = (fixName) => (dispatch, getState) => {
 
     return dispatch(removeFixSuccess(updatedFixList));
 };
+
+export const EDIT_FIX_START = 'EDIT_FIX_START';
+export const EDIT_FIX_SUCCESS = 'EDIT_FIX_SUCCESS';
+export const EDIT_FIX_ERROR = 'EDIT_FIX_ERROR';
+
+export const editFixStart = () => ({ type: EDIT_FIX_START });
+
+export const editFixSuccess = (payload) => ({
+    type: EDIT_FIX_SUCCESS,
+    payload
+});
+
+export const editFixError = (error) => ({
+    type: EDIT_FIX_ERROR,
+    error
+});
+
+export const editFix = (fixModel) => (dispatch) => {
+    dispatch(editFixStart());
+
+    if (!FixUpdateType.is(fixModel)) {
+        const error = new TypeError('Invalid data passed to .editFix(). Expected a FixUpdateType.');
+
+        return dispatch(editFixError(error));
+    }
+
+    return dispatch(editFixSuccess(fixModel));
+};

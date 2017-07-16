@@ -12,6 +12,7 @@ const FixRoot = (props) => {
                 <FixSingle fix={ props.fix }
                     onSaveFix={ props.onSaveFix } />
                 <FixList fixList={ props.fixList }
+                    onEditFix={ props.onEditFix }
                     onRemoveFix={ props.onRemoveFix } />
         </div>
     );
@@ -23,6 +24,7 @@ FixRoot.propTypes = {
     fix: PropTypes.object,
     fixList: PropTypes.array,
     onSaveFix: PropTypes.func.isRequired,
+    onEditFix: PropTypes.func.isRequired,
     onImportFixList: PropTypes.func.isRequired,
     onRemoveFix: PropTypes.func.isRequired
 };

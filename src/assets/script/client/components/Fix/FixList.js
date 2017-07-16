@@ -8,6 +8,12 @@ export default class FixList extends Component {
         super();
     }
 
+    onEditFix(event, fix) {
+        event.preventDefault();
+
+        this.props.onEditFix(fix);
+    }
+
     onRemoveFix(event, fixName) {
         event.preventDefault();
 
@@ -23,7 +29,8 @@ export default class FixList extends Component {
                     <td>{ fix.position.longitude }</td>
                     <td>
                         <Button type={ Button.TYPE.DEFAULT }
-                            label="Edit" />
+                            label="Edit"
+                            onClick={ (e) => this.onEditFix(e, fix) } />
                         <Button type={ Button.TYPE.REMOVE }
                             label="Remove"
                             onClick={ (e) => this.onRemoveFix(e, fix.name) } />
@@ -74,6 +81,7 @@ FixList.displayName = 'FixList';
 
 FixList.propTypes = {
     fixList: PropTypes.array,
+    onEditFix: PropTypes.func.isRequired,
     onRemoveFix: PropTypes.func.isRequired
 };
 
