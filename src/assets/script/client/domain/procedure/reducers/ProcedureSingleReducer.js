@@ -5,10 +5,11 @@ import {
     SAVE_PROCEDURE_ERROR
 } from '../actions/ProcedureActions';
 import { ProcedureSingleStateType } from '../types/ProcedureType';
+import { ProcedureSingleTypeFixture } from '../../../../../../../test/domain/procedure/_mocks/procedureMocks';
 
 const INITIAL_STATE = new ProcedureSingleStateType({
     isLoading: false,
-    payload: null,
+    payload: ProcedureSingleTypeFixture, // null,
     error: null
 });
 

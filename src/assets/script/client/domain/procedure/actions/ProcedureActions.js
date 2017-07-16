@@ -55,5 +55,5 @@ export const saveProcedure = (procedureSingleValues) => (dispatch) => {
     }
 
     dispatch(addProcedureToList(procedureSingleValues));
-    return dispatch(saveProcedureSuccess(procedureSingleValues));
+    return dispatch(saveProcedureSuccess(null));
 };

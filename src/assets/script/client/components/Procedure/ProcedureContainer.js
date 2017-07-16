@@ -8,7 +8,8 @@ const ProcedureContainer = function(props) {
     return (
         <div>
             <h2>Procedures</h2>
-            <ProcedureRoot procedureList={ props.procedureList }
+            <ProcedureRoot procedure={ props.procedure }
+                procedureList={ props.procedureList }
                 fixList={ props.fixList }
                 runwayList={ props.runwayList }
                 onSaveProcedure={ props.saveProcedure } />
@@ -24,6 +25,7 @@ ProcedureContainer.propTypes = {
 };
 
 const mapStoreToProps = (store) => ({
+    procedure: store.procedure.payload,
     fixList: store.fixList.payload,
     runwayList: store.runwayList.payload,
     procedureList: store.procedureList.payload
@@ -36,6 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
 ProcedureContainer.displayName = 'ProcedureContainer';
 
 ProcedureContainer.propTypes = {
+    procedure: PropTypes.object,
     fixList: PropTypes.array,
     runwayList: PropTypes.array,
     procedureList: PropTypes.array,

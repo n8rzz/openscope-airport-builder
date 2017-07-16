@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
+import _isEqual from 'lodash/isEqual';
 import Button from '../layout/Button/Button';
 import FlashMessage from '../layout/FlashMessage/FlashMessage';
-import { ProcedureSingleType } from '../../domain/procedure/types/ProcedureType';
 import { buildProcedureFormType } from '../../domain/procedure/types/buildProcedureFormType';
 import { FORM_CONFIG } from './config/procedureSingleFormConfig';
 
@@ -14,28 +14,39 @@ export default class ProcedureSingle extends Component {
         super();
 
         this.state = {
-            formConfig: null
+            formType: null,
+            formValues: props.procedure
         };
     }
 
-    componentWillMount(nextProps) {
+    componentWillReceiveProps(nextProps) {
+        if (_isEqual(nextProps.procedure, this.state.formValues)) {
+            return;
+        }
+
         this.setState({
-            formConfig: this._updateFormConfig(nextProps, null)
+            formValues: nextProps.procedure
         });
     }
 
-    _updateFormConfig(formValues) {
+    componentWillMount() {
+        this.setState({
+            formType: this._updateFormType()
+        });
+    }
+
+    _updateFormType() {
         return buildProcedureFormType(
-            formValues,
+            this.state.formValues,
             this.props.runwayList,
             this.props.fixList
         );
     }
 
     onChange = (formValues) => {
-        const formConfig = this._updateFormConfig(formValues);
+        const formType = this._updateFormType(formValues);
 
-        this.setState({ formValues, formConfig });
+        this.setState({ formValues, formType });
     };
 
     onSubmit = (event) => {
@@ -60,7 +71,7 @@ export default class ProcedureSingle extends Component {
                 <FlashMessage errorList={ this.state.formErros } />
                 <Form ref={ (f) => { this._procedureForm = f; } }
                     options={ FORM_CONFIG }
-                    type={ this.state.formConfig }
+                    type={ this.state.formType }
                     value={ this.state.formValues }
                     onChange={ this.onChange } />
                 <Button type={ Button.TYPE.SUBMIT }
@@ -74,6 +85,7 @@ export default class ProcedureSingle extends Component {
 ProcedureSingle.displayName = 'ProcedureSingle';
 
 ProcedureSingle.propTypes = {
+    procedure: PropTypes.object,
     fixList: PropTypes.array,
     runwayList: PropTypes.array,
     onSaveProcedure: PropTypes.func.isRequired
