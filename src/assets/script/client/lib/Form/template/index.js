@@ -1,11 +1,11 @@
-import { childListLayout } from './childListLayout';
 import { listLayout } from './listLayout';
+import { hlistLayout } from './hlistLayout';
 import { routeSegmentLayout } from './routeSegmentLayout';
 import { routeSegmentWaypointLayout } from './routeSegmentWaypointLayout';
 
 export {
-    childListLayout,
     listLayout,
+    hlistLayout,
     routeSegmentLayout,
     routeSegmentWaypointLayout
 };

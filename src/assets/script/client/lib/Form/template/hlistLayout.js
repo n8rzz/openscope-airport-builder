@@ -5,7 +5,7 @@ import _map from 'lodash/map';
 import classNames from 'classnames';
 import Button from '../../../components/layout/Button/Button';
 
-export const childListLayout = (locals) => {
+export const hlistLayout = (locals) => {
     const buildRootClassNames = () => classNames({
         fieldset: true,
         [`fieldset-${_camelCase(locals.label)}`]: true,
@@ -14,13 +14,9 @@ export const childListLayout = (locals) => {
         'fieldset-depth-3': _get(locals, 'config.depth', 1) === 3
     });
 
-    const buildListClassNames = () => classNames({
-        hlist: _get(locals, 'config.hlist', false),
-        'hlist-spacious': _get(locals, 'config.hlist', false) && _get(locals, 'config.hlistSpacious', false),
-        vlist: !_get(locals, 'config.hlist', false),
-        'vlist-child': !_get(locals, 'config.hlist', false),
-        'vlist-divided': _get(locals, 'config.divided', false),
-        'mix-vlist_striped': _get(locals, 'config.striped', false)
+    const buildVlistClassNames = () => classNames({
+        hlist: true,
+        'hlist-spacious': _get(locals, 'config.hlistSpacious', false)
     });
 
     const buildListLegend = () => {
@@ -38,7 +34,7 @@ export const childListLayout = (locals) => {
     const itemsMap = _map(locals.items, (item) => {
         const itemButtons = _map(item.buttons, (button, i) => {
             return (
-                <Button key={ `childListLayout-item-button-${i}` }
+                <Button key={ `listLayout-item-button-${i}` }
                     type={ Button.TYPE[button.type.toUpperCase()] }
                     label={ button.label }
                     onClick={ button.click } />
@@ -60,8 +56,8 @@ export const childListLayout = (locals) => {
     return (
         <fieldset className={ buildRootClassNames() }>
             { buildListLegend() }
-            <div>
-                <ul className={ buildListClassNames() }>
+            <div className="vr_x2">
+                <ul className={ buildVlistClassNames() }>
                     { itemsMap }
                 </ul>
             </div>

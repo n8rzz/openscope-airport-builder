@@ -1,6 +1,6 @@
 import {
     listLayout,
-    childListLayout,
+    hlistLayout,
     routeSegmentLayout,
     routeSegmentWaypointLayout
 } from '../../../lib/Form/template';
@@ -11,11 +11,10 @@ const drawConfig = {
     item: {
         fields: {
             drawSegment: {
-                template: childListLayout,
+                template: hlistLayout,
                 disableOrder: true,
                 config: {
-                    hideLegend: true,
-                    hlist: true
+                    hideLegend: true
                 },
                 item: {
                     disableOrder: true
@@ -37,7 +36,7 @@ const routeSegmentConfig = {
         template: routeSegmentLayout,
         fields: {
             waypoints: {
-                template: childListLayout,
+                template: hlistLayout,
                 config: {
                     striped: false,
                     divided: true,
