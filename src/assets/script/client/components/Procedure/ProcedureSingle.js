@@ -35,9 +35,13 @@ export default class ProcedureSingle extends Component {
         });
     }
 
-    _updateFormType() {
+    _updateFormType(formValues = null) {
+        const nextFormValues = !formValues
+            ? this.state.formValues
+            : formValues;
+
         return buildProcedureFormType(
-            this.state.formValues,
+            nextFormValues,
             this.props.runwayList,
             this.props.fixList
         );
