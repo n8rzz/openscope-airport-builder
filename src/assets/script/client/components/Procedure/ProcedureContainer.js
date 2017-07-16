@@ -20,6 +20,7 @@ const ProcedureContainer = function(props) {
 ProcedureContainer.displayName = 'ProcedureContainer';
 
 ProcedureContainer.propTypes = {
+    procedureList: PropTypes.array,
     fixList: PropTypes.array,
     runwayList: PropTypes.array
 };
@@ -39,9 +40,9 @@ ProcedureContainer.displayName = 'ProcedureContainer';
 
 ProcedureContainer.propTypes = {
     procedure: PropTypes.object,
+    procedureList: PropTypes.array,
     fixList: PropTypes.array,
     runwayList: PropTypes.array,
-    procedureList: PropTypes.array,
     saveProcedure: PropTypes.func.isRequired
 };
 
