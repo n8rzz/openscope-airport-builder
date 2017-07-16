@@ -1,26 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import RunwayList from './RunwayList';
 import RunwayPair from './RunwayPair';
 
-export default class RunwayRoot extends Component {
-    render() {
-        return (
-            <div>
-                <RunwayList runwayList={ this.props.runwayList }
-                    onRemoveRunwayPair={ this.props.onRemoveRunwayPair } />
-                <RunwayPair runwayPair={ this.props.runwayPair }
-                    onSaveRunway={ this.props.onSaveRunway } />
-            </div>
-        );
-    }
-}
+const RunwayRoot = function(props) {
+    return (
+        <div>
+            <RunwayList runwayList={ props.runwayList }
+                onEditRunwayPair={ props.onEditRunwayPair }
+                onRemoveRunwayPair={ props.onRemoveRunwayPair } />
+            <RunwayPair runwayPair={ props.runwayPair }
+                onSaveRunway={ props.onSaveRunway } />
+        </div>
+    );
+};
 
 RunwayRoot.displayName = 'RunwayRoot';
 
 RunwayRoot.propTypes = {
     runwayPair: PropTypes.object,
     runwayList: PropTypes.array,
+    onEditRunwayPair: PropTypes.func.isRequired,
     onSaveRunway: PropTypes.func.isRequired,
     onRemoveRunwayPair: PropTypes.func.isRequired
 };
+
+export default RunwayRoot;

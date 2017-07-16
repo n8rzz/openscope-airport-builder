@@ -1,8 +1,6 @@
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
-import {
-    RunwayPairType
-} from '../types/RunwayType';
+import { RunwayPairType } from '../types/RunwayType';
 
 export const ADD_RUNWAY_TO_LIST_START = 'ADD_RUNWAY_TO_LIST_START';
 export const ADD_RUNWAY_TO_LIST_SUCCESS = 'ADD_RUNWAY_TO_LIST_SUCCESS';
@@ -131,4 +129,33 @@ export const removeRunwayPair = (runwayPairToRemove) => (dispatch, getState) => 
     );
 
     return dispatch(removeRunwayPairSuccess(updatedRunwayPairList));
+};
+
+
+export const EDIT_RUNWAY_START = 'EDIT_RUNWAY_START';
+export const EDIT_RUNWAY_SUCCESS = 'EDIT_RUNWAY_SUCCESS';
+export const EDIT_RUNWAY_ERROR = 'EDIT_RUNWAY_ERROR';
+
+export const editRunwayPairStart = () => ({ type: EDIT_RUNWAY_START });
+
+export const editRunwayPairSuccess = (payload) => ({
+    type: EDIT_RUNWAY_SUCCESS,
+    payload
+});
+
+export const editRunwayPairError = (error) => ({
+    type: EDIT_RUNWAY_ERROR,
+    error
+});
+
+export const editRunwayPair = (runwayPairModel) => (dispatch) => {
+    dispatch(editRunwayPairStart());
+
+    if (!RunwayPairType.is(runwayPairModel)) {
+        const error = new TypeError('Invalid data passed to .editRunwayPair(). Expected a RunwayPairType');
+
+        return dispatch(editRunwayPairError(error));
+    }
+
+    return dispatch(editRunwayPairSuccess(runwayPairModel));
 };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import t from 'tcomb-form';
+import _isEqual from 'lodash/isEqual';
 import FlashMessage from '../layout/FlashMessage/FlashMessage';
 import Button from '../layout/Button/Button';
 import { RunwayPairType } from '../../domain/runway/types/RunwayType';
@@ -14,9 +15,19 @@ export default class RunwayPair extends Component {
         this._runwayPairForm = null;
 
         this.state = {
-            runwayPairFormValues: props.runwayPair,
-            runwayPairFormErrors: null
+            formValues: props.runwayPair,
+            formErrors: null
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (_isEqual(nextProps.runwayPair, this.state.formValues)) {
+            return;
+        }
+
+        this.setState({
+            formValues: nextProps.runwayPair
+        });
     }
 
     onSubmit = (event) => {
@@ -26,7 +37,8 @@ export default class RunwayPair extends Component {
 
         if (!formValues) {
             const formErrors = this._runwayPairForm.validate();
-            this.setState({ runwayPairFormErrors: formErrors.errors });
+
+            this.setState({ formErrors: formErrors.errors });
 
             return;
         }
@@ -37,10 +49,10 @@ export default class RunwayPair extends Component {
     render() {
         return (
             <div>
-                <FlashMessage errorList={ this.state.runwayPairFormErrors } />
+                <FlashMessage errorList={ this.state.formErrors } />
 
                 <Form ref={ (f) => { this._runwayPairForm = f; } }
-                    value={ this.state.runwayPairFormValues }
+                    value={ this.state.formValues }
                     type={ RunwayPairType } />
 
                 <Button type={ Button.TYPE.SUBMIT }
