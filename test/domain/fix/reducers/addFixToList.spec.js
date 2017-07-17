@@ -6,7 +6,7 @@ import {
 } from '../../../../src/assets/script/client/domain/fix/actions/FixActions';
 import { FixListStateType } from '../../../../src/assets/script/client/domain/fix/types/FixType';
 import addFixToList from '../../../../src/assets/script/client/domain/fix/reducers/FixListReducer';
-import { FixUpdateTypeFixture } from '../_mocks/fixMocks';
+import { FixListTypeFixture } from '../_mocks/fixMocks';
 
 const INITIAL_STATE = new FixListStateType({
     isLoading: false,
@@ -27,13 +27,13 @@ ava('addFixToList reducer sets payload', (t) => {
     t.notThrows(() => {
         addFixToList(INITIAL_STATE, {
             type: ADD_FIX_TO_LIST_SUCCESS,
-            payload: FixUpdateTypeFixture
+            payload: FixListTypeFixture
         });
     });
 
     const loadingState = addFixToList(INITIAL_STATE, {
         type: ADD_FIX_TO_LIST_SUCCESS,
-        payload: FixUpdateTypeFixture
+        payload: FixListTypeFixture
     });
 
     t.false(loadingState.isLoading);

@@ -42,7 +42,9 @@ export const addFixToList = (fixToAdd) => (dispatch, getState) => {
         return dispatch(addFixToListError(error));
     }
 
-    return dispatch(addFixToListSuccess(fixToAdd));
+    const updatedFixList = FixListType.update(fixList.payload, { $push: [fixToAdd] });
+
+    return dispatch(addFixToListSuccess(updatedFixList));
 };
 
 export const SAVE_FIX_START = 'SAVE_FIX_START';

@@ -1,6 +1,9 @@
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
-import { ProcedureSingleType } from '../types/ProcedureType';
+import {
+    ProcedureSingleType,
+    ProcedureListType
+} from '../types/ProcedureType';
 
 function _findProcedureIndex(procedure, getState) {
     const { procedureList } = getState();
@@ -24,25 +27,27 @@ const addProcedureToListError = (error) => ({
     error
 });
 
-export const addProcedureToList = (procedureSingle) => (dispatch, getState) => {
+export const addProcedureToList = (procedureToAdd) => (dispatch, getState) => {
     dispatch(addProcedureToListStart());
 
-    if (!ProcedureSingleType.is(procedureSingle)) {
+    if (!ProcedureSingleType.is(procedureToAdd)) {
         const error = new TypeError('Invalid data passed to .addProcedureToList()');
 
         return dispatch(addProcedureToListError(error));
     }
 
-    const procedureIndex = _findProcedureIndex(procedureSingle, getState);
+    const procedureIndex = _findProcedureIndex(procedureToAdd, getState);
+    const { procedureList } = getState();
+    const updatedProcedureList = ProcedureListType.update(procedureList.payload, { $push: [procedureToAdd] });
 
     // TODO: move to editList action
     if (procedureIndex !== -1) {
         // return;
         // const existingProcedure = procedureList.payload[procedureIndex];
-        // procedureSingle = ProcedureSingleType.update(existingProcedure, { $merge: procedureSingle });
+        // procedureToAdd = ProcedureSingleType.update(existingProcedure, { $merge: procedureToAdd });
     }
 
-    return dispatch(addProcedureToListSuccess(procedureSingle));
+    return dispatch(addProcedureToListSuccess(updatedProcedureList));
 };
 
 export const SAVE_PROCEDURE_START = 'SAVE_PROCEDURE_START';

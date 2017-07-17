@@ -1,6 +1,9 @@
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
-import { RunwayPairType } from '../types/RunwayType';
+import {
+    RunwayPairType,
+    RunwayPairListType
+} from '../types/RunwayType';
 
 export const ADD_RUNWAY_TO_LIST_START = 'ADD_RUNWAY_TO_LIST_START';
 export const ADD_RUNWAY_TO_LIST_SUCCESS = 'ADD_RUNWAY_TO_LIST_SUCCESS';
@@ -36,7 +39,9 @@ export const addRunwayToList = (runwayToAdd) => (dispatch, getState) => {
         return dispatch(addRunwayToListError(error));
     }
 
-    return dispatch(addRunwayToListSuccess(runwayToAdd));
+    const updatedRunwaylist = RunwayPairListType.update(runwayList.payload, { $push: [runwayToAdd] });
+
+    return dispatch(addRunwayToListSuccess(updatedRunwaylist));
 };
 
 export const SAVE_RUNWAY_START = 'SAVE_RUNWAY_START';

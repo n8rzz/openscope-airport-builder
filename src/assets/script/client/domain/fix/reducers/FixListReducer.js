@@ -7,10 +7,7 @@ import {
     REMOVE_FIX_SUCCESS,
     REMOVE_FIX_ERROR
 } from '../actions/FixActions';
-import {
-    FixListType,
-    FixListStateType
-} from '../types/FixType';
+import { FixListStateType } from '../types/FixType';
 import { FixListTypeFixture } from '../../../../../../../test/domain/fix/_mocks/fixMocks';
 
 const INITIAL_STATE = new FixListStateType({
@@ -29,17 +26,13 @@ export default createReducer(INITIAL_STATE, {
         }
     ),
 
-    [ADD_FIX_TO_LIST_SUCCESS]: (state, { payload }) => {
-        const updatedFixList = FixListType.update(state.payload, { $push: [payload] });
-
-        return mergeState(
-            state,
-            {
-                isLoading: false,
-                payload: updatedFixList
-            }
-        )
-    },
+    [ADD_FIX_TO_LIST_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
 
     [ADD_FIX_TO_LIST_ERROR]: (state, { error }) => mergeState(
         state,

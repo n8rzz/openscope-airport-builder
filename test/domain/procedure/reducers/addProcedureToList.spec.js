@@ -6,7 +6,10 @@ import {
 } from '../../../../src/assets/script/client/domain/procedure/actions/ProcedureActions';
 import { ProcedureListStateType } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 import addProcedureToList from '../../../../src/assets/script/client/domain/procedure/reducers/ProcedureListReducer';
-import { ProcedureSingleTypeFixture } from '../_mocks/procedureMocks';
+import {
+    ProcedureSingleTypeFixture,
+    ProcedureListTypeFixture
+} from '../_mocks/procedureMocks';
 
 const INITIAL_STATE = new ProcedureListStateType({
     isLoading: false,
@@ -27,13 +30,13 @@ ava('addProcedureToList reducer sets payload on ADD_PROCEDURE_TO_LIST_SUCCESS', 
     t.notThrows(() => {
         addProcedureToList(INITIAL_STATE, {
             type: ADD_PROCEDURE_TO_LIST_SUCCESS,
-            payload: ProcedureSingleTypeFixture
+            payload: ProcedureListTypeFixture
         });
     });
 
     const loadingState = addProcedureToList(INITIAL_STATE, {
         type: ADD_PROCEDURE_TO_LIST_SUCCESS,
-        payload: ProcedureSingleTypeFixture
+        payload: ProcedureListTypeFixture
     });
 
     t.false(loadingState.isLoading);

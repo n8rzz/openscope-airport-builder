@@ -7,10 +7,7 @@ import {
     REMOVE_RUNWAY_PAIR_SUCCESS,
     REMOVE_RUNWAY_PAIR_ERROR
 } from '../actions/RunwayActions';
-import {
-    RunwayPairListType,
-    RunwayListStateType
-} from '../types/RunwayType';
+import { RunwayListStateType } from '../types/RunwayType';
 import { RunwayPairListTypeFixture } from '../../../../../../../test/domain/runway/_mocks/runwayMocks';
 
 const INITIAL_STATE = RunwayListStateType({
@@ -29,17 +26,13 @@ export default createReducer(INITIAL_STATE, {
         }
     ),
 
-    [ADD_RUNWAY_TO_LIST_SUCCESS]: (state, { payload }) => {
-        const updatedRunwaylist = RunwayPairListType.update(state.payload, { $push: [payload] });
-
-        return mergeState(
-            state,
-            {
-                isLoading: false,
-                payload: updatedRunwaylist
-            }
-        );
-    },
+    [ADD_RUNWAY_TO_LIST_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
 
     [ADD_RUNWAY_TO_LIST_ERROR]: (state, { error }) => mergeState(
         state,

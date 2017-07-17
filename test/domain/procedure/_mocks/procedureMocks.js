@@ -1,5 +1,6 @@
 import {
-    ProcedureSingleType
+    ProcedureSingleType,
+    ProcedureListType
 } from '../../../../src/assets/script/client/domain/procedure/types/ProcedureType';
 
 export const baseSegmentTypeMock = {
@@ -261,6 +262,11 @@ export const InvalidProcedureSingleTypeFixture = new ProcedureSingleType(Object.
     sidProcedureFormValueMock,
     { icao: 'THRVE' }
 ));
+
+export const ProcedureListTypeFixture = new ProcedureListType([
+    ProcedureSingleTypeFixture,
+    InvalidProcedureSingleTypeFixture
+]);
 
 // Preview Types
 export const sidProcedureRoutePreviewTypeMock = {
