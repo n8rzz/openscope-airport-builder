@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
     saveProcedure,
-    editProcedure
+    editProcedure,
+    removeProcedure
 } from '../../domain/procedure/actions/ProcedureActions';
 import ProcedureRoot from './ProcedureRoot';
 
@@ -16,7 +17,8 @@ const ProcedureContainer = function(props) {
                 fixList={ props.fixList }
                 runwayList={ props.runwayList }
                 onSaveProcedure={ props.saveProcedure }
-                onEditProcedure={ props.editProcedure } />
+                onEditProcedure={ props.editProcedure }
+                onRemoveProcedure={ props.removeProcedure } />
         </div>
     );
 };
@@ -29,7 +31,8 @@ ProcedureContainer.propTypes = {
     fixList: PropTypes.array,
     runwayList: PropTypes.array,
     saveProcedure: PropTypes.func.isRequired,
-    editProcedure: PropTypes.func.isRequired
+    editProcedure: PropTypes.func.isRequired,
+    removeProcedure: PropTypes.func.isRequired
 };
 
 const mapStoreToProps = (store) => ({
@@ -41,7 +44,8 @@ const mapStoreToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     saveProcedure: (procedureFormValues) => dispatch(saveProcedure(procedureFormValues)),
-    editProcedure: (procedureModel) => dispatch(editProcedure(procedureModel))
+    editProcedure: (procedureModel) => dispatch(editProcedure(procedureModel)),
+    removeProcedure: (procedureModel) => dispatch(removeProcedure(procedureModel))
 });
 
 export default connect(

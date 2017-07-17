@@ -256,6 +256,11 @@ export const starProcedureFormValueMock = {
 };
 
 export const ProcedureSingleTypeFixture = new ProcedureSingleType(sidProcedureFormValueMock);
+export const InvalidProcedureSingleTypeFixture = new ProcedureSingleType(Object.assign(
+    {},
+    sidProcedureFormValueMock,
+    { icao: 'THRVE' }
+));
 
 // Preview Types
 export const sidProcedureRoutePreviewTypeMock = {

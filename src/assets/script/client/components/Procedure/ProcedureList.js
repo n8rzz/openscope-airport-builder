@@ -8,14 +8,16 @@ export default class ProcedureList extends Component {
         super();
     }
 
-    onEditProcedure = (event, item) => {
+    onEditProcedure = (event, procedure) => {
         event.preventDefault()
 
-        this.props.onEditProcedure(item);
+        this.props.onEditProcedure(procedure);
     };
 
-    onRemoveProcedure = (event, item) => {
+    onRemoveProcedure = (event, procedure) => {
         event.preventDefault();
+
+        this.props.onRemoveProcedure(procedure);
     };
 
     _buildProcedureTableRows = () => {
@@ -76,5 +78,6 @@ ProcedureList.displayName = 'ProcedureList';
 
 ProcedureList.propTypes = {
     procedureList: PropTypes.array,
-    onEditProcedure: PropTypes.func.isRequired
+    onEditProcedure: PropTypes.func.isRequired,
+    onRemoveProcedure: PropTypes.func.isRequired
 };

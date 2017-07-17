@@ -2,7 +2,10 @@ import { createReducer } from 'redux-create-reducer';
 import {
     ADD_PROCEDURE_TO_LIST_START,
     ADD_PROCEDURE_TO_LIST_SUCCESS,
-    ADD_PROCEDURE_TO_LIST_ERROR
+    ADD_PROCEDURE_TO_LIST_ERROR,
+    REMOVE_PROCEDURE_START,
+    REMOVE_PROCEDURE_SUCCESS,
+    REMOVE_PROCEDURE_ERROR
 } from '../actions/ProcedureActions';
 import { ProcedureListType, ProcedureListStateType } from '../types/ProcedureType';
 
@@ -35,6 +38,29 @@ export default createReducer(INITIAL_STATE, {
     },
 
     [ADD_PROCEDURE_TO_LIST_ERROR]: (state, { error }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            error
+        }
+    ),
+
+    [REMOVE_PROCEDURE_START]: (state) => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [REMOVE_PROCEDURE_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
+
+    [REMOVE_PROCEDURE_ERROR]: (state, { error }) => mergeState(
         state,
         {
             isLoading: false,

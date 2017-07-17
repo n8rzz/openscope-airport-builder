@@ -1,5 +1,12 @@
+import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 import { ProcedureSingleType } from '../types/ProcedureType';
+
+function _findProcedureIndex(procedure, getState) {
+    const { procedureList } = getState();
+
+    return _findIndex(procedureList.payload, { icao: procedure.icao });
+}
 
 export const ADD_PROCEDURE_TO_LIST_START = 'ADD_PROCEDURE_TO_LIST_START';
 export const ADD_PROCEDURE_TO_LIST_SUCCESS = 'ADD_PROCEDURE_TO_LIST_SUCCESS';
@@ -25,9 +32,8 @@ export const addProcedureToList = (procedureSingle) => (dispatch, getState) => {
 
         return dispatch(addProcedureToListError(error));
     }
-    const { procedureList } = getState();
 
-    const procedureIndex = _findIndex(procedureList.payload, { icao: procedureSingle.icao.toUpperCase() });
+    const procedureIndex = _findProcedureIndex(procedureSingle, getState);
 
     // TODO: move to editList action
     if (procedureIndex !== -1) {
@@ -94,4 +100,43 @@ export const editProcedure = (procedureModel) => (dispatch) => {
     }
 
     return dispatch(editProcedureSuccess(procedureModel));
+};
+
+export const REMOVE_PROCEDURE_START = 'REMOVE_PROCEDURE_START';
+export const REMOVE_PROCEDURE_SUCCESS = 'REMOVE_PROCEDURE_SUCCESS';
+export const REMOVE_PROCEDURE_ERROR = 'REMOVE_PROCEDURE_ERROR';
+
+export const removeProcedureStart = () => ({ type: REMOVE_PROCEDURE_START });
+
+export const removeProcedureSuccess = (payload) => ({
+    type: REMOVE_PROCEDURE_SUCCESS,
+    payload
+});
+
+export const removeProcedureError = (error) => ({
+    type: REMOVE_PROCEDURE_ERROR,
+    error
+});
+
+export const removeProcedure = (procedure) => (dispatch, getState) => {
+    dispatch(removeProcedureStart());
+
+    if (!ProcedureSingleType.is(procedure)) {
+        const error = new TypeError('Invalid data passed to .removeProcedure(). Expected a ProcedureType.');
+
+        return dispatch(removeProcedureError(error));
+    }
+
+    const procedureIndex = _findProcedureIndex(procedure, getState);
+
+    if (procedureIndex < 0) {
+        const error = new TypeError('Could not find procedure to remove.');
+
+        return dispatch(removeProcedureError(error));
+    }
+
+    const { procedureList } = getState();
+    const updatedProcedureList = _filter(procedureList.payload, (item) => item.icao !== procedure.icao);
+
+    return dispatch(removeProcedureSuccess(updatedProcedureList));
 };
