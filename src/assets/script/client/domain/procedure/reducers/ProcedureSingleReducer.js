@@ -2,7 +2,10 @@ import { createReducer } from 'redux-create-reducer';
 import {
     SAVE_PROCEDURE_START,
     SAVE_PROCEDURE_SUCCESS,
-    SAVE_PROCEDURE_ERROR
+    SAVE_PROCEDURE_ERROR,
+    EDIT_PROCEDURE_START,
+    EDIT_PROCEDURE_SUCCESS,
+    EDIT_PROCEDURE_ERROR
 } from '../actions/ProcedureActions';
 import { ProcedureSingleStateType } from '../types/ProcedureType';
 import { ProcedureSingleTypeFixture } from '../../../../../../../test/domain/procedure/_mocks/procedureMocks';
@@ -32,6 +35,29 @@ export default createReducer(INITIAL_STATE, {
     ),
 
     [SAVE_PROCEDURE_ERROR]: (state, { error }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            error
+        }
+    ),
+
+    [EDIT_PROCEDURE_START]: (state) => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [EDIT_PROCEDURE_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
+
+    [EDIT_PROCEDURE_ERROR]: (state, { error }) => mergeState(
         state,
         {
             isLoading: false,

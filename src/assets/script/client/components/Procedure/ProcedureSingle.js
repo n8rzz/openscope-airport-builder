@@ -19,27 +19,24 @@ export default class ProcedureSingle extends Component {
         };
     }
 
+    componentWillMount() {
+        this.setState({
+            formType: this._updateFormType(this.state.formValues)
+        });
+    }
+
     componentWillReceiveProps(nextProps) {
         if (_isEqual(nextProps.procedure, this.state.formValues)) {
             return;
         }
 
-        this.setState({
-            formValues: nextProps.procedure
-        });
+        const { procedure: formValues } = nextProps;
+        const formType = this._updateFormType(formValues);
+
+        this.setState({ formValues, formType });
     }
 
-    componentWillMount() {
-        this.setState({
-            formType: this._updateFormType()
-        });
-    }
-
-    _updateFormType(formValues = null) {
-        const nextFormValues = !formValues
-            ? this.state.formValues
-            : formValues;
-
+    _updateFormType(nextFormValues) {
         return buildProcedureFormType(
             nextFormValues,
             this.props.runwayList,

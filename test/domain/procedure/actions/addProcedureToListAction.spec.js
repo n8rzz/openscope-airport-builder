@@ -9,15 +9,9 @@ import {
 import { ProcedureSingleTypeFixture } from '../_mocks/procedureMocks';
 
 const getStateStub = () => ({
-    fixList: {
+    procedureList: {
         payload: [
-            {
-                name: 'GRNPA',
-                position: {
-                    latitude: 'N36.26467677181758',
-                    longitude: 'W114.51481791576114'
-                }
-            }
+            ProcedureSingleTypeFixture
         ]
     }
 });
@@ -42,6 +36,7 @@ ava('.addProcedureToList() dispatches an error action when passed invalid data',
 ava('.addProcedureToList() dispatches a success action when passed valid data', async (t) => {
     const dispatchSpy = sinon.spy();
 
+    // TODO once edit is implemented, this fixture may need to change
     await addProcedureToList(ProcedureSingleTypeFixture)(dispatchSpy, getStateStub);
 
     t.true(dispatchSpy.callCount === 2);

@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { saveProcedure } from '../../domain/procedure/actions/ProcedureActions';
+import {
+    saveProcedure,
+    editProcedure
+} from '../../domain/procedure/actions/ProcedureActions';
 import ProcedureRoot from './ProcedureRoot';
 
 const ProcedureContainer = function(props) {
@@ -12,7 +15,8 @@ const ProcedureContainer = function(props) {
                 procedureList={ props.procedureList }
                 fixList={ props.fixList }
                 runwayList={ props.runwayList }
-                onSaveProcedure={ props.saveProcedure } />
+                onSaveProcedure={ props.saveProcedure }
+                onEditProcedure={ props.editProcedure } />
         </div>
     );
 };
@@ -20,9 +24,12 @@ const ProcedureContainer = function(props) {
 ProcedureContainer.displayName = 'ProcedureContainer';
 
 ProcedureContainer.propTypes = {
+    procedure: PropTypes.object,
     procedureList: PropTypes.array,
     fixList: PropTypes.array,
-    runwayList: PropTypes.array
+    runwayList: PropTypes.array,
+    saveProcedure: PropTypes.func.isRequired,
+    editProcedure: PropTypes.func.isRequired
 };
 
 const mapStoreToProps = (store) => ({
@@ -33,18 +40,9 @@ const mapStoreToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    saveProcedure: (procedureFormValues) => dispatch(saveProcedure(procedureFormValues))
+    saveProcedure: (procedureFormValues) => dispatch(saveProcedure(procedureFormValues)),
+    editProcedure: (procedureModel) => dispatch(editProcedure(procedureModel))
 });
-
-ProcedureContainer.displayName = 'ProcedureContainer';
-
-ProcedureContainer.propTypes = {
-    procedure: PropTypes.object,
-    procedureList: PropTypes.array,
-    fixList: PropTypes.array,
-    runwayList: PropTypes.array,
-    saveProcedure: PropTypes.func.isRequired
-};
 
 export default connect(
     mapStoreToProps,
