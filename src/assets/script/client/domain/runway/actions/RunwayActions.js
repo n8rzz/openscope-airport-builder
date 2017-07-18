@@ -5,6 +5,66 @@ import {
     RunwayPairListType
 } from '../types/RunwayType';
 
+// exporting only so it can be tested
+export const _findRunwayPairIndex = (runwayPair, runwayList) => {
+    let runwayPairIndex = -1;
+
+    for (let i = 0; i < runwayList.length; i++) {
+        const comparisionRunwayPair = runwayList[i];
+
+        if (
+            comparisionRunwayPair.runwayLeft.name === runwayPair.runwayLeft.name &&
+            comparisionRunwayPair.runwayRight.name === runwayPair.runwayRight.name
+        ) {
+            runwayPairIndex = i;
+
+            break;
+        }
+    }
+
+    return runwayPairIndex;
+};
+
+export const UPDATE_EXISTING_RUNWAY_START = 'UPDATE_EXISTING_RUNWAY_START';
+export const UPDATE_EXISTING_RUNWAY_SUCCESS = 'UPDATE_EXISTING_RUNWAY_SUCCESS';
+export const UPDATE_EXISTING_RUNWAY_ERROR = 'UPDATE_EXISTING_RUNWAY_ERROR';
+
+const updateExistingRunwayPairStart = () => ({ type: UPDATE_EXISTING_RUNWAY_START });
+
+const updateExistingRunwayPairSuccess = (payload) => ({
+    type: UPDATE_EXISTING_RUNWAY_SUCCESS,
+    payload
+});
+
+const updateExistingRunwayPairError = (error) => ({
+    type: UPDATE_EXISTING_RUNWAY_ERROR,
+    error
+});
+
+export const updateExistingRunwayPair = (runwayPairToUpdate) => (dispatch, getState) => {
+    dispatch(updateExistingRunwayPairStart());
+
+    const { runwayList } = getState();
+
+    if (!RunwayPairType.is(runwayPairToUpdate)) {
+        const error = new TypeError('Invalid data passed to .updateExistingRunwayPair(). Expected RunwayPairType');
+
+        return dispatch(updateExistingRunwayPairError(error));
+    } else if (runwayList.payload.length === 0) {
+        const error = new TypeError('#runwayList is presently empty. No Fixes to update');
+
+        return dispatch(updateExistingRunwayPairError(error));
+    }
+
+    const listWithoutUpdateItem = _filter(
+        runwayList.payload,
+        (runwayPair) => runwayPair.runwayLeft.name !== runwayPairToUpdate.runwayLeft.name
+    );
+    const updatedFixList = RunwayPairListType.update(listWithoutUpdateItem, { $push: [runwayPairToUpdate] });
+
+    return dispatch(updateExistingRunwayPairSuccess(updatedFixList));
+};
+
 export const ADD_RUNWAY_TO_LIST_START = 'ADD_RUNWAY_TO_LIST_START';
 export const ADD_RUNWAY_TO_LIST_SUCCESS = 'ADD_RUNWAY_TO_LIST_SUCCESS';
 export const ADD_RUNWAY_TO_LIST_ERROR = 'ADD_RUNWAY_TO_LIST_ERROR';
@@ -34,9 +94,7 @@ export const addRunwayToList = (runwayToAdd) => (dispatch, getState) => {
     const existingFixIndex = _findIndex(runwayList.payload, { name: runwayToAdd.name });
 
     if (existingFixIndex !== -1) {
-        const error = new Error(`${runwayToAdd.name} already exists, skipping import.`);
-
-        return dispatch(addRunwayToListError(error));
+        return dispatch(updateExistingRunwayPair(runwayToAdd));
     }
 
     const updatedRunwaylist = RunwayPairListType.update(runwayList.payload, { $push: [runwayToAdd] });
@@ -89,26 +147,6 @@ const removeRunwayPairError = (error) => ({
     type: REMOVE_RUNWAY_PAIR_ERROR,
     error
 });
-
-// exporting only so it can be tested
-export const _findRunwayPairIndex = (runwayPair, runwayList) => {
-    let runwayPairIndex = -1;
-
-    for (let i = 0; i < runwayList.length; i++) {
-        const comparisionRunwayPair = runwayList[i];
-
-        if (
-            comparisionRunwayPair.runwayLeft.name === runwayPair.runwayLeft.name &&
-            comparisionRunwayPair.runwayRight.name === runwayPair.runwayRight.name
-        ) {
-            runwayPairIndex = i;
-
-            break;
-        }
-    }
-
-    return runwayPairIndex;
-};
 
 export const removeRunwayPair = (runwayPairToRemove) => (dispatch, getState) => {
     dispatch(removeRunwayPairStart());

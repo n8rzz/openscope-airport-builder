@@ -3,6 +3,9 @@ import {
     ADD_RUNWAY_TO_LIST_START,
     ADD_RUNWAY_TO_LIST_SUCCESS,
     ADD_RUNWAY_TO_LIST_ERROR,
+    UPDATE_EXISTING_RUNWAY_START,
+    UPDATE_EXISTING_RUNWAY_SUCCESS,
+    UPDATE_EXISTING_RUNWAY_ERROR,
     REMOVE_RUNWAY_PAIR_START,
     REMOVE_RUNWAY_PAIR_SUCCESS,
     REMOVE_RUNWAY_PAIR_ERROR
@@ -35,6 +38,29 @@ export default createReducer(INITIAL_STATE, {
     ),
 
     [ADD_RUNWAY_TO_LIST_ERROR]: (state, { error }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            error
+        }
+    ),
+
+    [UPDATE_EXISTING_RUNWAY_START]: (state) => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [UPDATE_EXISTING_RUNWAY_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
+
+    [UPDATE_EXISTING_RUNWAY_ERROR]: (state, { error }) => mergeState(
         state,
         {
             isLoading: false,
