@@ -1,22 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SpawnPatternSingle from './SpawnPatternSingle';
+import SpawnPatternRoot from './SpawnPatternRoot';
 
-const SpawnPatternContainer = function() {
+const SpawnPatternContainer = function(props) {
     return (
-        <div>
-            <h2 className="hdg">SpawnPattern</h2>
-            <SpawnPatternSingle />
-        </div>
+        <SpawnPatternRoot procedureList={ props.procedureList } />
     );
 };
 
 SpawnPatternContainer.displayName = 'SpawnPatternContainer';
 
-SpawnPatternContainer.propTypes = {};
+SpawnPatternContainer.propTypes = {
+    procedureList: PropTypes.array
+};
 
-const mapStoreToProps = (state) => ({});
+const mapStoreToProps = (state) => ({
+    procedureList: state.procedureList.payload
+});
+
 const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(

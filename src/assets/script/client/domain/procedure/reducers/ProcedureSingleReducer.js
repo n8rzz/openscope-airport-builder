@@ -8,11 +8,10 @@ import {
     EDIT_PROCEDURE_ERROR
 } from '../actions/ProcedureActions';
 import { ProcedureSingleStateType } from '../types/ProcedureType';
-import { ProcedureSingleTypeFixture } from '../../../../../../../test/domain/procedure/_mocks/procedureMocks';
 
 const INITIAL_STATE = new ProcedureSingleStateType({
     isLoading: false,
-    payload: ProcedureSingleTypeFixture, // null,
+    payload: null,
     error: null
 });
 

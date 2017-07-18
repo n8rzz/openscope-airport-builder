@@ -99,7 +99,7 @@ export const buildSidProcedureFormType =
 export const buildStarProcedureFormType =
     (formValues, runwayListEnum, fixListEnum, suffixType) => BaseSegmentType.extend({
         suffix: suffixType,
-        entryPoints: buildSegmentListFormType(fixListEnum, runwayListEnum),
+        entryPoints: buildSegmentListFormType(fixListEnum, fixListEnum),
         body: buildSegmentWaypointListFormType(fixListEnum),
         rwy: buildSegmentListFormType(runwayListEnum, fixListEnum),
         draw: buildDrawListFormType(fixListEnum)

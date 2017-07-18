@@ -256,16 +256,206 @@ export const starProcedureFormValueMock = {
     ]
 };
 
+export const starProcedureFormValueLongMock = {
+    type: 'STAR',
+    icao: 'GRNPA1',
+    name: 'Grandpa One',
+    suffix: {
+        '07L': '2D',
+        '12L': '3E',
+        '25R': '4F',
+        '30R': '5G'
+    },
+    rwy: [
+        {
+            name: '07L',
+            waypoints: [
+                {
+                    waypointName: '_NAPSE068',
+                    altitude: {
+                        restrictionQualifier: null
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                }
+            ]
+        },
+        {
+            name: '12L',
+            waypoints: [
+                {
+                    waypointName: '_NAPSE068',
+                    altitude: {
+                        restrictionQualifier: null
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                }
+            ]
+        },
+        {
+            name: '25R',
+            waypoints: [
+                {
+                    waypointName: '_NAPSE068',
+                    altitude: {
+                        restrictionQualifier: null
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                }
+            ]
+        },
+        {
+            name: '30R',
+            waypoints: [
+                {
+                    waypointName: '_NAPSE068',
+                    altitude: {
+                        restrictionQualifier: null
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                }
+            ]
+        }
+    ],
+    body: [
+        {
+            waypointName: 'KSINO',
+            altitude: {
+                restrictionQualifier: 'MAINTAIN',
+                value: 170
+            },
+            speed: {
+                restrictionQualifier: null
+            }
+        },
+        {
+            waypointName: 'LUXOR',
+            altitude: {
+                restrictionQualifier: 'MAINTAIN',
+                value: 120
+            },
+            speed: {
+                restrictionQualifier: 'MAINTAIN',
+                value: 250
+            }
+        },
+        {
+            waypointName: 'GRNPA',
+            altitude: {
+                restrictionQualifier: 'MAINTAIN',
+                value: 110
+            },
+            speed: {
+                restrictionQualifier: null
+            }
+        }
+    ],
+    draw: [
+        {
+            drawSegment: [
+                '_NAPSE068',
+                'BAKRR',
+                'BCE'
+            ]
+        }
+    ],
+    entryPoints: [
+        {
+            name: 'BETHL',
+            waypoints: [
+                {
+                    waypointName: 'BETHL',
+                    altitude: {
+                        restrictionQualifier: null
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                },
+                {
+                    waypointName: 'HOLDM',
+                    altitude: {
+                        restrictionQualifier: 'MAINTAIN',
+                        value: 270
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                }
+            ]
+        },
+        {
+            name: 'BCE',
+            waypoints: [
+                {
+                    waypointName: 'BCE',
+                    altitude: {
+                        restrictionQualifier: null
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                }
+            ]
+        },
+        {
+            name: 'DVC',
+            waypoints: [
+                {
+                    waypointName: 'DVC',
+                    altitude: {
+                        restrictionQualifier: null
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                },
+                {
+                    waypointName: 'BETHL',
+                    altitude: {
+                        restrictionQualifier: null
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                },
+                {
+                    waypointName: 'HOLDM',
+                    altitude: {
+                        restrictionQualifier: 'MAINTAIN',
+                        value: 270
+                    },
+                    speed: {
+                        restrictionQualifier: null
+                    }
+                }
+            ]
+        }
+    ]
+};
+
+
 export const ProcedureSingleTypeFixture = new ProcedureSingleType(sidProcedureFormValueMock);
 export const InvalidProcedureSingleTypeFixture = new ProcedureSingleType(Object.assign(
     {},
     sidProcedureFormValueMock,
-    { icao: 'THRVE' }
+    {
+        icao: 'THRVE3',
+        name: 'Threeve Three'
+    }
 ));
 
 export const ProcedureListTypeFixture = new ProcedureListType([
     ProcedureSingleTypeFixture,
-    InvalidProcedureSingleTypeFixture
+    InvalidProcedureSingleTypeFixture,
+    starProcedureFormValueLongMock
 ]);
 
 // Preview Types

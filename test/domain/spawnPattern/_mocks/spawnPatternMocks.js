@@ -1,5 +1,4 @@
 export const baseSpawnPatternTypeMock = {
-    route: 'KLAS.COWBY6.GUP',
     category: 'departure',
     method: 'random',
     rate: 5,

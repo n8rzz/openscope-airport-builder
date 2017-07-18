@@ -16,7 +16,6 @@ export const SpawnPatternMethodEnum = t.enums.of([
 // Update Types
 export const BaseSpawnPatternType = t.struct({
     category: SpawnPatternCategoryEnum,
-    route: t.String,
     method: SpawnPatternMethodEnum,
     entrail: t.maybe(NumberOrTupleNumber),
     rate: t.Number

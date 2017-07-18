@@ -36,7 +36,7 @@ const routeSegmentConfig = {
         template: routeSegmentLayout,
         fields: {
             waypoints: {
-                template: hlistLayout,
+                template: listLayout,
                 config: {
                     striped: false,
                     divided: true,

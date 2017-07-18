@@ -8,10 +8,11 @@ import {
     REMOVE_PROCEDURE_ERROR
 } from '../actions/ProcedureActions';
 import { ProcedureListStateType } from '../types/ProcedureType';
+import { ProcedureListTypeFixture } from '../../../../../../../test/domain/procedure/_mocks/procedureMocks';
 
 const INITIAL_STATE = new ProcedureListStateType({
     isLoading: false,
-    payload: [],
+    payload: ProcedureListTypeFixture,
     error: null
 });
 
