@@ -5,18 +5,21 @@ import SpawnPatternRoot from './SpawnPatternRoot';
 
 const SpawnPatternContainer = function(props) {
     return (
-        <SpawnPatternRoot procedureList={ props.procedureList } />
+        <SpawnPatternRoot procedureList={ props.procedureList }
+            baseAirport={ props.baseAirport }/>
     );
 };
 
 SpawnPatternContainer.displayName = 'SpawnPatternContainer';
 
 SpawnPatternContainer.propTypes = {
-    procedureList: PropTypes.array
+    procedureList: PropTypes.array,
+    baseAirport: PropTypes.object
 };
 
 const mapStoreToProps = (state) => ({
-    procedureList: state.procedureList.payload
+    procedureList: state.procedureList.payload,
+    baseAirport: state.baseAirport.payload
 });
 
 const mapDispatchToProps = (dispatch) => ({});

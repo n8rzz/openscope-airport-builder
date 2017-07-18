@@ -13,7 +13,7 @@ import {
 } from '../../procedure/types/ProcedureType';
 import { RadioType } from '../../airport/RadioType';
 import { RunwayListPreviewType } from '../../runway/types/RunwayType';
-import { SpawnPatternListType } from '../../spawnPattern/SpawnPatternType';
+import { SpawnPatternListType } from '../../spawnPattern/types/SpawnPatternType';
 import { WindType } from '../../airport/WindType';
 
 export const BaseAirportCreationType = t.struct({

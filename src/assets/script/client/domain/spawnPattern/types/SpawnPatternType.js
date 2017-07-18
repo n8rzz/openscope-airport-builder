@@ -1,16 +1,16 @@
 import t from 'tcomb';
-import { NumberOrTupleNumber } from '../common/BaseTypes';
+import { NumberOrTupleNumber } from '../../common/BaseTypes';
 
 export const SpawnPatternCategoryEnum = t.enums.of([
-    'arrival',
-    'departure'
+    'ARRIVAL',
+    'DEPARTURE'
 ], 'SpawnPatternCategoryEnum');
 
 export const SpawnPatternMethodEnum = t.enums.of([
-    'cyclic',
-    'surge',
-    'random',
-    'wave'
+    'CYCLIC',
+    'SURGE',
+    'RANDOM',
+    'WAVE'
 ], 'SpawnPatternMethodEnum');
 
 // Update Types
@@ -18,6 +18,7 @@ export const BaseSpawnPatternType = t.struct({
     category: SpawnPatternCategoryEnum,
     method: SpawnPatternMethodEnum,
     entrail: t.maybe(NumberOrTupleNumber),
+    routeType: t.enums.of(['DIRECT', 'PROCEDURE']),
     rate: t.Number
 }, 'BaseSpawnPatternType');
 
@@ -30,6 +31,7 @@ export const ArrivalSpawnPatternType = BaseSpawnPatternType.extend({
     altitude: NumberOrTupleNumber,
     speed: t.Number
 }, 'ArrivalSpawnPatternType');
+
 
 // Preview Types
 export const SpawnPatternAirlineEntryType = t.tuple([t.String, t.Number], 'SpawnPatternAirlineEntryType');

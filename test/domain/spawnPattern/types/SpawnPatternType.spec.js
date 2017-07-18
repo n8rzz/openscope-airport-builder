@@ -5,7 +5,7 @@ import {
     ArrivalSpawnPatternType,
     BaseSpawnPatternPreviewType,
     SpawnPatternListType
-} from '../../../../src/assets/script/client/domain/spawnPattern/SpawnPatternType';
+} from '../../../../src/assets/script/client/domain/spawnPattern/types/SpawnPatternType';
 import {
     baseSpawnPatternTypeMock,
     departureSpawnPatternTypeMock,

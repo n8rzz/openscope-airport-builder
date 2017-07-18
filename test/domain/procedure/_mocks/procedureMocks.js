@@ -99,6 +99,23 @@ export const procedureSingleTypeMock = {
     draw: drawSegmentListTypeMock
 };
 
+export const departureRouteStringTranslationTypeMock = {
+    category: 'DEPARTURE',
+    icaoList: ['THRVE3', 'THRVE33D'],
+    entryList: ['07L'],
+    baseList: ['COWBY'],
+    exitList: ['FLICR']
+};
+
+export const arrivalRouteStringTranslationTypeMock = {
+    category: 'ARRIVAL',
+    icaoList: ['THRVE3'],
+    entryList: ['FLICR'],
+    baseList: ['COWBY'],
+    exitList: ['07L']
+};
+
+
 export const procedureListTypeMock = [
     procedureSingleTypeMock,
     procedureSingleTypeMock
@@ -184,11 +201,8 @@ export const sidProcedureFormValueMock = {
 
 export const starProcedureFormValueMock = {
     type: 'STAR',
-    icao: 'COWBY6',
-    name: 'Cowboy 6',
-    suffix: {
-        '07L': '3D'
-    },
+    icao: 'GRNPA1',
+    name: 'Grandpa One',
     entryPoints: [
         {
             name: 'FLICR',
@@ -204,7 +218,7 @@ export const starProcedureFormValueMock = {
     ],
     body: [
         {
-            waypointName: 'COWBY'
+            waypointName: 'GRNPA'
         }
     ],
     rwy: [

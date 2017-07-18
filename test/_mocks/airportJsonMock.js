@@ -72,7 +72,7 @@ export const airportJsonMock = {
                 '1L': '',
                 '1R': '',
                 '28L': '',
-                '28R':''
+                '28R': ''
             },
             rwy: {
                 '01L': ['_RWY19R02DME', 'NAPSE', ['RIOOS', 'A130+'], 'COMPS'],
@@ -129,17 +129,17 @@ export const airportJsonMock = {
                 '25L': [],
                 '25R': []
             },
-            draw: [['ENI*','PYE'], ['MXW*','PYE'], ['PYE','STINS','HADLY','OSI']]
+            draw: [['ENI*', 'PYE'], ['MXW*', 'PYE'], ['PYE', 'STINS', 'HADLY', 'OSI']]
         }
     },
     spawnPatterns: [
         {
             origin: 'KLAS',
             destination: '',
-            category: 'departure',
+            category: 'DEPARTURE',
             route: 'KLAS.COWBY6.GUP',
             altitude: 0,
-            method: 'random',
+            method: 'RANDOM',
             entrail: [10, 22],
             rate: 5,
             airlines: [
@@ -152,11 +152,11 @@ export const airportJsonMock = {
         {
             origin: '',
             destination: 'KLAS',
-            category: 'arrival',
+            category: 'ARRIVAL',
             route: 'BETHL.GRNPA1.KLAS',
             altitude: [30000, 40000],
             speed: 320,
-            method: 'random',
+            method: 'RANDOM',
             entrail: [10, 22],
             rate: 10,
             airlines: [

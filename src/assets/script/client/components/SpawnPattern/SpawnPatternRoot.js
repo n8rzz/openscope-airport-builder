@@ -5,7 +5,8 @@ import SpawnPatternSingle from './SpawnPatternSingle';
 const SpawnPatternRoot = function(props) {
     return (
         <div>
-            <SpawnPatternSingle procedureList={ props.procedureList } />
+            <SpawnPatternSingle procedureList={ props.procedureList }
+                baseAirport={ props.baseAirport }/>
         </div>
     );
 };
@@ -13,7 +14,8 @@ const SpawnPatternRoot = function(props) {
 SpawnPatternRoot.displayName = 'SpawnPatternRoot';
 
 SpawnPatternRoot.propTypes = {
-    procedureList: PropTypes.array
+    procedureList: PropTypes.array,
+    baseAirport: PropTypes.object
 };
 
 export default SpawnPatternRoot;

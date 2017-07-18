@@ -10,7 +10,7 @@ import { BaseAirportCreationTypeFixture } from '../../../../../../../test/domain
 
 const INITIAL_STATE = new BaseAirportStateType({
     isLoading: false,
-    payload: null, // BaseAirportCreationTypeFixture,
+    payload: BaseAirportCreationTypeFixture,
     error: null
 });
 

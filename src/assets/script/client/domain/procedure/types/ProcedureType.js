@@ -1,9 +1,23 @@
 import t from 'tcomb';
+import _filter from 'lodash/filter';
+import _forEach from 'lodash/forEach';
+import _map from 'lodash/map';
 import {
     MinMaxValueType,
     SingleNumberValueType
 } from '../../../domain/common/BaseTypes';
+import { SpawnPatternCategoryEnum } from '../../spawnPattern/types/SpawnPatternType';
 import { BaseStateType } from '../../../domain/common/StateType';
+
+const CategoryToTypeEnum = t.enums({
+    DEPARTURE: 'SID',
+    ARRIVAL: 'STAR'
+}, 'CategoryToTypeEnum');
+
+const TypeToCategoryEnum = t.enums({
+    SID: SpawnPatternCategoryEnum.meta.map.DEPARTURE,
+    STAR: SpawnPatternCategoryEnum.meta.map.ARRIVAL
+}, 'CategoryToTypeEnum');
 
 export const RouteTypeEnum = t.enums.of([
     'SID',
@@ -122,7 +136,7 @@ export const SegmentSingleType = t.struct({
 export const SegmentListType = t.list(SegmentSingleType, 'SegmentListType');
 
 export const ProcedureSingleType = BaseSegmentType.extend({
-    suffix: t.dict(t.String, t.maybe(t.String)),
+    suffix: t.maybe(t.dict(t.String, t.maybe(t.String))),
     rwy: SegmentListType,
     body: SementWaypointListType,
     draw: buildDrawListFormType(),
@@ -130,7 +144,112 @@ export const ProcedureSingleType = BaseSegmentType.extend({
     exitPoints: t.maybe(SegmentListType)
 }, 'ProcedureSingleType');
 
+export const RouteStringTranslationType = t.struct({
+    category: t.String,
+    icaoList: t.list(t.String),
+    entryList: t.list(t.String),
+    baseList: t.list(t.String),
+    exitList: t.list(t.String)
+}, 'RouteStringTranslationType');
+
+RouteStringTranslationType.prototype.buildRouteStringForCategory = function buildRouteStringForCategory(
+    routeIcao, airportIcao, segmentName
+) {
+    let routeStr = `${segmentName}.${routeIcao}.${airportIcao}`;
+
+    if (this.category === SpawnPatternCategoryEnum.meta.map.DEPARTURE) {
+        routeStr = `${airportIcao}.${routeIcao}.${segmentName}`;
+    }
+
+    return routeStr.toUpperCase();
+};
+
+// eslint-disable-next-line max-len
+RouteStringTranslationType.prototype.buildRouteStringListForRoute = function buildRouteStringListForRoute(airportIcao) {
+    const routeStringList = [];
+    const segmentList = this.category === SpawnPatternCategoryEnum.meta.map.DEPARTURE
+        ? this.exitList
+        : this.entryList;
+
+    for (let i = 0; i < this.icaoList.length; i++) {
+        const icao = this.icaoList[i];
+
+        for (let j = 0; j < segmentList.length; j++) {
+            const segmentName = segmentList[j];
+            const routeStr = this.buildRouteStringForCategory(icao, airportIcao, segmentName);
+
+            routeStringList.push(routeStr);
+        }
+    }
+
+    return routeStringList;
+};
+
+ProcedureSingleType.prototype.toRouteStringTranslationType = function toRouteStringTranslationType() {
+    let entryList = [];
+    let exitList = [];
+    const category = TypeToCategoryEnum.meta.map[this.type];
+    const icaoList = [this.icao];
+    const baseList = _map(this.body, (body) => body.waypointName);
+
+    if (this.type === RouteTypeEnum.meta.map.SID) {
+        entryList = _map(this.rwy, (rwy) => rwy.name);
+        exitList = _map(this.exitPoints, (exit) => exit.name);
+    } else {
+        entryList = _map(this.entryPoints, (entry) => entry.name);
+        exitList = _map(this.rwy, (rwy) => rwy.name);
+    }
+
+    if (!t.Nil.is(this.suffix)) {
+        _forEach(this.suffix, (value) => {
+            icaoList.push(`${this.icao}${value}`);
+        });
+    }
+
+    return new RouteStringTranslationType({
+        category,
+        icaoList,
+        entryList,
+        baseList,
+        exitList
+    });
+};
+
 export const ProcedureListType = t.list(ProcedureSingleType, 'ProcedureListType');
+
+ProcedureListType.findProceduresByCategory = function(procedureList, category) {
+    if (!CategoryToTypeEnum.is(category)) {
+        // eslint-disable-next-line max-len
+        throw new TypeError('Invalid category passed to .findProceduresByCategory(). Expected a CategoryToTypeEnum value.');
+    }
+
+    const procedureListForCategory = _filter(
+        procedureList,
+        (procedure) => procedure.type === CategoryToTypeEnum.meta.map[category]
+    );
+
+    return new ProcedureListType(procedureListForCategory);
+};
+
+ProcedureListType.buildRouteStringList = function buildRouteStringList(procedureList, airportIcao, category) {
+    if (!ProcedureListType.is(procedureList) || airportIcao === '') {
+        throw TypeError('Invalid data passed to .buildRouteStringList(). Expected a ProcedureListType');
+    }
+
+    const proceduresForCategory = ProcedureListType.findProceduresByCategory(procedureList, category);
+    const routeStringList = [];
+
+    for (let i = 0; i < proceduresForCategory.length; i++) {
+        const procedure = proceduresForCategory[i];
+        const translationType = procedure.toRouteStringTranslationType();
+
+        routeStringList.push(
+            ...translationType.buildRouteStringListForRoute(airportIcao)
+        );
+    }
+
+    return routeStringList.sort();
+};
 
 export const ProcedureSingleStateType = BaseStateType.extend({
     payload: t.maybe(ProcedureSingleType)
