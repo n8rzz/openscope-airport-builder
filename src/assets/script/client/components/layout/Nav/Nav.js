@@ -18,7 +18,7 @@ const Nav = function() {
                     <Link to="/procedures">Procedures</Link>
                 </li>
                 <li>
-                    Spawn Patterns
+                    <Link to="/spawnPatterns">Spawn Patterns</Link>
                 </li>
                 <li>
                     Airspace

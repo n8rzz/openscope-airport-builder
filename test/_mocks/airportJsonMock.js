@@ -59,7 +59,7 @@ export const airportJsonMock = {
     airways: {
         J100: ['HEC', 'CLARR', 'LAS', 'NORRA', 'BCE'],
         J146: ['LAS', 'NOOTN'],
-        J9: ['HEC', 'CLARR', 'LAS', 'NORRA', 'AVERS', 'URIAH', 'BERYL',  'MLF'],
+        J9: ['HEC', 'CLARR', 'LAS', 'NORRA', 'AVERS', 'URIAH', 'BERYL', 'MLF'],
         J92: ['BTY', 'BLD', 'KADDY', 'PRFUM', 'CADDU', 'DRK'],
         Q15: ['CHILY', 'DOVEE', 'BIKKR'],
         V8: ['PHYLI', 'MMM', 'MEADS', 'ACLAM', 'WINDS', 'LYNSY', 'SHUSS', 'GFS', 'HEC']
@@ -68,7 +68,12 @@ export const airportJsonMock = {
         COWBY6: {
             icao: 'COWBY6',
             name: 'Cowboy Six',
-            suffix: {'1L':'', '1R':'', '28L':'', '28R':''},
+            suffix: {
+                '1L': '',
+                '1R': '',
+                '28L': '',
+                '28R':''
+            },
             rwy: {
                 '01L': ['_RWY19R02DME', 'NAPSE', ['RIOOS', 'A130+'], 'COMPS'],
                 '01R': ['_RWY19L02DME', 'NAPSE', ['RIOOS', 'A130+'], 'COMPS'],

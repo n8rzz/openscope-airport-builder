@@ -6,6 +6,7 @@ import BaseAirportContainer from './components/BaseAirport/BaseAirportContainer'
 import FixContainer from './components/Fix/FixContainer';
 import RunwayContainer from './components/Runway/RunwayContainer';
 import ProcedureContainer from './components/Procedure/ProcedureContainer';
+import SpawnPatternContainer from './components/SpawnPattern/SpawnPatternContainer';
 
 export default function(store) {
     return (
@@ -15,6 +16,7 @@ export default function(store) {
             <Route path="/fixes" component={ FixContainer } />
             <Route path="/runways" component={ RunwayContainer } />
             <Route path="/procedures" component={ ProcedureContainer } />
+            <Route path="/spawnPatterns" component={ SpawnPatternContainer } />
         </Route>
     );
 }

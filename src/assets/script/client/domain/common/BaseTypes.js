@@ -10,6 +10,13 @@ export const SingleNumberValueType = t.struct({
 }, 'SingleNumberValueType');
 
 
+export const NumberOrTupleNumber = t.union([
+    t.Number,
+    t.tuple([t.Number, t.Number])
+], 'NumberOrTupleNumber');
+
+NumberOrTupleNumber.dispatch = (value) => !t.Array.is(value) ? t.Number : t.tuple([t.Number, t.Number]);
+
 const StringOrNumberType = t.union([t.String, t.Number], 'StringOrNumberType');
 const StringOrNumberTypeList = t.list(StringOrNumberType);
 
