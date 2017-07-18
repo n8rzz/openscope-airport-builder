@@ -3,6 +3,9 @@ import {
     ADD_FIX_TO_LIST_START,
     ADD_FIX_TO_LIST_SUCCESS,
     ADD_FIX_TO_LIST_ERROR,
+    UPDATE_EXISTING_FIX_START,
+    UPDATE_EXISTING_FIX_SUCCESS,
+    UPDATE_EXISTING_FIX_ERROR,
     REMOVE_FIX_START,
     REMOVE_FIX_SUCCESS,
     REMOVE_FIX_ERROR
@@ -35,6 +38,29 @@ export default createReducer(INITIAL_STATE, {
     ),
 
     [ADD_FIX_TO_LIST_ERROR]: (state, { error }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            error
+        }
+    ),
+
+    [UPDATE_EXISTING_FIX_START]: (state) => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [UPDATE_EXISTING_FIX_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
+
+    [UPDATE_EXISTING_FIX_ERROR]: (state, { error }) => mergeState(
         state,
         {
             isLoading: false,

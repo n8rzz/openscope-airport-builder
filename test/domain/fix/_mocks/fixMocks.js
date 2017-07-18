@@ -16,6 +16,13 @@ export const fixUpdateTypeMock = {
 };
 
 export const FixUpdateTypeFixture = new FixUpdateType(fixUpdateTypeMock);
+export const FixUpdateTypeNotInListFixture = new FixUpdateType({
+    name: 'THREEVE',
+    position: {
+        latitude: 'N35.92358556169513',
+        longitude: 'W113.90273980476096'
+    }
+});
 
 export const fixListTypeMock = [
     {

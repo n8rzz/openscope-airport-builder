@@ -8,6 +8,43 @@ import {
     FixImportParsedCsvListType
 } from '../types/FixType';
 
+export const UPDATE_EXISTING_FIX_START = 'UPDATE_EXISTING_FIX_START';
+export const UPDATE_EXISTING_FIX_SUCCESS = 'UPDATE_EXISTING_FIX_SUCCESS';
+export const UPDATE_EXISTING_FIX_ERROR = 'UPDATE_EXISTING_FIX_ERROR';
+
+export const updateExistingFixStart = () => ({ type: UPDATE_EXISTING_FIX_START });
+
+export const updateExistingFixSuccess = (payload) => ({
+    type: UPDATE_EXISTING_FIX_SUCCESS,
+    payload
+});
+
+export const updateExistingFixError = (error) => ({
+    type: UPDATE_EXISTING_FIX_ERROR,
+    error
+});
+
+export const updateExistingFix = (fixToUpdate) => (dispatch, getState) => {
+    dispatch(updateExistingFixStart());
+
+    const { fixList } = getState();
+
+    if (!FixUpdateType.is(fixToUpdate)) {
+        const error = new TypeError('Invalid data passed to .updateExistingFix(). Expected FixUpdateType');
+
+        return dispatch(updateExistingFixError(error));
+    } else if (fixList.payload.length === 0) {
+        const error = new TypeError('#fixList is presently empty. No Fixes to update');
+
+        return dispatch(updateExistingFixError(error));
+    }
+
+    const listWithoutUpdateItem = _filter(fixList.payload, (fix) => fix.name !== fixToUpdate.name);
+    const updatedFixList = FixListType.update(listWithoutUpdateItem, { $push: [fixToUpdate] });
+
+    return dispatch(updateExistingFixSuccess(updatedFixList));
+};
+
 export const ADD_FIX_TO_LIST_START = 'ADD_FIX_TO_LIST_START';
 export const ADD_FIX_TO_LIST_SUCCESS = 'ADD_FIX_TO_LIST_SUCCESS';
 export const ADD_FIX_TO_LIST_ERROR = 'ADD_FIX_TO_LIST_ERROR';
@@ -63,17 +100,25 @@ const saveFixError = (error) => ({
     error
 });
 
-export const saveFix = (fixFormValues) => (dispatch) => {
+export const saveFix = (fixToSave) => (dispatch, getState) => {
     dispatch(saveFixStart());
 
-    if (!fixFormValues) {
+    if (!FixUpdateType.is(fixToSave)) {
         const error = new Error('Invalid data passed to .saveFix()');
 
         return dispatch(saveFixError(error));
     }
 
-    dispatch(addFixToList(fixFormValues));
-    return dispatch(saveFixSuccess(fixFormValues));
+    const { fixList } = getState();
+    const fixIndex = _findIndex(fixList.payload, { name: fixToSave.name });
+
+    if (fixIndex !== -1) {
+        dispatch(updateExistingFix(fixToSave));
+        return dispatch(saveFixSuccess(fixToSave));
+    }
+
+    dispatch(addFixToList(fixToSave));
+    return dispatch(saveFixSuccess(fixToSave));
 };
 
 export const IMPORT_FIX_LIST_START = 'IMPORT_FIX_LIST_START';
